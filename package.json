@@ -1,0 +1,31 @@
+{
+  "author": "Wilmer Alex QUispe Quispe <q.wilmer.alex@gmail.com>",
+  "name": "insac",
+  "homepage": "https://insac.waquispe.com",
+  "description": "Framework de creación de servicios web basado en lenguaje script, utilizando arquitectura REST",
+  "keywords": [
+    "insac",
+    "framework",
+    "web",
+    "service",
+    "REST"
+  ],
+  "version": "1.0.0",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/waquispe/insac.git"
+  },
+  "main": "index.js",
+  "engines": {
+    "node": ">=0.10"
+  },
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "cors": "^2.8.3",
+    "express": "~4.15.2",
+    "path": "^0.12.7",
+    "pg": "^6.4.0",
+    "sequelize": "^4.2.1"
+  }
+}
