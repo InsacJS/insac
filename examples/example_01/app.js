@@ -1,8 +1,9 @@
 var insac = require('../../');
+var path = require('path');
 
 let app = insac();
 
-app.serverConfig({publicFolder:path.join(__dirname, 'public')});
+app.serverConfig({publicFolder:path.join(__dirname,'public')});
 app.databaseConfig({username:'postgres', password:'BK8DJ567F0', dbname:'insac_example_01'});
 
 app.model({name:'autor', pluralName:'autores', fields:[
