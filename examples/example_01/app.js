@@ -1,11 +1,11 @@
-var insac = require('../../');
-var path = require('path');
+const insac = require('../../');
+const path = require('path');
 
 let DataType = insac.DataType;
 let app = insac();
 
 let config = {
-  response: {all200: false},
+  response: {all200: true},
   server: {publicFolder: path.join(__dirname,'public')},
   database: {dbname: 'insac_example_01', username: 'postgres', password: 'BK8DJ567F0'}
 }
@@ -26,7 +26,13 @@ app.addResource({modelName:'autor', routes:[
   {method:'DELETE'}
 ]});
 
-app.addModel({name:'libro', fields:['nombre','nro_paginas','autor','editorial']});
+app.addModel({name:'libro', fields:[
+  {name:'titulo', upperCase:true, primaryKey:true},
+  {name:'autor', upperCase:true, primaryKey:true},
+  {name:'nro_paginas', type:DataType.INTEGER},
+  {name:'fecha_registro', type:DataType.DATE},
+  'editorial'
+]});
 
 app.addResource('libro');
 
