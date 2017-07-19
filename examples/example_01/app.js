@@ -28,17 +28,13 @@ app.addResource({modelName:'autor', routes:[
 
 app.addModel({name:'libro', fields:[
   {name:'titulo', upperCase:true, primaryKey:true},
-  {name:'autor', upperCase:true, primaryKey:true},
+  {name:'editorial', lowerCase:true, primaryKey:true},
   {name:'nro_paginas', type:DataType.INTEGER},
   {name:'fecha_registro', type:DataType.DATE},
-  'editorial'
+  {name:'id_autor', reference:'autor'}
 ]});
 
 app.addResource('libro');
 
-/*app.resource({modelName:'autor', version:2, routes:[
-{method:'POST', inputs:['nombre', 'seudonimo']}
-]});*/
-
-//app.migrate(['libro']);
+app.migrate(['autor','libro']);
 app.init();
