@@ -36,5 +36,5 @@ app.addModel({name:'libro', fields:[
 
 app.addResource('libro');
 
-app.migrate(['autor','libro']);
+//app.migrate(['autor','libro']);
 app.init();
