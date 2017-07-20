@@ -19,7 +19,7 @@ app.addModel({name:'autor', pluralName:'autores', fields:[
 ]});
 
 app.addResource({modelName:'autor', routes:[
-  {method:'GET', outputs:['id', 'nombre', 'seudonimo', 'nacionalidad']},
+  {method:'GET', outputs:['id', 'nombre', 'seudonimo']},
   {method:'GET', outputs:['nombre', 'seudonimo', 'nacionalidad'], idParam:true},
   {method:'POST', inputs:['nombre', 'seudonimo']},
   {method:'PUT'},
@@ -34,7 +34,13 @@ app.addModel({name:'libro', fields:[
   {name:'id_autor', reference:'autor'}
 ]});
 
-app.addResource('libro');
+app.addResource({modelName:'libro', routes:[
+  {method:'GET', outputs:['id', 'titulo', 'editorial']},
+  {method:'GET', idParam:true},
+  {method:'POST'},
+  {method:'PUT'},
+  {method:'DELETE'}
+]});
 
 //app.migrate(['autor','libro']);
 app.init();
