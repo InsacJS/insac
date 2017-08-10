@@ -12,8 +12,8 @@ module.exports = (insac, Field, DataType, Validator, Reference) => {
       },
       direccion: {
         type: DataType.STRING,
-        allowNull: false,
         description: 'Dirección',
+        defaultValue: 'Mi dirección por defecto'
       },
       ci: {
         type: DataType.INTEGER,

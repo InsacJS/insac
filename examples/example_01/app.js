@@ -7,16 +7,17 @@ let app = insac.createServer(config)
 
 // Adición de modelos.
 app.addModel('persona')
+app.addModel('docente')
 app.addModel('estudiante')
+app.addModel('auxiliar')
 
 // Adición de rutas.
 app.addRoutes()
 
 // Creación de tablas.
-app.migrate().then(result => {
+//app.migrate().then(result => {
 
   // Inicio de la aplicación
   app.init()
-})
-
+//})
 module.exports = app

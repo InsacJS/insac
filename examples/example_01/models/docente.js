@@ -2,15 +2,13 @@
 
 module.exports = (insac, Field, DataType, Validator, Reference) => {
 
-  return insac.createModel('estudiante', {
+  return insac.createModel('docente', {
     fields: {
       id: Field.ID,
-      ru: {
-        type: DataType.INTEGER,
-        allowNull: false,
-        validator: Validator.INTEGER(1),
-        defaultValue: 9999,
-        description: 'Registro Universitario'
+      grado: {
+        type: DataType.STRING(100),
+        description: 'Grado académico',
+        defaultValue: 'Licenciado'
       },
       id_persona: {
         type: DataType.INTEGER,
@@ -26,7 +24,6 @@ module.exports = (insac, Field, DataType, Validator, Reference) => {
     },
     options: {
       uniqueKeys: [
-        {fields: ['ru']},
         {fields: ['id_persona']}
       ],
       timestamps: true
