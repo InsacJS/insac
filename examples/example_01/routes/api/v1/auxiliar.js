@@ -35,8 +35,8 @@ module.exports = (insac, models, Field, Data, Validator, Util) => {
     controller: (req, res, opt, next) => {
       let options = Util.optionsQUERY(req, opt)
       models.auxiliar.seq.findAndCountAll(options).then((result) => {
-        let metadata = Util.metadata(result, options)
         let data = Util.output(req, opt, result.rows)
+        let metadata = Util.metadata(data.length, result.count, options)
         res.success200(data, metadata)
       }).catch(function (err) {
         res.error(err)
@@ -56,21 +56,21 @@ module.exports = (insac, models, Field, Data, Validator, Util) => {
         id: models.auxiliar.fields.id,
         especialidad: models.auxiliar.fields.especialidad,
         id_estudiante: models.auxiliar.id_estudiante,
-        _fecha_creacion: models.auxiliar.fields._fecha_creacion,
-        _fecha_modificacion: models.auxiliar.fields._fecha_modificacion,
+        _fecha_creacion: Field.CREATED_AT,
+        _fecha_modificacion: Field.UPDATED_AT,
         estudiante: {
           id: models.estudiante.fields.id,
           ru: models.estudiante.fields.ru,
           id_persona: models.estudiante.fields.id_persona,
-          _fecha_creacion: models.estudiante.fields._fecha_creacion,
-          _fecha_modificacion: models.estudiante.fields._fecha_modificacion,
+          _fecha_creacion: Field.CREATED_AT,
+          _fecha_modificacion: Field.UPDATED_AT,
           persona: {
             id: models.persona.fields.id,
             nombre: models.persona.fields.nombre,
             dirección: models.persona.fields.dirección,
             ci: models.persona.fields.ci,
-            _fecha_creacion: models.persona.fields._fecha_creacion,
-            _fecha_modificacion: models.persona.fields._fecha_modificacion
+            _fecha_creacion: Field.CREATED_AT,
+            _fecha_modificacion: Field.UPDATED_AT
           }
         }
       }
