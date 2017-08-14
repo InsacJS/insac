@@ -7,9 +7,8 @@ module.exports = (insac, models, Field, Data, Validator, Util) => {
   routes.push(insac.createRoute('GET', '/api/v1/auxiliares', {
     model: models.auxiliar,
     output: {
-      isArray: true,
       metadata: true,
-      data: {
+      data: [{
         id: models.auxiliar.fields.id,
         especialidad: models.auxiliar.fields.especialidad,
         id_estudiante: models.auxiliar.fields.id_estudiante,
@@ -30,7 +29,7 @@ module.exports = (insac, models, Field, Data, Validator, Util) => {
             _fecha_modificacion: Field.UPDATED_AT
           }
         }
-      }
+      }]
     },
     controller: (req, res, opt, next) => {
       let options = Util.optionsQUERY(req, opt)

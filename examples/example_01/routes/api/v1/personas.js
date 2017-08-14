@@ -7,16 +7,15 @@ module.exports = (insac, models, Field, Data, Validator, Util) => {
   routes.push(insac.createRoute('GET', '/api/v1/personas', {
     model: models.persona,
     output: {
-      isArray: true,
       metadata: true,
-      data: {
+      data: [{
         id: models.persona.fields.id,
         nombre: models.persona.fields.nombre,
         direccion: models.persona.fields.direccion,
         ci: models.persona.fields.ci,
         _fecha_creacion: Field.CREATED_AT,
         _fecha_modificacion: Field.UPDATED_AT,
-      }
+      }]
     },
     controller: (req, res, opt, next) => {
       let options = Util.optionsQUERY(req, opt)
@@ -83,12 +82,11 @@ module.exports = (insac, models, Field, Data, Validator, Util) => {
   routes.push(insac.createRoute('POST', '/api/v2/personas', {
     model: models.persona,
     input: {
-      isArray: true,
-      body: {
+      body: [{
         nombre: models.persona.fields.nombre,
         direccion: models.persona.fields.direccion,
         ci: models.persona.fields.ci
-      }
+      }]
     },
     controller: (req, res, opt, next) => {
       let data = opt.input.body
