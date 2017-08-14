@@ -54,8 +54,7 @@ module.exports = (insac, models, Field, Data, Validator, Util) => {
           let data = Util.output(req, opt, result)
           return res.success200(data)
         }
-        let msg = `No existe el registro '${opt.model.name}' con el campo (id)=(${req.params.id})`
-        res.error422(msg)
+        res.error404(opt.model.name, 'id', opt.input.params.id)
       }).catch(function (err) {
         res.error(err)
       })
@@ -101,8 +100,7 @@ module.exports = (insac, models, Field, Data, Validator, Util) => {
         if (nroRowAffecteds > 0) {
           return res.success200()
         }
-        let msg = `No existe el registro '${opt.model.name}' con el campo (id)=(${req.params.id})`
-        res.error422(msg)
+        res.error404(opt.model.name, 'id', opt.input.params.id)
       }).catch((err) => {
         res.error(err)
       })
@@ -122,8 +120,7 @@ module.exports = (insac, models, Field, Data, Validator, Util) => {
         if (result > 0) {
           return res.success200()
         }
-        let msg = `No existe el registro '${opt.model.name}' con el campo (id)=(${req.params.id})`
-        res.error422(msg)
+        res.error404(opt.model.name, 'id', opt.input.params.id)
       }).catch((err) => {
         res.error(err)
       })

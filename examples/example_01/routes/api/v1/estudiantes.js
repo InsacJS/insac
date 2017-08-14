@@ -68,8 +68,7 @@ module.exports = (insac, models, Field, Data, Validator, Util) => {
           let data = Util.output(req, opt, result)
           return res.success200(data)
         }
-        let msg = `No existe el registro '${opt.model.name}' con el campo (id)=(${req.params.id})`
-        res.error422(msg)
+        res.error404(opt.model.name, 'id', opt.input.params.id)
       }).catch(function (err) {
         res.error(err)
       })
@@ -94,6 +93,36 @@ module.exports = (insac, models, Field, Data, Validator, Util) => {
     }
   }))
 
+  routes.push(insac.createRoute('POST', '/api/v2/estudiantes', {
+    model: models.estudiante,
+    input: {
+      body: {
+        ru: models.estudiante.fields.ru,
+        persona: {
+          nombre: models.persona.fields.nombre,
+          direccion: models.persona.fields.direccion,
+          ci: models.persona.fields.ci
+        }
+      }
+    },
+    controller: (req, res, opt, next) => {
+      let persona = opt.input.body.persona
+      insac.database.sequelize.transaction((t) => {
+        return models.persona.seq.create(persona, {transaction:t}).then(personaR => {
+          let data = {
+            ru: opt.input.body.ru,
+            id_persona: personaR.id
+          }
+          return models.estudiante.seq.create(data, {transaction:t})
+        })
+      }).then(result => {
+        res.success201(result)
+      }).catch(err => {
+        res.error(err)
+      })
+    }
+  }))
+
   routes.push(insac.createRoute('PUT', '/api/v1/estudiantes/:id', {
     model: models.estudiante,
     input: {
@@ -113,9 +142,55 @@ module.exports = (insac, models, Field, Data, Validator, Util) => {
         if (nroRowAffecteds > 0) {
           return res.success200()
         }
-        let msg = `No existe el registro '${opt.model.name}' con el campo (id)=(${req.params.id})`
-        res.error422(msg)
+        res.error404(opt.model.name, 'id', opt.input.params.id)
       }).catch((err) => {
+        res.error(err)
+      })
+    }
+  }))
+
+  routes.push(insac.createRoute('PUT', '/api/v2/estudiantes/:id', {
+    model: models.estudiante,
+    input: {
+      params: {
+        id: models.estudiante.fields.id
+      },
+      body: {
+        ru: models.estudiante.fields.ru,
+        persona: {
+          nombre: models.persona.fields.nombre,
+          direccion: models.persona.fields.direccion,
+          ci: models.persona.fields.ci
+        }
+      }
+    },
+    controller: (req, res, opt, next) => {
+      if (Util.isUndefined(opt.input.body)) {
+        let msg = `Debe enviar al menos un campo válido`
+        return res.error422(msg)
+      }
+      insac.database.sequelize.transaction(t => {
+        let data = {}
+        if (typeof opt.input.body.ru != 'undefined') data.ru = opt.input.body.ru
+        let options = Util.optionsID(req, opt)
+        return models.estudiante.seq.update(data, options, {transaction:t}).then((result) => {
+          let nroRowAffecteds = result[0];
+          if (nroRowAffecteds > 0) {
+            return models.estudiante.seq.findOne(options).then((result) => {
+              let persona = opt.input.body.persona
+              let personaOptions = {where:{id:result.id_persona}}
+              return models.persona.seq.update(persona, personaOptions, {transaction:t})
+            })
+          } else {
+            throw {custom:true, resource:opt.model.name, field:'id', value:opt.input.params.id }
+          }
+        })
+      }).then(result => {
+        res.success200()
+      }).catch(err => {
+        if (err.custom) {
+          return res.error404(err.resource, err.field, err.value)
+        }
         res.error(err)
       })
     }
@@ -134,8 +209,7 @@ module.exports = (insac, models, Field, Data, Validator, Util) => {
         if (result > 0) {
           return res.success200()
         }
-        let msg = `No existe el registro '${opt.model.name}' con el campo (id)=(${req.params.id})`
-        res.error422(msg)
+        res.error404(opt.model.name, 'id', opt.input.params.id)
       }).catch((err) => {
         res.error(err)
       })

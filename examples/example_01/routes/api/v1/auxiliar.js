@@ -82,8 +82,7 @@ module.exports = (insac, models, Field, Data, Validator, Util) => {
           let data = Util.output(req, opt, result)
           return res.success200(data)
         }
-        let msg = `No existe el registro '${opt.model.name}' con el campo (id)=(${req.params.id})`
-        res.error422(msg)
+        res.error404(opt.model.name, 'id', opt.input.params.id)
       }).catch(function (err) {
         res.error(err)
       })
@@ -102,6 +101,44 @@ module.exports = (insac, models, Field, Data, Validator, Util) => {
       let data = opt.input.body
       models.auxiliar.seq.create(data).then((result) => {
         res.success201(result)
+      }).catch((err) => {
+        res.error(err)
+      })
+    }
+  }))
+
+  routes.push(insac.createRoute('POST', '/api/v2/auxiliares', {
+    model: models.auxiliar,
+    input: {
+      body: {
+        especialidad: models.auxiliar.fields.especialidad,
+        estudiante: {
+          persona: {
+            ci: models.persona.fields.ci
+          }
+        }
+      }
+    },
+    controller: (req, res, opt, next) => {
+      let options = {include:[{model:models.persona.seq,where:{ci:opt.input.body.estudiante.persona.ci}}]}
+      models.estudiante.seq.findOne(options).then(estudianteR => {
+        if (estudianteR) {
+          let data = {
+            especialidad: opt.input.body.especialidad,
+            id_estudiante: estudianteR.id
+          }
+          models.auxiliar.seq.create(data).then((result) => {
+            res.success201(result)
+          }).catch((err) => {
+            if (err.name == 'SequelizeForeignKeyConstraintError') {
+              let msg = `Ya existe un registro 'auxiliar' con el campo '(estudiante.persona.ci)=(${opt.input.body.estudiante.persona.ci})' y debe ser único`
+              return res.error422(msg)
+            }
+            res.error(err)
+          })
+        } else {
+          res.error404('estudiante', 'persona.ci', opt.input.body.estudiante.persona.ci)
+        }
       }).catch((err) => {
         res.error(err)
       })
@@ -127,8 +164,7 @@ module.exports = (insac, models, Field, Data, Validator, Util) => {
         if (nroRowAffecteds > 0) {
           return res.success200()
         }
-        let msg = `No existe el registro '${opt.model.name}' con el campo (id)=(${req.params.id})`
-        res.error422(msg)
+        res.error404(opt.model.name, 'id', opt.input.params.id)
       }).catch((err) => {
         res.error(err)
       })
@@ -148,8 +184,7 @@ module.exports = (insac, models, Field, Data, Validator, Util) => {
         if (result > 0) {
           return res.success200()
         }
-        let msg = `No existe el registro '${opt.model.name}' con el campo (id)=(${req.params.id})`
-        res.error422(msg)
+        res.error404(opt.model.name, 'id', opt.input.params.id)
       }).catch((err) => {
         res.error(err)
       })
