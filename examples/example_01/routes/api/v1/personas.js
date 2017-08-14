@@ -71,9 +71,29 @@ module.exports = (insac, models, Field, Data, Validator, Util) => {
       }
     },
     controller: (req, res, opt, next) => {
-      let persona = opt.input.body
-      models.persona.seq.create(persona).then((result) => {
+      let data = opt.input.body
+      models.persona.seq.create(data).then((result) => {
         res.success201(result)
+      }).catch((err) => {
+        res.error(err)
+      })
+    }
+  }))
+
+  routes.push(insac.createRoute('POST', '/api/v2/personas', {
+    model: models.persona,
+    input: {
+      isArray: true,
+      body: {
+        nombre: models.persona.fields.nombre,
+        direccion: models.persona.fields.direccion,
+        ci: models.persona.fields.ci
+      }
+    },
+    controller: (req, res, opt, next) => {
+      let data = opt.input.body
+      models.persona.seq.bulkCreate(data).then((result) => {
+        res.success201()
       }).catch((err) => {
         res.error(err)
       })
@@ -93,9 +113,9 @@ module.exports = (insac, models, Field, Data, Validator, Util) => {
       }
     },
     controller: (req, res, opt, next) => {
-      let persona = opt.input.body
+      let data = opt.input.body
       let options = Util.optionsID(req, opt)
-      models.persona.seq.update(persona, options).then((result) => {
+      models.persona.seq.update(data, options).then((result) => {
         let nroRowAffecteds = result[0];
         if (nroRowAffecteds > 0) {
           return res.success200()
