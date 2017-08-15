@@ -7,7 +7,12 @@ module.exports = (insac, models, Field, Data, Validator, Util) => {
   routes.push(insac.createRoute('GET', '/api/v1/estudiantes', {
     model: models.estudiante,
     output: {
-      metadata: true,
+      metadata: {
+        count: new Field({type:Data.INTEGER, description:'Cantidad de registros devueltos'}),
+        total: new Field({type:Data.INTEGER, description:'Cantidad de registros existentes'}),
+        limit: new Field({type:Data.INTEGER, description:'Cantidad máxima de registros a devolver'}),
+        offset: new Field({type:Data.INTEGER, description:'Posición inicial de registros a devolver'})
+      },
       data: [{
         id: models.estudiante.fields.id,
         ru: models.estudiante.fields.ru,
@@ -41,10 +46,17 @@ module.exports = (insac, models, Field, Data, Validator, Util) => {
     },
     controller: (req, res, opt, next) => {
       let options = Util.optionsQUERY(req, opt)
-      models.estudiante.seq.findAndCountAll(options).then((result) => {
-        let data = Util.output(req, opt, result.rows)
-        let metadata = Util.metadata(data.length, result.count, options)
-        res.success200(result, metadata)
+      models.estudiante.seq.findAll(options).then((result) => {
+        models.estudiante.seq.count().then(count => {
+          let data = Util.output(req, opt, result)
+          let metadata = {
+            count: data.length,
+            total: count,
+            limit: options.limit,
+            offset: options.offset
+          }
+          res.success200(data, metadata)
+        })
       }).catch(function (err) {
         res.error(err)
       })
