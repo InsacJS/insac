@@ -10,6 +10,8 @@ app.addModel('persona')
 app.addModel('docente')
 app.addModel('estudiante')
 app.addModel('auxiliar')
+app.addModel('materia')
+app.addModel('inscripcion')
 
 // Adición de rutas.
 app.addRoutes()

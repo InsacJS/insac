@@ -27,6 +27,7 @@ module.exports = (insac, models, Field, Data, Validator, Util) => {
     controller: (req, res, opt, next) => {
       let options = Util.optionsQUERY(req, opt)
       models.estudiante.seq.findAndCountAll(options).then((result) => {
+        return res.success200(result)
         let data = Util.output(req, opt, result.rows)
         let metadata = Util.metadata(data.length, result.count, options)
         res.success200(data, metadata)
