@@ -127,7 +127,6 @@ module.exports = (insac, models, Field, Data, Validator, Util) => {
     },
     controller: (req, res, opt, next) => {
       let data = opt.input.body
-      console.log("DATA: ", data)
       models.inscripcion.seq.create(data).then((result) => {
         res.success201(result)
       }).catch((err) => {
