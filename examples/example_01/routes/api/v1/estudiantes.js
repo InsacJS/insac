@@ -21,16 +21,30 @@ module.exports = (insac, models, Field, Data, Validator, Util) => {
           ci: models.persona.fields.ci,
           _fecha_creacion: Field.CREATED_AT,
           _fecha_modificacion: Field.UPDATED_AT,
-        }
+        },
+        inscripciones: [{
+          id: models.inscripcion.fields.id,
+          gestion: models.inscripcion.fields.gestion,
+          id_estudiante: models.inscripcion.fields.id_estudiante,
+          id_materia: models.inscripcion.fields.id_materia,
+          _fecha_creacion: Field.CREATED_AT,
+          _fecha_modificacion: Field.UPDATED_AT,
+          materia: {
+            id: models.materia.fields.id,
+            nombre: models.materia.fields.nombre,
+            sigla: models.materia.fields.sigla,
+            _fecha_creacion: Field.CREATED_AT,
+            _fecha_modificacion: Field.UPDATED_AT
+          }
+        }]
       }]
     },
     controller: (req, res, opt, next) => {
       let options = Util.optionsQUERY(req, opt)
       models.estudiante.seq.findAndCountAll(options).then((result) => {
-        return res.success200(result)
         let data = Util.output(req, opt, result.rows)
         let metadata = Util.metadata(data.length, result.count, options)
-        res.success200(data, metadata)
+        res.success200(result, metadata)
       }).catch(function (err) {
         res.error(err)
       })
@@ -58,7 +72,22 @@ module.exports = (insac, models, Field, Data, Validator, Util) => {
           ci: models.persona.fields.ci,
           _fecha_creacion: Field.CREATED_AT,
           _fecha_modificacion: Field.UPDATED_AT,
-        }
+        },
+        inscripciones: [{
+          id: models.inscripcion.fields.id,
+          gestion: models.inscripcion.fields.gestion,
+          id_estudiante: models.inscripcion.fields.id_estudiante,
+          id_materia: models.inscripcion.fields.id_materia,
+          _fecha_creacion: Field.CREATED_AT,
+          _fecha_modificacion: Field.UPDATED_AT,
+          materia: {
+            id: models.materia.fields.id,
+            nombre: models.materia.fields.nombre,
+            sigla: models.materia.fields.sigla,
+            _fecha_creacion: Field.CREATED_AT,
+            _fecha_modificacion: Field.UPDATED_AT
+          }
+        }]
       }
     },
     controller: (req, res, opt, next) => {
