@@ -1,6 +1,6 @@
 'use strict'
 
-module.exports = (insac, models, Field, Data, Validator, Util) => {
+module.exports = (insac, models, Field, DataType, Validator, Util) => {
 
   let routes = []
 
@@ -8,10 +8,10 @@ module.exports = (insac, models, Field, Data, Validator, Util) => {
     model: models.auxiliar,
     output: {
       metadata: {
-        count: new Field({type:Data.INTEGER, description:'Cantidad de registros devueltos'}),
-        total: new Field({type:Data.INTEGER, description:'Cantidad de registros existentes'}),
-        limit: new Field({type:Data.INTEGER, description:'Cantidad máxima de registros a devolver'}),
-        offset: new Field({type:Data.INTEGER, description:'Posición inicial de registros a devolver'})
+        count: new Field({type:DataType.INTEGER, description:'Cantidad de registros devueltos'}),
+        total: new Field({type:DataType.INTEGER, description:'Cantidad de registros existentes'}),
+        limit: new Field({type:DataType.INTEGER, description:'Cantidad máxima de registros a devolver'}),
+        offset: new Field({type:DataType.INTEGER, description:'Posición inicial de registros a devolver'})
       },
       data: [{
         id: models.auxiliar.fields.id,

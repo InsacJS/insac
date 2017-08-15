@@ -16,22 +16,14 @@ module.exports = (insac, Field, DataType, Validator, Reference) => {
         type: DataType.INTEGER,
         allowNull: false,
         validator: Validator.INTEGER(1),
-        reference: {
-          model: 'estudiante',
-          key: 'id',
-          type: Reference.ONE_TO_MANY
-        },
+        reference: Reference.ONE_TO_MANY('estudiante','id'),
         description: 'Identificador único del estudiante'
       },
       id_materia: {
         type: DataType.INTEGER,
         allowNull: false,
         validator: Validator.INTEGER(1),
-        reference: {
-          model: 'materia',
-          key: 'id',
-          type: Reference.ONE_TO_MANY
-        },
+        reference: Reference.ONE_TO_MANY('materia','id'),
         description: 'Identificador único de la materia'
       }
     },

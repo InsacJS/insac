@@ -14,11 +14,7 @@ module.exports = (insac, Field, DataType, Validator, Reference) => {
         type: DataType.INTEGER,
         allowNull: false,
         validator: Validator.INTEGER(1),
-        reference: {
-          model: 'persona',
-          key: 'id',
-          type: Reference.ONE_TO_ONE
-        },
+        reference: Reference.ONE_TO_ONE('persona','id'),
         description: 'Identificador único de la persona'
       }
     },
