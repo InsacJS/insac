@@ -33,8 +33,15 @@ app.addMiddleware('error-handler')
 
 // Creación de tablas.
 app.migrate().then(result => {
-  app.seed()
-  app.init()
+  // Creación datos
+  app.seed().then(result => {
+    // Iniciar aplicación
+    app.init()
+  }).catch(err => {
+    console.log(err.name)
+  })
+}).catch(err => {
+  console.log(err.name)
 })
 
 module.exports = app
