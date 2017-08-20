@@ -10,6 +10,9 @@ let config = {
     middlewaresPath: path.join(PROJECT_PATH, 'middlewares'),
     seedersPath: path.join(PROJECT_PATH, 'seeders')
   },
+  response: {
+    all200: true
+  },
   server: {
     port: 3200
   },

@@ -12,7 +12,7 @@ module.exports = (insac) => {
       usuario: {
         id: 1,
         username: 'doc1',
-        password: '123',
+        password: insac.encryptPassword('123'),
         nombre: 'JUAN PEREZ',
         email: 'doc.100@gmail.com'
       }
@@ -27,7 +27,7 @@ module.exports = (insac) => {
       usuario: {
         id: 2,
         username: 'doc2',
-        password: '123',
+        password: insac.encryptPassword('123'),
         nombre: 'ROSA FLORES',
         email: 'doc.200@gmail.com'
       }
@@ -42,7 +42,7 @@ module.exports = (insac) => {
       usuario: {
         id: 3,
         username: 'doc3',
-        password: '123',
+        password: insac.encryptPassword('123'),
         nombre: 'LUCIA MENDEZ',
         email: 'doc.300@gmail.com'
       }
