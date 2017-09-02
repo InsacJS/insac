@@ -1,0 +1,31 @@
+{
+  "source": "./lib",
+  "destination": "./docs/",
+  "includes": ["\\.js$"],
+  "excludes": ["\\.config\\.js$"],
+  "plugins": [{
+    "name": "esdoc-standard-plugin",
+    "option": {
+      "undocumentIdentifier": {"enable": false},
+      "unexportedIdentifier": {"enable": true},
+      "lint": {"enable": true},
+      "coverage": {"enable": true},
+      "typeInference": {"enable": true},
+      "brand": {
+        "title": "Insac Framework",
+        "description": "Framework de creación de servicios web",
+        "repository": "https://github.com/waquispe/insac",
+        "site": "https://insac.waquispe.com",
+        "author": "https://waquispe.com"
+      },
+      "manual": {
+        "index": "./manual/index.md",
+        "files": [
+          "./manual/overview.md",
+          "./manual/installation.md",
+          "./manual/tutorial.md"
+        ]
+      }
+    }
+    }]
+  }
