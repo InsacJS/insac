@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">lib/models/Response.js | Insac Framework</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="Framework de creaci&#xF3;n de servicios web"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="Insac Framework"><meta property="twitter:description" content="Framework de creaci&#xF3;n de servicios web"></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  <a href="./manual/index.html" data-ice="manualHeaderLink">Manual</a>
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/waquispe/insac"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/Insac.js~Insac.html">Insac</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#datatypes">datatypes</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/datatypes/DataType.js~DataType.html">DataType</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/datatypes/INTEGER.js~INTEGER.html">INTEGER</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/datatypes/STRING.js~STRING.html">STRING</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#models">models</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/models/Config.js~Config.html">Config</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/models/Database.js~Database.html">Database</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/models/Field.js~Field.html">Field</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/models/Middleware.js~Middleware.html">Middleware</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/models/Model.js~Model.html">Model</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/models/Reference.js~Reference.html">Reference</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/models/Response.js~Response.html">Response</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/models/ResponseError.js~ResponseError.html">ResponseError</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/models/Seeder.js~Seeder.html">Seeder</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/models/Server.js~Server.html">Server</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#routes">routes</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/routes/Route.js~Route.html">Route</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/routes/RouteDelete.js~RouteDelete.html">RouteDelete</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/routes/RouteGet.js~RouteGet.html">RouteGet</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/routes/RoutePost.js~RoutePost.html">RoutePost</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/routes/RoutePut.js~RoutePut.html">RoutePut</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#tools">tools</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/tools/DataTypes.js~DataTypes.html">DataTypes</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/tools/Util.js~Util.html">Util</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/tools/Validators.js~Validators.html">Validators</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#validators">validators</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/validators/INTEGER_VALIDATOR.js~INTEGER_VALIDATOR.html">INTEGER_VALIDATOR</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/validators/STRING_VALIDATOR.js~STRING_VALIDATOR.html">STRING_VALIDATOR</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/validators/Validator.js~Validator.html">Validator</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">lib/models/Response.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">&apos;use strict&apos;
+/** @ignore */ const { ResponseError } = require(&apos;./ResponseError&apos;)
+
+/**
+* Proporciona funciones para modificar el formato de respuesta de las peticiones.
+*/
+class Response {
+
+  /**
+  * Crea una instancia del objeto Response.
+  * @param {Object} [config={}] - Configuraci&#xF3;n del servidor.
+  * @param {Boolean} [config.all200=false] - Indica si el c&#xF3;digo de respuesta de todas las peticiones ser&#xE1; 200 (OK).
+  */
+  constructor(config = {}) {
+    /**
+    * Indica si el c&#xF3;digo de respuesta de todas las peticiones ser&#xE1; 200 (OK).
+    * @type {Boolean}
+    */
+    this.all200 = (typeof config.all200 != &apos;undefined&apos;) ? config.all200 : false
+  }
+
+  /**
+  * La petici&#xF3;n se ha completado con &#xE9;xito.
+  * @param {Object} [data] Objeto que se incluir&#xE1; en la respuesta. Por defecto devuelve el mensaje &apos;Tarea completada exitosamente&apos;.
+  */
+  success200(data = {msg:&apos;Tarea completada exitosamente&apos;}) {
+    let code = (this.all200) ? 200 : 200
+    this.status(code).json(this.formatSuccessJSON(200, data))
+  }
+
+  /**
+  * La petici&#xF3;n se ha completado con &#xE9;xito y como resultado se ha creado un nuevo registro.
+  * @param {Object} [data] Objeto que se incluir&#xE1; en la respuesta. Por defecto devuelve el mensaje &apos;Registro creado exitosamente&apos;.
+  */
+  success201(data = {msg:&apos;Registro creado exitosamente&apos;}) {
+    let code = (this.all200) ? 200 : 201
+    this.status(code).json(this.formatSuccessJSON(201, data))
+  }
+
+  /**
+  * La petici&#xF3;n no ha podido ser completada. Requiere autenticaci&#xF3;n.
+  * @param {Object} [msg] Mensaje que se incluir&#xE1; en la respuesta. Por defecto devuelve el mensaje &apos;Acceso no autorizado&apos;.
+  */
+  error401(msg = &apos;Acceso no autorizado&apos;) {
+    let code = (this.all200) ? 200 : 401
+    this.status(code).json(this.formatErrorJSON(401, &apos;AUTHENTICATION_ERROR&apos;, msg))
+  }
+
+  /**
+  * La petici&#xF3;n no ha podido ser completada. No tiene los privilegios suficientes.
+  * @param {Object} [msg] Mensaje que se incluir&#xE1; en la respuesta. Por defecto devuelve el mensaje &apos;Acceso denegado&apos;.
+  */
+  error403(msg = &apos;Acceso denegado&apos;) {
+    let code = (this.all200) ? 200 : 403
+    this.status(code).json(this.formatErrorJSON(403, &apos;ACCESS_ERROR&apos;, msg))
+  }
+
+  /**
+  * La petici&#xF3;n no ha podido ser completada. El recurso al que intenta acceder no existe.
+  * @param {Object} [msg] Mensaje que se incluir&#xE1; en la respuesta. Por defecto devuelve el mensaje &apos;No existe el recurso&apos;.
+  */
+  error404(msg = &apos;No existe el recurso&apos;) {
+    let code = (this.all200) ? 200 : 404
+    this.status(code).json(this.formatErrorJSON(404, &apos;NOT_FOUND&apos;, msg))
+  }
+
+  /**
+  * La petici&#xF3;n no ha podido ser completada. Algunos datos no son v&#xE1;lidos.
+  * @param {Object} [msg] Mensaje que se incluir&#xE1; en la respuesta. Por defecto devuelve el mensaje &apos;Algunos datos no son v&#xE1;lidos&apos;.
+  */
+  error422(msg = &apos;Algunos datos son inv&#xE1;lidos&apos;) {
+    let code = (this.all200) ? 200 : 422
+    this.status(code).json(this.formatErrorJSON(422, &apos;VALIDATION_ERROR&apos;, msg))
+  }
+
+  /**
+  * La petici&#xF3;n no ha podido ser completada. Error interno del servidor.
+  * @param {Object} [err] Objeto que se incluir&#xE1; en la respuesta. Por defecto devuelve el mensaje &apos;Error del servidor&apos;.
+  */
+  error500(err = &apos;Error del servidor&apos;) {
+    let code = (this.all200) ? 200 : 500
+    this.status(code).json(this.formatErrorJSON(500, &apos;SERVER_ERROR&apos;, err))
+  }
+
+  /**
+  * La petici&#xF3;n no ha podido ser completada. Existe algun tipo de error.
+  * @param {SequelizeError|ResponseError} [err] Datos del error. Si el error no es reconocido, devolver&#xE1; error500 con los datos del error.
+  */
+  error(err) {
+    // Maneja todos los errores de instancia Error
+    if (err instanceof ResponseError) {
+      if (err.code == 401) { return this.error401(this.msg) }
+      if (err.code == 403) { return this.error403(this.msg) }
+      if (err.code == 404) { return this.error404(this.msg) }
+      if (err.code == 422) { return this.error422(this.msg) }
+      return this.error500(err)
+    }
+    // Maneja todos los posibles errores de sequelize
+    if (err.name == &apos;SequelizeForeignKeyConstraintError&apos;) {
+      let detail = err.parent.detail
+      let a = detail.indexOf(&apos;(&apos;)
+      let b = detail.lastIndexOf(&apos;)&apos;)
+      let field = detail.substr(a, (b-a+1))
+      let message = `No existe el registro con el campo ${field}`
+      return this.error422(message)
+    }
+    if (err.name == &apos;SequelizeUniqueConstraintError&apos;) {
+      let fields = &quot;&quot;, tableName = err.parent.table
+      for (let fieldName in err.fields) {
+        let value = err.fields[fieldName]
+        fields += `, (${fieldName})=(${value})`
+      }
+      fields = fields.substr(2)
+      let message
+      if (Object.keys(err.fields).length &gt; 1) {
+        message = `Ya existe un registro &apos;${tableName}&apos; con los campos &apos;${fields}&apos; y debe ser &#xFA;nico`
+      } else {
+        message = `Ya existe un registro &apos;${tableName}&apos; con el campo &apos;${fields}&apos; y debe ser &#xFA;nico`
+      }
+      return this.error422(message)
+    }
+    // Cualquier otro tipo de error devuelve 500 (Server Error)
+    return this.error500(err)
+  }
+
+  /**
+  * Formato JSON de una respuesta exitosa.
+  * @param {Number} [code] C&#xF3;digo de respuesta (Ej.: 200, 401, etc).
+  * @param {Object} [data] Datos a incluir en la respuesta.
+  * @return {Object}
+  */
+  formatSuccessJSON(code, data) {
+    return {
+      status: &apos;OK&apos;,
+      code: code,
+      data: data
+    }
+  }
+
+  /**
+  * Formato JSON de una respuesta de error.
+  * @param {Number} [code] C&#xF3;digo de respuesta (Ej.: 200, 401, etc).
+  * @param {String} [type] Tipo de error..
+  * @param {String} [msg] Mensaje a incluir en la respuesta.
+  * @return {Object}
+  */
+  formatErrorJSON(code, type, msg) {
+    return {
+      status: &apos;FAIL&apos;,
+      code: code,
+      type: type,
+      msg: msg
+    }
+  }
+
+  /**
+  * Incorpora los formatos de respuesta en una instancia de express.
+  * @param {ExpressResponse} response Atributo response se una instancia del servidor express
+  */
+  assignTo(response) {
+    response.all200 = this.all200
+    response.formatSuccessJSON = this.formatSuccessJSON
+    response.formatErrorJSON = this.formatErrorJSON
+    response.success200 = this.success200
+    response.success201 = this.success201
+    response.error401 = this.error401
+    response.error403 = this.error403
+    response.error404 = this.error404
+    response.error422 = this.error422
+    response.error500 = this.error500
+    response.error = this.error
+  }
+
+}
+
+module.exports = Response
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.0.1)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

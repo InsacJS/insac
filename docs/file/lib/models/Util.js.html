@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">lib/models/Util.js | Insac Framework</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="Framework de creaci&#xF3;n de servicios web"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="Insac Framework"><meta property="twitter:description" content="Framework de creaci&#xF3;n de servicios web"></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  <a href="./manual/index.html" data-ice="manualHeaderLink">Manual</a>
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/waquispe/insac"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/Insac.js~Insac.html">Insac</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#datatypes">datatypes</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/datatypes/DataType.js~DataType.html">DataType</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/datatypes/INTEGER.js~INTEGER.html">INTEGER</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/datatypes/STRING.js~STRING.html">STRING</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#models">models</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/models/Config.js~Config.html">Config</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/models/DataTypes.js~DataTypes.html">DataTypes</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/models/Database.js~Database.html">Database</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/models/Field.js~Field.html">Field</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/models/Model.js~Model.html">Model</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/models/Reference.js~Reference.html">Reference</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/models/Server.js~Server.html">Server</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/models/Util.js~Util.html">Util</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/models/Validator.js~Validator.html">Validator</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">lib/models/Util.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">&apos;use strict&apos;
+/** @ignore */ const path = require(&apos;path&apos;)
+/** @ignore */ const jwt = require(&apos;jwt-simple&apos;)
+/** @ignore */ const crypto = require(&apos;crypto&apos;)
+
+/**
+* Contiene varias funciones que pueden ser utilizadas en cualquier lugar
+*/
+class Util {
+
+  /**
+  * Crea un token.
+  * @param {!Object} data - Objeto que se guardar&#xE1; dentro del token.
+  * @param {!String} key - Clave con la que se crear&#xE1; el token.
+  * @param {Number} [exp=86400] - Tiempo en segundos en el que expirar&#xE1; el token a partir de su creaci&#xF3;n.
+  * @return {String|undefined} Token encriptado &#xF3; undefined si ubiera algun error.
+  *
+  * @example
+  * const { Util } = require(&apos;insac&apos;)
+  *
+  * let data = {
+  *   id: 1,
+  *   usuario: &apos;Juan Perez&apos;,
+  *   rol: &apos;admin&apos;
+  * }
+  *
+  * let token = Util.createToken(data, &apos;SECRET&apos;)
+  *
+  * // token = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOj...
+  */
+  static createToken(data, key, exp = 86400) {
+    // Convierte un n&#xFA;mero en base 36, luego obtiene los 10 primeros caracteres
+    // despues del punto decimal
+    let tokenId = Math.random().toString(36).substr(2, 10) + &apos;&apos;
+    let issuedAt = Date.now()                // tiempo actual en milisegundos
+    let expire = issuedAt + (exp * 1000)     // 1 dia = 86400 segundos = 86400000 milisegundos
+    let token = {
+      iat: issuedAt,         // Issued at: Tiempo en que se gener&#xF3; el token
+      jti: tokenId,          // Json Token Id: Identificador &#xFA;nico para el token
+      exp: expire,           // Tiempo en que el token expirar&#xE1;
+      data: data
+    }
+    let tokenEncrypted
+    try {
+      tokenEncrypted = jwt.encode(token, key)
+    } catch(err) { }
+    return tokenEncrypted
+  }
+
+  /**
+  * Decodifica un token.
+  * @param {!String} tokenEncrypted - Token encriptado.
+  * @param {!String} key - Clave con la que se decodificar&#xE1; el token.
+  * @return {Object|undefined} Token decodificado. Si hubiere alg&#xFA;n tipo de error al decodificar, devolver&#xE1; undefined.
+  * @property {Number} iat - Tiempo en el que se cre&#xF3; el token.
+  * @property {String} jti - Identificador &#xFA;nico del token.
+  * @property {Number} exp - Tiempo en el que expirar&#xE1; el token.
+  * @property {Object} data - Objeto que se guard&#xF3; dentro del token.
+  *
+  * @example
+  * const { Util } = require(&apos;insac&apos;)
+  *
+  * let token = &apos;eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOj...&apos;
+  *
+  * let tokenDecoded = Util.decodeToken(token, &apos;SECRET&apos;)
+  *
+  * // tokenDecoded = {
+  * //   iat: 1503801350952,
+  * //   jti: &apos;eh2tb9pa3o&apos;,
+  * //   exp: 1503887750952,
+  * //   data: {
+  * //     id: 1,
+  * //     usuario: &apos;Juan Perez&apos;,
+  * //     rol: &apos;admin&apos;
+  * //   }
+  * // }
+  */
+  static decodeToken(tokenEncrypted, key) {
+    let tokenDecoded
+    try {
+      tokenDecoded = jwt.decode(tokenEncrypted, key)
+    } catch (err) { }
+    return tokenDecoded
+  }
+
+  /**
+  * Encripta un password (texto) con un hash md5.
+  * @param {!String} str - Password a encriptar (texto legible).
+  * @return {String} Password encriptado (texto encriptado)
+  *
+  * @example
+  * const { Util } = require(&apos;insac&apos;)
+  *
+  * let pass = &apos;admin&apos;
+  *
+  * let passEncrypted = Util.encryptPassword(pass)
+  *
+  * // passEncrypted = 21232f297a57a5a743894a0e4a801fc3
+  */
+  static encryptPassword(str) {
+    return crypto.createHash(&apos;md5&apos;).update(str + &apos;&apos;).digest(&apos;hex&apos;)
+  }
+
+  /**
+  * Devuelve una ruta absoluta.
+  * @param {!String} rootPath Direcci&#xF3;n absoluta del directorio donde se encuentra el archivo.
+  * @param {!String} filePath Direcci&#xF3;n absoluta o relativa del archivo. Si es absoluta, devuelve el mismo valor.
+  * @return {String} Ruta absoluta del archivo.
+  *
+  * @example
+  * const { Util } = require(&apos;insac&apos;)
+  *
+  * let rootPath = &apos;/var/www/example/&apos;
+  *
+  * let filePath = &apos;./app.js&apos;
+  *
+  * let absolutePath = Util.absolutePath(rootPath, filePath)
+  *
+  * // absolutePath = &apos;/var/www/example/app.js&apos;
+  */
+  static absolutePath(rootPath, filePath) {
+    if (filePath.startsWith(&apos;/&apos;)) {
+      return filePath
+    }
+    return path.resolve(rootPath, filePath)
+  }
+
+}
+
+module.exports = Util
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.0.1)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

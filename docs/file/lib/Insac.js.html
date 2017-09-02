@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../">
+  <title data-ice="title">lib/Insac.js | Insac Framework</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="Framework de creaci&#xF3;n de servicios web"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="Insac Framework"><meta property="twitter:description" content="Framework de creaci&#xF3;n de servicios web"></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  <a href="./manual/index.html" data-ice="manualHeaderLink">Manual</a>
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/waquispe/insac"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/Insac.js~Insac.html">Insac</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#datatypes">datatypes</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/datatypes/DataType.js~DataType.html">DataType</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/datatypes/INTEGER.js~INTEGER.html">INTEGER</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/datatypes/STRING.js~STRING.html">STRING</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#models">models</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/models/Config.js~Config.html">Config</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/models/Database.js~Database.html">Database</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/models/Field.js~Field.html">Field</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/models/Middleware.js~Middleware.html">Middleware</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/models/Model.js~Model.html">Model</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/models/Reference.js~Reference.html">Reference</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/models/Response.js~Response.html">Response</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/models/ResponseError.js~ResponseError.html">ResponseError</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/models/Seeder.js~Seeder.html">Seeder</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/models/Server.js~Server.html">Server</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#routes">routes</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/routes/Route.js~Route.html">Route</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/routes/RouteDelete.js~RouteDelete.html">RouteDelete</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/routes/RouteGet.js~RouteGet.html">RouteGet</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/routes/RoutePost.js~RoutePost.html">RoutePost</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/routes/RoutePut.js~RoutePut.html">RoutePut</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#tools">tools</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/tools/DataTypes.js~DataTypes.html">DataTypes</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/tools/Util.js~Util.html">Util</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/tools/Validators.js~Validators.html">Validators</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#validators">validators</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/validators/INTEGER_VALIDATOR.js~INTEGER_VALIDATOR.html">INTEGER_VALIDATOR</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/validators/STRING_VALIDATOR.js~STRING_VALIDATOR.html">STRING_VALIDATOR</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/lib/validators/Validator.js~Validator.html">Validator</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">lib/Insac.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">&apos;use strict&apos;
+/** @ignore */ const fs = require(&apos;fs&apos;)
+/** @ignore */ const async = require(&apos;async&apos;)
+/** @ignore */ const Config = require(&apos;./models/Config&apos;)
+/** @ignore */ const Server = require(&apos;./models/Server&apos;)
+/** @ignore */ const Database = require(&apos;./models/Database&apos;)
+/** @ignore */ const Model = require(&apos;./models/Model&apos;)
+/** @ignore */ const Reference = require(&apos;./models/Reference&apos;)
+/** @ignore */ const Middleware = require(&apos;./models/Middleware&apos;)
+/** @ignore */ const Seeder = require(&apos;./models/Seeder&apos;)
+/** @ignore */ const RouteGet = require(&apos;./routes/RouteGet&apos;)
+/** @ignore */ const RoutePost = require(&apos;./routes/RoutePost&apos;)
+/** @ignore */ const RoutePut = require(&apos;./routes/RoutePut&apos;)
+/** @ignore */ const RouteDelete = require(&apos;./routes/RouteDelete&apos;)
+
+/**
+* Se encarga de controlar todo el flujo de la aplicaci&#xF3;n.
+*/
+class Insac {
+
+  /**
+  * Crea una instancia de la clase Insac.
+  * @param {String} [environment=&apos;development&apos;] Tipo de ejecuci&#xF3;n. Valores admitidos: &apos;development&apos;, &apos;test&apos;, &apos;production&apos;
+  * @param {String} [projectPath] - Ruta absoluta del proyecto. Por defecto es la ruta del directorio donde se encuentra el archivo &apos;package.json&apos;.
+  */
+  constructor(environment = &apos;development&apos;, projectPath) {
+
+    console.log(&quot;\n&quot;)
+    console.log(&quot;|==========================================|&quot;)
+    console.log(&quot;|===   I N S A C    F R A M E W O R K   ===|&quot;)
+    console.log(&quot;|==========================================|&quot;)
+    console.log(&quot;\n&quot;)
+
+    /**
+    * Instancia del objeto que administra la configuraci&#xF3;n del proyecto y de la aplicaci&#xF3;n.
+    * @type {Config}
+    */
+    this.config = new Config({env:environment, projectPath:projectPath})
+
+    /**
+    * Lista de modelos.
+    * @type {Model[]}
+    */
+    this.models = []
+
+    /**
+    * Lista de middlewares.
+    * @type {Middleware[]}
+    */
+    this.middlewares = []
+
+    /**
+    * Lista de rutas.
+    * @type {Route[]}
+    */
+    this.routes = []
+
+    /**
+    * Instancia del objeto que administra el servidor.
+    * @type {Server}
+    */
+    this.server = new Server()
+
+    /**
+    * Instancia del objeto que administra la base de datos.
+    * @type {Database}
+    */
+    this.database = new Database(this.config.database)
+  }
+
+  /**
+  * Adiciona un modelo y actualiza las referencias con otros modelos. Si solo se especifica
+  *  el nombre, se buscar&#xE1; el archivo que lo define y si no existe tal archivo se crear&#xE1; un
+  *  modelo por defecto con este nombre. Tambi&#xE9;n es posible enviar una instancia de un modelo
+  *  como &#xFA;nico argumento
+  * @param {!String} name - Nombre del modelo.
+  * @param {Object} [model] - Datos del modelo.
+  */
+  addModel(name, model) {
+    if (typeof model == &apos;undefined&apos;) {
+      // Si el primer argumento es una instancia de un modelo, organizamos los par&#xE1;metros y continuamos con la ejecuci&#xF3;n.
+      if (name instanceof Model) {
+        model = name
+        name = model.name
+      } else {
+        try {
+          // Si no se env&#xED;a el modelo, buscamos el archivo que define al modelo a partir de su nombre.
+          let result = {}
+          this._pathModelFile(name, this.config.path.models, result)
+          // Si el archivo existe, se carga el modelo desde el archivo.
+          if(result.path) {
+            let modelFile = require(result.path)
+            modelFile(this, this.models)
+            return
+          }
+        } catch(err) { console.log(err); return }
+      }
+    }
+    // 1. Se adiciona el modelo a la colecci&#xF3;n de modelos.
+    this.models[name] = new Model(name, model)
+    // 2. Se crea el modelo para realizar consultas con la base de datos.
+    let define = this.models[name].sequelize()
+    let seqModel = this.database.sequelize.define(define.name, define.attributes, define.options)
+    this.database.addModel(seqModel)
+    // 3. Por defecto se actualizan las referencias de este modelo.
+    this._updateReferences(this.models[name])
+  }
+
+  /**
+  * Actualiza todas las referencias de un modelo. Si no se especifica el nombre del modelo, se actualizaran las referencias de todos los modelos.
+  * @param {Model} model Instancia de un modelo previamente adicionado a la colecci&#xF3;n de modelos.
+  */
+  _updateReferences(model) {
+    let modelName = model.name
+    for (let i in model.fields) {
+      let field = model.fields[i]
+      if (field instanceof Reference) {
+        switch (field.reference.type) {
+          case &apos;1:1&apos;:
+            this.models[field.reference.model].options.associations.push({model:model.name, as:model.options.singular})
+            this.database.models[field.reference.model].hasOne(this.database.models[modelName], {as:model.options.singular, foreignKey: field.name})
+            this.database.models[modelName].belongsTo(this.database.models[field.reference.model], {as:this.models[field.reference.model].options.singular, foreignKey: field.name})
+            break
+          case &apos;1:N&apos;:
+            this.models[field.reference.model].options.associations.push({model:model.name, as:model.options.plurl})
+            this.database.models[field.reference.model].hasMany(this.database.models[modelName], {as:model.options.plural, foreignKey: field.name})
+            this.database.models[modelName].belongsTo(this.database.models[field.reference.model], {as:this.models[field.reference.model].options.singular, foreignKey: field.name})
+            break
+          default:
+            let msg = `No se reconoce el tipo de referencia &apos;${field.reference.type}&apos; del modelo &apos;${modelName}&apos;`
+            throw new Error(msg)
+        }
+      }
+    }
+  }
+
+  /**
+  * Devuelve la ruta del archivo de un modelo a partir de su nombre, dentro de un determinado directorio, si no lo encuentra devuelve undefined.
+  * @param {!String} modelName Nombre del modelo.
+  * @param {!String} path Ruta absoluta del directorio de b&#xFA;squeda.
+  * @param {!String} result Objeto que almacenar&#xE1; la ruta del archivo si lo encuentra. Debe pasarse un objeto vacio, despues revisar su contenido.
+  * @return {String|undefined}
+  */
+  _pathModelFile(modelName, path, result) {
+    if (fs.statSync(path).isDirectory()) {
+      fs.readdirSync(path).forEach(file =&gt; {
+        let newPath = `${path}/${file}`
+        this._pathModelFile(modelName, newPath, result)
+      })
+    } else {
+      let a = path.lastIndexOf(&apos;/&apos;)
+      let b = path.indexOf(&apos;.js&apos;)
+      let c = path.substr(a + 1, b - a - 1)
+      if (c == modelName) {
+        result.path = path
+      }
+    }
+  }
+
+  /**
+  * Adiciona un middleware. Puede cargar un middleware global (name = &apos;/api/auth&apos;) o local (name = &apos;auth&apos;)
+  * @param {String} name - Nombre del middleware.
+  * @param {Function} callback - Funcipon de tipo callback
+  */
+  addMiddleware(name, callback) {
+    if ((typeof name == &apos;string&apos;) &amp;&amp; (typeof callback == &apos;function&apos;)) {
+      if (name.startsWith(&apos;/&apos;)) {
+        this.server.addMiddleware(name, callback)
+      } else {
+        this.middlewares[name] = new Middleware(name, callback)
+      }
+      return
+    }
+
+    let msg = `Los par&#xE1;metros de entrada no son v&#xE1;lidos name = &apos;${name}&apos; y callback = &apos;${callback}&apos;`
+
+    if ((typeof name == &apos;string&apos;) &amp;&amp; (typeof callback == &apos;string&apos;)) {
+      if(!name.startsWith(&apos;/&apos;)) {
+        throw new Error(msg)
+      }
+      let callbackResult = this._buscarMiddleware(callback)
+      if (!callbackResult) {
+        throw new Error(`No existe el middleware &apos;${callback}&apos;`)
+      }
+      if (name.startsWith(&apos;/&apos;)) {
+        this.server.addMiddleware(name, callbackResult.controller)
+      } else {
+        throw new Warning(&apos;El middleware&apos;,name,&apos;ha sido sobreescrito&apos;)
+      }
+      return
+    }
+
+    throw new Error(msg)
+  }
+
+  /** @ignore */
+  _buscarMiddleware(name) {
+    let fileName = `${this.config.path.middlewares}/${name}.js`
+    try {
+      let file = require(fileName)
+      let db = this.database.models
+      db.sequelize = this.database.sequelize
+      db.Sequelize = this.database.Sequelize
+      try {
+        file(this, this.models, db)
+      } catch(err) { return undefined }
+      return this.middlewares[name]
+    } catch (err) {
+      if (err.message &amp;&amp; err.message.startsWith(&apos;Cannot find module&apos;)) {
+        throw new Error(`No existe el archivo &apos;${fileName}&apos;`)
+      }
+      console.log(err)
+      throw new Error(err)
+    }
+  }
+
+  /**
+  * Adiciona una ruta.
+  * @param {String} method - Methodo HTTP.
+  * @param {String} path - Ruta de acceso.
+  * @param {Object} options - Opciones de creaci&#xF3;n de la ruta.
+  * @throws {Error} Ocurre cuando el m&#xE9;todo no es v&#xE1;lido.
+  */
+  addRoute(method, path, options) {
+    let route
+    if (method == &apos;GET&apos;) route = new RouteGet(path, options)
+    if (method == &apos;POST&apos;) route = new RoutePost(path, options)
+    if (method == &apos;PUT&apos;) route = new RoutePut(path, options)
+    if (method == &apos;DELETE&apos;) route = new RouteDelete(path, options)
+    if (!route) throw new Error(`El m&#xE9;todo &apos;${method}&apos; no es v&#xE1;lido`)
+    this.routes.push(route)
+    let db = this.database.models
+    db.sequelize = this.database.sequelize
+    db.Sequelize = this.database.Sequelize
+    this.server.addRoute(route.method, route.path, route.getCallback(this.models, db))
+  }
+
+  /**
+  * Adiciona todas las rutas que se encuentran dentro del directorio de rutas..
+  */
+  addRoutes() {
+    this._addRoutesFromPath(this.config.path.routes)
+  }
+
+  /**
+  * Carga todas las rutas que se encuentren dentro de un directorio especifico (path).
+  * @param {String} path - Ruta absoluta del directorio donde se encuentran todas las rutas.
+  */
+  _addRoutesFromPath(path) {
+    if (fs.statSync(path).isDirectory()) {
+      fs.readdirSync(path).forEach(file =&gt; {
+        let newPath = `${path}/${file}`
+        this._addRoutesFromPath(newPath)
+      })
+    } else {
+      let db = this.database.models
+      db.sequelize = this.database.sequelize
+      db.Sequelize = this.database.Sequelize
+      let routeFile = require(path)
+      routeFile(this, this.models, db)
+    }
+  }
+
+  /**
+  * Crea las tablas en la base de datos, a partir de los modelos.
+  * @return {Promise&lt;String&gt;} Devuelve una promesa.
+  */
+  migrate() {
+    return this.database.migrate(this.models)
+  }
+
+  /**
+  * Crea datos por defecto.
+  * @return {Promise&lt;String&gt;} Devuelve una promesa.
+  */
+  seed() {
+    let seeder = new Seeder(this.models, this.database)
+    return new Promise((resolve, reject) =&gt; {
+      console.log(&quot; Iniciando seeders ...\n&quot;)
+      let tasks = []
+      try {
+        let path = this.config.path.seeders
+        fs.readdirSync(path).forEach(file =&gt; {
+          let seedFile = require(`${path}/${file}`)
+          tasks.push(seedFile(seeder))
+        })
+      } catch (err) {
+        return reject(err)
+      }
+      async.waterfall(tasks, (err, result) =&gt; {
+        if (err) {
+          reject(err)
+        } else {
+          console.log(&quot;\n Seeders finalizado exitosamente&quot;)
+          resolve(&apos;OK&apos;)
+        }
+      })
+    })
+  }
+
+  /**
+  * Inicia la aplicaci&#xF3;n.
+  * @param {Number} port Puerto sobre el que se ejecutar&#xE1; la aplicaci&#xF3;n. Por defecto es el que se especific&#xF3; en el archivo de configuraci&#xF3;n.
+  */
+  listen(port) {
+    if (!port) port = this.config.server.port
+    this.server.listen(port)
+    console.log(`La aplicaci&#xF3;n esta ejecut&#xE1;ndose en modo &apos;${this.config.env}&apos; sobre el puerto ${port}`)
+  }
+
+}
+
+module.exports = Insac
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.0.1)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>
