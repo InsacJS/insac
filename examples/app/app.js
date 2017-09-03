@@ -12,6 +12,6 @@ app.addRoutes()
 
 app.migrate().then(() => {
   app.seed().then(() => {
-    app.listen(3200)
+    app.listen(7000)
   })
 })
