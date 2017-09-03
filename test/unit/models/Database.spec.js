@@ -6,6 +6,12 @@ const Model = require('../../../lib/models/Model')
 
 describe('\n - Clase: Database\n', () => {
 
+  let config = {
+    username: TEST_DB_USER,
+    password: TEST_DB_PASS,
+    name: TEST_DB_NAME
+  }
+
   describe(` Método: constructor`, () => {
     it('Instanciando un objeto sin parámetros', () => {
       let database = new Database()
@@ -19,25 +25,15 @@ describe('\n - Clase: Database\n', () => {
       expect(database.sequelize.options.port).to.equal(5432)
     })
     it('Instanciando un objeto con parámetros', () => {
-      let config = {
-        username: 'postgres',
-        password: 'BK8DJ567F0',
-        name: 'insac_test'
-      }
       let database = new Database(config)
-      expect(database.sequelize.config.database).to.equal('insac_test')
-      expect(database.sequelize.config.username).to.equal('postgres')
-      expect(database.sequelize.config.password).to.equal('BK8DJ567F0')
+      expect(database.sequelize.config.database).to.equal(TEST_DB_NAME)
+      expect(database.sequelize.config.username).to.equal(TEST_DB_USER)
+      expect(database.sequelize.config.password).to.equal(TEST_DB_PASS)
     })
   })
 
   describe(` Método: addModel`, () => {
     it('Adicionando un modelo a la base de datos', () => {
-      let config = {
-        username: 'postgres',
-        password: 'BK8DJ567F0',
-        name: 'insac_test'
-      }
       let database = new Database(config)
       let persona = database.sequelize.define('persona', { nombre: Sequelize.STRING }, { freezeTableName: true })
       database.addModel(persona)
@@ -48,11 +44,6 @@ describe('\n - Clase: Database\n', () => {
 
   describe(` Método: migrate`, () => {
     it('Verificando la migración de un modelo', (done) => {
-      let config = {
-        username: 'postgres',
-        password: 'BK8DJ567F0',
-        name: 'insac_test'
-      }
       let database = new Database(config)
       let persona = new Model('persona', { fields: { nombre: { } } })
       let models = [persona]

@@ -3,7 +3,7 @@ module.exports = (config) => {
     database: {
       name: 'insac_app_01',
       username: 'postgres',
-      password: 'BK8DJ567F0'
+      password: '12345678'
     }
   })
 }
