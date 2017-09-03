@@ -3,8 +3,8 @@ const Field = require('../../../lib/models/Field')
 const DataTypes = require('../../../lib/tools/DataTypes')
 const Validators = require('../../../lib/tools/Validators')
 const Reference = require('../../../lib/models/Reference')
-const STRING = require('../../../lib/datatypes/STRING')
-const INTEGER = require('../../../lib/datatypes/INTEGER')
+const String = require('../../../lib/datatypes/String')
+const Integer = require('../../../lib/datatypes/Integer')
 
 describe('\n - Clase: Field\n', () => {
 
@@ -12,7 +12,7 @@ describe('\n - Clase: Field\n', () => {
     it('Instanciando un objeto sin parámetros', () => {
       let field = new Field()
       expect(field.name).to.equal('field')
-      expect(field.type instanceof STRING).to.equal(true)
+      expect(field.type instanceof String).to.equal(true)
       expect(field.description).to.equal(undefined)
       expect(field.allowNull).to.equal(true)
       expect(field.primaryKey).to.equal(false)
@@ -31,7 +31,7 @@ describe('\n - Clase: Field\n', () => {
       }
       let field = new Field(fieldname, data)
       expect(field.name).to.equal(fieldname)
-      expect(field.type instanceof INTEGER).to.equal(true)
+      expect(field.type instanceof Integer).to.equal(true)
       expect(field.description).to.equal(data.description)
       expect(field.allowNull).to.equal(data.allowNull)
       expect(field.primaryKey).to.equal(data.primaryKey)
@@ -56,7 +56,7 @@ describe('\n - Clase: Field\n', () => {
       let field = Field.ID()
       expect(field instanceof Field).to.equal(true)
       expect(field.name).to.equal('id')
-      expect(field.type instanceof INTEGER).to.equal(true)
+      expect(field.type instanceof Integer).to.equal(true)
       expect(field.description).to.equal('Identificador único')
       expect(field.allowNull).to.equal(false)
       expect(field.primaryKey).to.equal(true)
