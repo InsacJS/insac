@@ -12,28 +12,28 @@ describe('\n - Clase: Server\n', () => {
     it('Instanciando un objeto sin parámetros', () => {
       server1 = new Server()
       expect(typeof server1.express).to.not.equal('undefined')
-      expect(typeof server1.express.response.success200).to.equal('function')
-      expect(typeof server1.express.response.success201).to.equal('function')
+      expect(typeof server1.express.response._success200).to.equal('function')
+      expect(typeof server1.express.response._success201).to.equal('function')
       expect(typeof server1.express.response.error401).to.equal('function')
       expect(typeof server1.express.response.error403).to.equal('function')
       expect(typeof server1.express.response.error404).to.equal('function')
       expect(typeof server1.express.response.error422).to.equal('function')
       expect(typeof server1.express.response.error500).to.equal('function')
       expect(typeof server1.express.response.error).to.equal('function')
-      expect(server1.express.response.all200).to.equal(false)
+      expect(server1.express.response._config_.all200).to.equal(false)
     })
     it('Instanciando un objeto con parámetros', () => {
       server2 = new Server({all200:true})
       expect(typeof server2.express).to.not.equal('undefined')
-      expect(typeof server2.express.response.success200).to.equal('function')
-      expect(typeof server2.express.response.success201).to.equal('function')
+      expect(typeof server2.express.response._success200).to.equal('function')
+      expect(typeof server2.express.response._success201).to.equal('function')
       expect(typeof server2.express.response.error401).to.equal('function')
       expect(typeof server2.express.response.error403).to.equal('function')
       expect(typeof server2.express.response.error404).to.equal('function')
       expect(typeof server2.express.response.error422).to.equal('function')
       expect(typeof server2.express.response.error500).to.equal('function')
       expect(typeof server2.express.response.error).to.equal('function')
-      expect(server2.express.response.all200).to.equal(true)
+      expect(server2.express.response._config_.all200).to.equal(true)
     })
   })
 
@@ -49,7 +49,7 @@ describe('\n - Clase: Server\n', () => {
   describe(` Método: addRoute`, () => {
     it('Adicionando una ruta', () => {
       server1.addRoute('GET', '/home', (req, res, next) => {
-        res.success200(`Bienvenido al mundo real ${req.user}`)
+        res._success200(`Bienvenido al mundo real ${req.user}`)
       })
       server1.addRoute('GET', '/error', (req, res, next) => {
         res.error422(`Error de validación`)

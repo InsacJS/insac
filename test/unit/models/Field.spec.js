@@ -13,7 +13,7 @@ describe('\n - Clase: Field\n', () => {
       let field = new Field()
       expect(field.name).to.equal('field')
       expect(field.type instanceof String).to.equal(true)
-      expect(field.description).to.equal(undefined)
+      expect(field.description).to.equal('')
       expect(field.allowNull).to.equal(true)
       expect(field.primaryKey).to.equal(false)
       expect(field.autoIncrement).to.equal(false)
@@ -67,7 +67,7 @@ describe('\n - Clase: Field\n', () => {
   describe(` Atributo (static): THIS`, () => {
     it('Verificando valor', () => {
       let field = Field.THIS
-      expect(field).to.equal('__this__')
+      expect(field).to.equal('__THIS__')
     })
   })
 

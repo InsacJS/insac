@@ -7,6 +7,8 @@ let app = new Insac('development', __dirname)
 
 app.addModel('usuario')
 app.addModel('persona')
+app.addModel('materia')
+app.addModel('inscripcion')
 
 app.addRoutes()
 

@@ -14,7 +14,7 @@ describe('\n - Clase: Reference\n', () => {
       expect(field instanceof Field).to.equal(true)
       expect(field.name).to.equal('id_usuario')
       expect(field.type instanceof String).to.equal(true)
-      expect(field.description).to.equal(undefined)
+      expect(field.description).to.equal('')
       expect(field.allowNull).to.equal(false)
       expect(field.primaryKey).to.equal(false)
       expect(field.autoIncrement).to.equal(false)

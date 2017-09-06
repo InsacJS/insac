@@ -5,12 +5,12 @@ const request = require('request')
 const Insac = require('../../lib/Insac')
 const Config = require('../../lib/models/Config')
 const Model = require('../../lib/models/Model')
+const Field = require('../../lib/models/Field')
 const Reference = require('../../lib/models/Reference')
 const Middleware = require('../../lib/models/Middleware')
 
 describe('\n - Clase: Insac\n', () => {
-  let projectPath = path.resolve(__dirname, './Insac/app')
-  let app
+  let app, projectPath = path.resolve(__dirname, './Insac/app')
 
   describe(` Método: constructor`, () => {
     it('Instanciando un objeto sin parámetros', () => {
@@ -32,10 +32,7 @@ describe('\n - Clase: Insac\n', () => {
       expect(_.isEqual(app.config.database, defaultDatabase)).to.equal(true)
       expect(_.isEqual(app.config.auth, defaultAuth)).to.equal(true)
     })
-  })
-
-  describe(` Método: addModel`, () => {
-    it('Adicionando un modelo por defecto, solo con el nombre', () => {
+    it('Instanciando un objeto con parámetros', () => {
       app = new Insac('test', projectPath)
       let defaultPath = Config.defaultPath(projectPath)
       expect(app.models.length).to.equal(0)
@@ -45,6 +42,11 @@ describe('\n - Clase: Insac\n', () => {
       expect(typeof app.config).to.equal('object')
       expect(app.config.env).to.equal('test')
       expect(app.config.projectPath).to.equal(projectPath)
+    })
+  })
+
+  describe(` Método: addModel`, () => {
+    it('Adicionando un modelo por defecto, solo con el nombre', () => {
       let modelName = 'libro'
       app.addModel(modelName)
       expect(Object.keys(app.models).length).to.equal(1)
@@ -106,6 +108,10 @@ describe('\n - Clase: Insac\n', () => {
   describe(` Método: addRoute`, () => {
     it('Adicionando varias rutas', () => {
       app.addRoute('GET', '/api/admin1', {
+        output: {
+          msg: Field.THIS,
+          info: Field.THIS
+        },
         controller: (req, res, next) => {
           let data = {
             msg: `Bienvenido ${req.user}`,
@@ -115,6 +121,10 @@ describe('\n - Clase: Insac\n', () => {
         }
       })
       app.addRoute('GET', '/api/admin2', {
+        output: {
+          msg: Field.THIS,
+          info: Field.THIS
+        },
         controller: (req, res, next) => {
           let data = {
             msg: `Bienvenido ${req.user}`,
@@ -172,7 +182,11 @@ describe('\n - Clase: Insac\n', () => {
         }
       }]
       app.seed().then(result => {
-        app.database.models.persona.findAll({include:[{all:true}]}).then(result => {
+        let options = {
+          attributes: [ 'id', 'nombre' ],
+          include: [ { model: app.database.models.usuario, as: 'usuario', attributes: ['username', 'password'] } ]
+        }
+        app.database.models.persona.findAll(options).then(result => {
           result = JSON.parse(JSON.stringify(result))
           expect(result.length).to.equal(3)
           for (let i = 0; i < data.length; i++) {
@@ -194,6 +208,7 @@ describe('\n - Clase: Insac\n', () => {
       app.listen()
       request(`http://localhost:${app.config.server.port}/api/admin1`, (error, response, body) => {
         body = JSON.parse(body)
+        console.log(body);
         expect(body.status).to.equal('OK')
         expect(body.code).to.equal(200)
         expect(typeof body.data).to.equal('object')
