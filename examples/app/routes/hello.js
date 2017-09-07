@@ -5,7 +5,7 @@ module.exports = (insac, models, db) => {
 
   insac.addRoute('GET', '/hello', {
     output: {
-      msg: new Field({type:DataTypes.STRING()})
+      msg: Field.CUSTOM()
     },
     controller: (req, res, next) => {
       let data = {

@@ -136,8 +136,6 @@ module.exports = (insac, models, db) => {
         let options = req.options
         req.options.where = { id:result.id }
         db.persona.findOne(options).then(result => {
-          result = JSON.parse(JSON.stringify(result))
-          console.log("RESULT = ", result);
           res.success201(result)
         }).catch(err => {
           res.error(err)
