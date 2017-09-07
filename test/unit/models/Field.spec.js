@@ -66,8 +66,8 @@ describe('\n - Clase: Field\n', () => {
 
   describe(` Atributo (static): THIS`, () => {
     it('Verificando valor', () => {
-      let field = Field.THIS
-      expect(field).to.equal('__THIS__')
+      let field = Field.THIS()
+      expect(typeof field).to.equal('function')
     })
   })
 

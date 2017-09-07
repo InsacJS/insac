@@ -4,7 +4,7 @@ module.exports = (insac, models) => {
 
   insac.addModel('usuario', {
     fields: {
-      username: {},
+      username: {allowNull:false},
       password: {}
     }
   })

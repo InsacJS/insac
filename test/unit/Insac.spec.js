@@ -109,8 +109,8 @@ describe('\n - Clase: Insac\n', () => {
     it('Adicionando varias rutas', () => {
       app.addRoute('GET', '/api/admin1', {
         output: {
-          msg: Field.THIS,
-          info: Field.THIS
+          msg: new Field(),
+          info: new Field()
         },
         controller: (req, res, next) => {
           let data = {
@@ -122,8 +122,8 @@ describe('\n - Clase: Insac\n', () => {
       })
       app.addRoute('GET', '/api/admin2', {
         output: {
-          msg: Field.THIS,
-          info: Field.THIS
+          msg: new Field(),
+          info: new Field()
         },
         controller: (req, res, next) => {
           let data = {
@@ -133,14 +133,14 @@ describe('\n - Clase: Insac\n', () => {
           res.success200(data)
         }
       })
-      expect(app.routes.length).to.equal(2)
+      expect(app.routeManager.count()).to.equal(2)
     })
   })
 
   describe(` Método: addRoutes`, () => {
     it('Adicionando todas las rutas desde los archivos', () => {
       app.addRoutes()
-      expect(app.routes.length).to.equal(7)
+      expect(app.routeManager.count()).to.equal(7)
     })
   })
 
@@ -208,7 +208,6 @@ describe('\n - Clase: Insac\n', () => {
       app.listen()
       request(`http://localhost:${app.config.server.port}/api/admin1`, (error, response, body) => {
         body = JSON.parse(body)
-        console.log(body);
         expect(body.status).to.equal('OK')
         expect(body.code).to.equal(200)
         expect(typeof body.data).to.equal('object')

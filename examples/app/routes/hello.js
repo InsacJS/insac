@@ -1,11 +1,11 @@
 'use strict'
-const { Field } = require(INSAC)
+const { Field, DataTypes } = require(INSAC)
 
 module.exports = (insac, models, db) => {
 
   insac.addRoute('GET', '/hello', {
     output: {
-      msg: Field.THIS
+      msg: new Field({type:DataTypes.STRING()})
     },
     controller: (req, res, next) => {
       let data = {

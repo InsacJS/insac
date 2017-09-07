@@ -30,7 +30,7 @@ Esta diseñado para facilitar el trabajo al desarrollador backend, ofreciéndole
 - **Tipos de datos INTEGER y STRING** De momento los tipos de datos soportados son: INTEGER y STRING
 
 # Aportes
-- Este framework permite construir aplicaciones de forma sencilla y organizada, acompañado de funciones y herramientas que facilitan enormemente el trabajo del desarrollador backend, logrando convertirse en una alternativa real a los actuales frameworks de desarrollo de APIs.
+- Este framework permite construir aplicaciones de forma sencilla y organizada, acompañado de funciones y herramientas que simplifican enormemente el trabajo del desarrollador backend, logrando convertirse en una alternativa real a los actuales frameworks de desarrollo de APIs.
 
 # Tecnologías utilizadas
 - NodeJS v8.4.0: Entorno de programación de javascript
@@ -48,7 +48,7 @@ let app = new Insac('production')
 app.adModel('usuario', { fields: ['username', 'password'] } )
 app.adModel('persona', { fields: ['nombre', 'id_usuario'] } )
 
-app.addRoute('persona')
+app.addResource('persona')
 
 app.migrate().then(() => {
   app.seed('persona').then(() => {
