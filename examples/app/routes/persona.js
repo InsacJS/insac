@@ -1,5 +1,5 @@
 'use strict'
-const { Field, DataTypes, Validators } = require(INSAC)
+const { Field, DataTypes, Validators, NotFoundError } = require(INSAC)
 
 module.exports = (insac, models, db) => {
 
@@ -13,7 +13,7 @@ module.exports = (insac, models, db) => {
         id: Field.THIS(),
         username: Field.THIS(),
         password: Field.THIS(),
-        custom: Field.CUSTOM()
+        custom: Field.INTEGER()
       },
       inscripciones: [{
         id: Field.THIS(),
@@ -52,7 +52,7 @@ module.exports = (insac, models, db) => {
       id: Field.THIS(),
       nombre: Field.THIS(),
       id_usuario: Field.THIS(),
-      custom: Field.CUSTOM({type:DataTypes.INTEGER()}),
+      custom: Field.INTEGER(),
       usuario: {
         id: Field.THIS(),
         username: Field.THIS(),
@@ -71,7 +71,15 @@ module.exports = (insac, models, db) => {
             id: Field.THIS(),
             username: Field.THIS(),
             password: Field.THIS()
-          }
+          },
+          inscripciones: [{
+            id: Field.THIS(),
+            gestion: Field.THIS(),
+            persona: {
+              id: Field.THIS(),
+              nombre: Field.THIS()
+            }
+          }]
         },
         materia: {
           id: Field.THIS(),
@@ -98,10 +106,10 @@ module.exports = (insac, models, db) => {
     model: models.persona,
     input: {
       headers: {
-        authorization: Field.CUSTOM()
+        authorization: Field.AUTHORIZATION({allowNull:true})
       },
       body: {
-        custom: Field.CUSTOM({type:DataTypes.INTEGER()}),
+        custom: Field.STRING(100, {allowNull:false}),
         nombre: Field.THIS({allowNull:false}),
         usuario: {
           username: Field.THIS({allowNull:false}),
@@ -137,6 +145,64 @@ module.exports = (insac, models, db) => {
         req.options.where = { id:result.id }
         db.persona.findOne(options).then(result => {
           res.success201(result)
+        }).catch(err => {
+          res.error(err)
+        })
+      }).catch(err => {
+        res.error(err)
+      })
+    }
+  })
+
+  insac.addRoute('PUT', '/personas/:id', {
+    model: models.persona,
+    input: {
+      headers: {
+        authorization: Field.AUTHORIZATION({allowNull:true})
+      },
+      params: {
+        id: Field.THIS()
+      },
+      body: {
+        custom: Field.STRING(100, {allowNull:true}),
+        nombre: Field.THIS({allowNull:true}),
+        usuario: {
+          username: Field.THIS({allowNull:true}),
+          password: Field.THIS({allowNull:true})
+        }
+      }
+    },
+    output: {
+      id: Field.THIS(),
+      nombre: Field.THIS(),
+      id_usuario: Field.THIS(),
+      usuario: {
+        id: Field.THIS(),
+        username: Field.THIS(),
+        password: Field.THIS()
+      }
+    },
+    controller: (req, res, next) => {
+      return db.sequelize.transaction(t => {
+        let options = { where: {id: req.params.id } }
+        return db.persona.findOne(options).then(personaR => {
+          if (!personaR) {
+            throw new NotFoundError(`No existe el registro 'persona' con el campo (id)=(${req.params.id})`)
+          }
+          let usuario = { }
+          if (req.body.usuario && (typeof req.body.usuario.username != 'undefined')) usuario.username = req.body.usuario.username
+          if (req.body.password && (typeof req.body.usuario.password != 'undefined')) usuario.password = req.body.usuario.password
+          return db.usuario.update(usuario, options, {transaction:t}).then(result => {
+            let persona = { }
+            if (typeof req.body.nombre != 'undefined') persona.nombre = req.body.nombre
+            return db.persona.update(persona, {where:{id:personaR.id_usuario}}, {transaction:t})
+          })
+        })
+      }).then(result => {
+        let options = req.options
+        req.options.where = { id:req.params.id }
+        db.persona.findOne(options).then(result => {
+          res.success200(result)
         }).catch(err => {
           res.error(err)
         })
