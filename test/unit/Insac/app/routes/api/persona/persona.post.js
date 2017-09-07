@@ -5,24 +5,22 @@ module.exports = (insac, models, db) => {
 
   insac.addRoute('POST', '/api/personas', {
     model: models.persona,
-    req: {
+    input: {
       body: {
-        nombre: Field.THIS,
+        nombre: Field.THIS(),
         usuario: {
-          username: Field.THIS,
-          password: Field.THIS
+          username: Field.THIS(),
+          password: Field.THIS()
         }
       }
     },
-    res: {
-      data: {
-        id: Field.THIS,
-        nombre: Field.THIS,
-        id_usuario: Field.THIS,
-        usuario: {
-          usename: Field.THIS,
-          password: Field.THIS
-        }
+    output: {
+      id: Field.THIS(),
+      nombre: Field.THIS(),
+      id_usuario: Field.THIS(),
+      usuario: {
+        username: Field.THIS(),
+        password: Field.THIS()
       }
     },
     controller: (req, res, next) => {

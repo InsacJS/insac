@@ -11,7 +11,6 @@ describe('\n - Clase: Field\n', () => {
   describe(` Método: constructor`, () => {
     it('Instanciando un objeto sin parámetros', () => {
       let field = new Field()
-      expect(field.name).to.equal('field')
       expect(field.type instanceof String).to.equal(true)
       expect(field.description).to.equal('')
       expect(field.allowNull).to.equal(true)
@@ -20,7 +19,6 @@ describe('\n - Clase: Field\n', () => {
       expect(field.defaultValue).to.equal(undefined)
     })
     it('Instanciando un objeto con parámetros', () => {
-      let fieldname = 'id_persona'
       let data = {
         type: DataTypes.INTEGER(),
         validator: Validators.INTEGER(1, 1000),
@@ -29,8 +27,7 @@ describe('\n - Clase: Field\n', () => {
         primaryKey: false,
         autoIncrement: false
       }
-      let field = new Field(fieldname, data)
-      expect(field.name).to.equal(fieldname)
+      let field = new Field(data)
       expect(field.type instanceof Integer).to.equal(true)
       expect(field.description).to.equal(data.description)
       expect(field.allowNull).to.equal(data.allowNull)
@@ -55,7 +52,6 @@ describe('\n - Clase: Field\n', () => {
     it('Verificando la instancia ID', () => {
       let field = Field.ID()
       expect(field instanceof Field).to.equal(true)
-      expect(field.name).to.equal('id')
       expect(field.type instanceof Integer).to.equal(true)
       expect(field.description).to.equal('Identificador único')
       expect(field.allowNull).to.equal(false)

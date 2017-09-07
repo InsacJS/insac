@@ -95,7 +95,7 @@ module.exports = (insac, models, db) => {
           personaR.custom = 10
           return res.success200(personaR)
         }
-        res.error422(`No existe el registro 'persona' con (id)=(${req.params.id})`)
+        res.error422(`No existe el registro 'persona' con el campo (id)=(${req.params.id})`)
       }).catch(err => {
         res.error(err)
       })
@@ -187,7 +187,7 @@ module.exports = (insac, models, db) => {
         let options = { where: {id: req.params.id } }
         return db.persona.findOne(options).then(personaR => {
           if (!personaR) {
-            throw new NotFoundError(`No existe el registro 'persona' con el campo (id)=(${req.params.id})`)
+            throw new NotFoundError('persona', 'id', req.params.id)
           }
           let usuario = { }
           if (req.body.usuario && (typeof req.body.usuario.username != 'undefined')) usuario.username = req.body.usuario.username

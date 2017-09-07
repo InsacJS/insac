@@ -5,17 +5,15 @@ module.exports = (insac, models, db) => {
 
   insac.addRoute('GET', '/api/personas', {
     model: models.persona,
-    res: {
-      data: [{
-        id: Field.THIS,
-        nombre: Field.THIS,
-        id_usuario: Field.THIS,
-        usuario: {
-          username: Field.THIS,
-          password: Field.THIS
-        }
-      }]
-    },
+    output: [{
+      id: Field.THIS(),
+      nombre: Field.THIS(),
+      id_usuario: Field.THIS(),
+      usuario: {
+        username: Field.THIS(),
+        password: Field.THIS()
+      }
+    }],
     controller: (req, res, next) => {
       db.persona.findAll(res.options).then(result => {
         res.success200(result)
@@ -27,20 +25,18 @@ module.exports = (insac, models, db) => {
 
   insac.addRoute('GET', '/api/personas/:id', {
     model: models.persona,
-    req: {
+    input: {
       params: {
-        id: Field.THIS
+        id: Field.THIS()
       }
     },
-    res: {
-      data: {
-        id: Field.THIS,
-        nombre: Field.THIS,
-        id_usuario: Field.THIS,
-        usuario: {
-          username: Field.THIS,
-          password: Field.THIS
-        }
+    output: {
+      id: Field.THIS(),
+      nombre: Field.THIS(),
+      id_usuario: Field.THIS(),
+      usuario: {
+        username: Field.THIS(),
+        password: Field.THIS()
       }
     },
     controller: (req, res, next) => {
