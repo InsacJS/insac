@@ -1,5 +1,5 @@
 'use strict'
-const { Field } = require(INSAC)
+const { Field, NotFoundError } = require(INSAC)
 
 module.exports = (insac, models, db) => {
 
@@ -26,7 +26,7 @@ module.exports = (insac, models, db) => {
         password: Field.THIS()
       }
     },
-    controller: (req, res, next) => {
+    controller: (req) => {
       db.sequelize.transaction(t => {
         let usuario = req.body.usuario
         let options1 = { where: { id:req.params.id } }
@@ -35,19 +35,16 @@ module.exports = (insac, models, db) => {
             return db.persona.findOne(options1).then(personaR => {
               let persona = { nombre: req.body.nombre }
               let options2 = { where: { id:personaR.id_usuario } }
-              return db.persona.update(persona, options2, {transaction:t}).then(result => {
-                return db.persona.findOne(options1)
-              })
+              return db.persona.update(persona, options2, {transaction:t})
             })
           } else {
-            let msg = `No existe el registro 'persona' con el campo (id)=(${req.params.id})`
-            throw new ResponseError(404, msg)
+            throw new NotFoundError('persona', 'id', req.params.id)
           }
         })
       }).then(result => {
-        res.success201(result)
-      }).catch(err => {
-        res.error(err)
+        let options = req.options
+        options.where = { id:req.params.id }
+        return db.persona.findOne(options)
       })
     }
   })

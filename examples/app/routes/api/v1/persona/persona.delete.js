@@ -23,7 +23,7 @@ module.exports = (insac, models, db) => {
         password: Field.THIS()
       }
     },
-    controller: (req, res, next) => {
+    controller: (req) => {
       let options = req.options
       options.where = {id: req.params.id }
       return db.persona.findOne(options).then(personaR => {
@@ -32,15 +32,9 @@ module.exports = (insac, models, db) => {
         }
         return db.persona.destroy(options).then(result => {
           return db.usuario.destroy({where:{id:personaR.id_usuario}}).then(result => {
-            res.success200(personaR)
-          }).catch(err => {
-            res.error(err)
+            return personaR
           })
-        }).catch(err => {
-          res.error(err)
         })
-      }).catch(err => {
-        res.error(err)
       })
     }
   })

@@ -12,8 +12,7 @@ module.exports = (insac, models, db) => {
       usuario: {
         id: Field.THIS(),
         username: Field.THIS(),
-        password: Field.THIS(),
-        custom: Field.INTEGER()
+        password: Field.THIS()
       },
       inscripciones: [{
         id: Field.THIS(),
@@ -27,18 +26,8 @@ module.exports = (insac, models, db) => {
         }
       }]
     }],
-    controller: (req, res, next) => {
-      let options = req.options
-      db.persona.findAll(options).then(personaR => {
-        let cnt = 10
-        for (let i in personaR) {
-          personaR[i].usuario.custom = cnt
-          cnt += 10
-        }
-        return res.success200(personaR)
-      }).catch(err => {
-        res.error(err)
-      })
+    controller: (req) => {
+      return db.persona.findAll(req.options)
     }
   })
 
@@ -53,7 +42,6 @@ module.exports = (insac, models, db) => {
       id: Field.THIS(),
       nombre: Field.THIS(),
       id_usuario: Field.THIS(),
-      custom: Field.INTEGER(),
       usuario: {
         id: Field.THIS(),
         username: Field.THIS(),
@@ -89,18 +77,9 @@ module.exports = (insac, models, db) => {
         }
       }]
     },
-    controller: (req, res, next) => {
-      let options = req.options
-      options.where = { id: req.params.id }
-      db.persona.findOne(options).then(personaR => {
-        if (!personaR) {
-          throw new NotFoundError('persona', 'id', req.params.id)
-        }
-        personaR.custom = 10
-        res.success200(personaR)
-      }).catch(err => {
-        res.error(err)
-      })
+    controller: (req) => {
+      req.options.where = { id: req.params.id }
+      return db.persona.findOne(req.options)
     }
   })
 

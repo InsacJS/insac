@@ -15,12 +15,10 @@ module.exports = (insac, models, db) => {
         id_usuario: Field.THIS()
       }
     }],
-    controller: (req, res, next) => {
+    controller: (req) => {
       let options = req.options
       db.usuario.findAll(options).then(personaR => {
-        res.success200(personaR)
-      }).catch(err => {
-        res.error(err)
+        return personaR
       })
     }
   })

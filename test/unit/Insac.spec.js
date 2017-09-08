@@ -112,12 +112,12 @@ describe('\n - Clase: Insac\n', () => {
           msg: new Field(),
           info: new Field()
         },
-        controller: (req, res, next) => {
+        controller: (req) => {
           let data = {
             msg: `Bienvenido ${req.user}`,
             info: req.info
           }
-          res.success200(data)
+          return data
         }
       })
       app.addRoute('GET', '/api/admin2', {
@@ -125,12 +125,12 @@ describe('\n - Clase: Insac\n', () => {
           msg: new Field(),
           info: new Field()
         },
-        controller: (req, res, next) => {
+        controller: (req) => {
           let data = {
             msg: `Bienvenido ${req.user}`,
             info: req.info
           }
-          res.success200(data)
+          return data
         }
       })
       expect(app.routeManager.count()).to.equal(2)

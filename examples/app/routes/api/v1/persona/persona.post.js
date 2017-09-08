@@ -28,7 +28,7 @@ module.exports = (insac, models, db) => {
         password: Field.THIS()
       }
     },
-    controller: (req, res, next) => {
+    controller: (req) => {
       return db.sequelize.transaction(t => {
         let usuario = {
           username: req.body.usuario.username,
@@ -45,10 +45,8 @@ module.exports = (insac, models, db) => {
         let options = req.options
         options.where = { id:result.id }
         db.persona.findOne(options).then(result => {
-          res.success201(result)
+          return result
         })
-      }).catch(err => {
-        res.error(err)
       })
     }
   })

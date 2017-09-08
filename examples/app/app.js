@@ -13,8 +13,8 @@ app.addModel('inscripcion')
 
 app.addRoutes()
 
-app.migrate().then(() => {
-  app.seed().then(() => {
+// app.migrate().then(() => {
+//   app.seed().then(() => {
     app.listen(7000)
-  })
-})
+//   })
+// })

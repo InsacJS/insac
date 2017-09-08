@@ -23,19 +23,17 @@ module.exports = (insac, models, db) => {
         password: Field.THIS()
       }
     },
-    controller: (req, res, next) => {
+    controller: (req) => {
       db.sequelize.transaction(t => {
         let usuario = req.body.usuario
         return db.usuario.create(usuario, {transaction:t}).then(usuarioR => {
           let persona = { nombre: req.body.nombre, id_usuario: usuarioR.id }
-          return db.persona.create(persona, {transaction:t}).then(personaR => {
-            return db.persona.findOne(res.options)
-          })
+          return db.persona.create(persona, {transaction:t})
         })
       }).then(result => {
-        res.success201(result)
-      }).catch(err => {
-        res.error(err)
+        let options = req.options
+        options.where = { id:result.id }
+        return db.persona.findOne(options)
       })
     }
   })

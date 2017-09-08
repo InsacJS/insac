@@ -8,10 +8,7 @@ module.exports = (insac, models, db) => {
       msg: Field.STRING({description:'Mensaje de bienvenida'})
     },
     controller: (req, res, next) => {
-      let data = {
-        msg: 'Bienvenido al mundo real'
-      }
-      res.success200(data)
+      return { msg: 'Bienvenido al mundo real' }
     }
   })
 

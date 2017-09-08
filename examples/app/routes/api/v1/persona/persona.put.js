@@ -13,7 +13,6 @@ module.exports = (insac, models, db) => {
         id: Field.THIS()
       },
       body: {
-        custom: Field.STRING(100, {allowNull:true}),
         nombre: Field.THIS({allowNull:true}),
         usuario: {
           username: Field.THIS({allowNull:true}),
@@ -31,7 +30,7 @@ module.exports = (insac, models, db) => {
         password: Field.THIS()
       }
     },
-    controller: (req, res, next) => {
+    controller: (req) => {
       return db.sequelize.transaction(t => {
         let options = { where: {id: req.params.id } }
         return db.persona.findOne(options).then(personaR => {
@@ -50,13 +49,7 @@ module.exports = (insac, models, db) => {
       }).then(result => {
         let options = req.options
         options.where = { id:req.params.id }
-        db.persona.findOne(options).then(result => {
-          res.success200(result)
-        }).catch(err => {
-          res.error(err)
-        })
-      }).catch(err => {
-        res.error(err)
+        return db.persona.findOne(options)
       })
     }
   })
