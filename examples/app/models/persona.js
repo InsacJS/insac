@@ -1,12 +1,7 @@
-const { Reference } = require(INSAC)
+'use strict'
 
 module.exports = (insac, models) => {
 
-  insac.addModel('persona', {
-    fields: {
-      nombre: {},
-      id_usuario: Reference.ONE_TO_ONE(models.usuario)
-    }
-  })
+  insac.addModel('persona', { fields: ['nombre', 'id_usuario'] })
 
 }

@@ -1,3 +1,4 @@
+'use strict'
 const { Reference, DataTypes } = require(INSAC)
 
 module.exports = (insac, models) => {

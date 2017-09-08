@@ -1,3 +1,4 @@
+'use strict'
 const path = require('path')
 global.INSAC = path.resolve(__dirname, '../../')
 

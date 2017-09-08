@@ -3,7 +3,7 @@ const { Field } = require(INSAC)
 
 module.exports = (insac, models, db) => {
 
-  insac.addRoute('GET', '/usuarios', {
+  insac.addRoute('GET', '/api/v1/usuarios', {
     model: models.usuario,
     output: [{
       id: Field.THIS(),

@@ -1,3 +1,5 @@
+'use strict'
+
 module.exports = (config) => {
 
   config.set('development', {
@@ -7,7 +9,7 @@ module.exports = (config) => {
       password: '12345678'
     },
     server: {
-      all200:true
+      all200: true
     }
   })
 
