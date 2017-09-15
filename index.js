@@ -2,9 +2,13 @@
 
 module.exports = {
   Insac: require('./lib/Insac'),
-  Field: require('./lib/models/Field'),
-  Reference: require('./lib/models/Reference'),
-  DataTypes: require('./lib/tools/DataTypes'),
+  Config: require('./lib/core/Config'),
+  Model: require('./lib/core/Model'),
+  Route: require('./lib/core/Route'),
+  Resource: require('./lib/core/Resource'),
+  Middleware: require('./lib/core/Middleware'),
+  Seed: require('./lib/core/Seed'),
+  Fields: require('./lib/tools/Fields'),
   Validators: require('./lib/tools/Validators'),
-  NotFoundError: require('./lib/models/ResponseManager').NotFoundError
+  ResponseErrors: require('./lib/core/Response').errors
 }

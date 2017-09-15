@@ -1,15 +1,17 @@
 'use strict'
+const { Config } = require(INSAC)
 
-module.exports = (config) => {
+module.exports = () => {
 
-  config.set('development', {
+  return new Config({
+    env: 'development',
     database: {
-      name: 'insac_app_01',
+      name: 'insac_sauron_development',
       username: 'postgres',
       password: '12345678'
     },
     server: {
-      all200: true
+      all200: false
     }
   })
 

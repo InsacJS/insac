@@ -6,7 +6,7 @@ const IntegerValidator = require('../../../lib/validators/IntegerValidator')
 
 describe('\n - Clase: Validators\n', () => {
 
-  describe(` Método: constructor`, () => {
+  describe(` Método (static): STRING`, () => {
     it('Instanciando de un validador de tipo StringValidator 1ra forma', () => {
       let validator = Validators.STRING()
       expect(validator instanceof Validator).to.equal(true)
@@ -27,6 +27,9 @@ describe('\n - Clase: Validators\n', () => {
       expect(validator.args[0]).to.equal(10)
       expect(validator.args[1]).to.equal(100)
     })
+  })
+
+  describe(` Método (static): INTEGER`, () => {
     it('Instanciando de un validador de tipo IntegerValidator', () => {
       let validator = Validators.INTEGER()
       expect(validator instanceof Validator).to.equal(true)

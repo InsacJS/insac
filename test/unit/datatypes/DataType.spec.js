@@ -1,6 +1,5 @@
 'use strict'
 const DataType = require('../../../lib/datatypes/DataType')
-const _ = require('lodash')
 
 describe('\n - Clase: DataType\n', () => {
 
