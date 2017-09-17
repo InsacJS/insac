@@ -28,8 +28,9 @@ describe('\n - Clase: Config\n', () => {
     })
     it('Instancia de un objeto con parámetros 2', () => {
       let env = 'development', projectPath = `/custom/path`
-      let config = new Config({env:env, projectPath:projectPath, server:{port:7890}})
+      let config = new Config({env:env, projectPath:projectPath, server:{port:7890, all200:true}})
       expect(config.server.port).to.equal(7890)
+      expect(config.server.all200).to.equal(true)
       expect(config.path.public).to.equal(`${projectPath}/public`)
       expect(config.path.config).to.equal(`${projectPath}/src/config`)
       expect(config.path.routes).to.equal(`${projectPath}/src/routes`)

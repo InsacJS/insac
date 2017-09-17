@@ -23,8 +23,13 @@ app.addRoutes()
 app.addResources()
 app.addSeeders()
 
-app.migrate().then(() => {
- app.seed().then(() => {
-  app.listen()
- })
-})
+async function init() {
+  try {
+    await app.createApidoc()
+    await app.migrate()
+    await app.seed()
+    await app.listen()
+  } catch(err) { console.log(err) }
+}
+
+init()

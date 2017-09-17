@@ -10,7 +10,7 @@ describe('\n - Clase: Server\n', () => {
 
   describe(` Método: constructor`, () => {
     it('Instanciando un objeto sin parámetros', () => {
-      server1 = new Server()
+      server1 = new Server(new Config())
       expect(typeof server1.express).to.not.equal('undefined')
       expect(typeof server1.express.response.success200).to.equal('function')
       expect(typeof server1.express.response.success201).to.equal('function')
@@ -23,7 +23,7 @@ describe('\n - Clase: Server\n', () => {
       expect(server1.express.response.all200).to.equal(false)
     })
     it('Instanciando un objeto con parámetros', () => {
-      server2 = new Server({server:{all200:true}})
+      server2 = new Server(new Config({server:{all200:true}}))
       expect(typeof server2.express).to.not.equal('undefined')
       expect(typeof server2.express.response.success200).to.equal('function')
       expect(typeof server2.express.response.success201).to.equal('function')
