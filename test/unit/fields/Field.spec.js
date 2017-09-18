@@ -13,7 +13,7 @@ describe('\n - Clase: Field\n', () => {
       let field = new Field()
       expect(field.type instanceof STRING).to.equal(true)
       expect(field.description).to.equal('')
-      expect(field.allowNull).to.equal(true)
+      expect(field.required).to.equal(false)
       expect(field.primaryKey).to.equal(false)
       expect(field.autoIncrement).to.equal(false)
       expect(field.defaultValue).to.equal(undefined)
@@ -23,14 +23,14 @@ describe('\n - Clase: Field\n', () => {
         type: DataTypes.INTEGER(),
         validator: Validators.INTEGER(1, 1000),
         description: 'Identificador único de la persona',
-        allowNull: false,
+        required: true,
         primaryKey: false,
         autoIncrement: false
       }
       let field = new Field(data)
       expect(field.type instanceof INTEGER).to.equal(true)
       expect(field.description).to.equal(data.description)
-      expect(field.allowNull).to.equal(data.allowNull)
+      expect(field.required).to.equal(data.required)
       expect(field.primaryKey).to.equal(data.primaryKey)
       expect(field.autoIncrement).to.equal(data.autoIncrement)
     })
@@ -42,13 +42,13 @@ describe('\n - Clase: Field\n', () => {
       let properties = {
         type: DataTypes.INTEGER(),
         description: 'custom',
-        allowNull: false,
+        required: true,
         defaultValue: 100,
         validator: null
       }
       field.update(properties)
       expect(field.type instanceof INTEGER).to.equal(true)
-      expect(field.allowNull).to.equal(false)
+      expect(field.required).to.equal(true)
       expect(field.description).to.equal('custom')
       expect(field.defaultValue).to.equal(100)
       expect(field.validator).to.equal(null)

@@ -17,9 +17,9 @@ module.exports = (insac, models) => {
       }),
       ci: Fields.INTEGER({
         description: 'Cédula de identidad',
-        allowNull: false
+        required: true
       }),
-      email: Fields.EMAIL({allowNull:false}),
+      email: Fields.EMAIL({required:true}),
       direccion: Fields.STRING({
         description: 'Dirección de domicilio'
       }),

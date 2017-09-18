@@ -8,7 +8,7 @@ module.exports = (insac, models, db) => {
     title: 'Hello',
     rol: 'admin',
     output: {
-      msg: Fields.STRING({description:'Mensaje de bienvenida', allowNull:true})
+      msg: Fields.STRING({description:'Mensaje de bienvenida', required:false})
     },
     middlewares: [
       { name:'auth', args:{ rol:'admin' } }

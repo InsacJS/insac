@@ -8,7 +8,7 @@ module.exports = (insac, models) => {
     fields: {
       nombre: Fields.STRING({
         description: 'Nombre',
-        allowNull: false
+        required: true
       })
     },
     options: {

@@ -11,11 +11,14 @@ module.exports = (insac, models) => {
       }),
       alias: Fields.STRING({
         description: 'Alias',
-        allowNull: false
+        required: true
+      }),
+      descripcion: Fields.STRING({
+        description: 'Breve descripción acerca del rol'
       })
     },
     options: {
-      uniqueKeys: ['nombre','alias'],
+      uniqueKeys: ['alias'],
       plural: 'roles'
     }
   })

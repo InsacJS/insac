@@ -8,7 +8,7 @@ module.exports = (insac, models) => {
     fields: {
       username: Fields.STRING({
         description: 'Usuario',
-        allowNull: false
+        required: true
       }),
       password: Fields.STRING({
         description: 'Contraseña'
@@ -16,7 +16,7 @@ module.exports = (insac, models) => {
       nombre: Fields.STRING({
         description: 'Nombre completo'
       }),
-      email: Fields.EMAIL({allowNull:false})
+      email: Fields.EMAIL({required:true})
     },
     options: {
       uniqueKeys: ['username', 'email']

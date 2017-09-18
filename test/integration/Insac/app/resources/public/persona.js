@@ -29,7 +29,7 @@ module.exports = (insac, models, db) => {
   resource.addRoute('GET', `/:id`, {
     input: {
       params: {
-        id: Fields.THIS({allowNull:false})
+        id: Fields.THIS({required:true})
       }
     },
     controller: (req) => {
@@ -72,7 +72,7 @@ module.exports = (insac, models, db) => {
   resource.addRoute('PUT', `/:id`, {
     input: {
       params: {
-        id: Fields.THIS({allowNull:false})
+        id: Fields.THIS({required:true})
       },
       body: {
         nombre: Field.THIS(),
@@ -108,7 +108,7 @@ module.exports = (insac, models, db) => {
   resource.addRoute('DELETE', `/:id`, {
     input: {
       params: {
-        id: Fields.THIS({allowNull:false})
+        id: Fields.THIS({required:true})
       }
     },
     controller: (req) => {

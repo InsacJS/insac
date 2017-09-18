@@ -9,7 +9,7 @@ module.exports = (insac, models) => {
       cargo: Fields.STRING({
         description: 'Cargo o puesto administrativo'
       }),
-      id_persona: Fields.ONE_TO_ONE(models.persona, {allowNull:false})
+      id_persona: Fields.ONE_TO_ONE(models.persona, {required:true})
     }
   })
 

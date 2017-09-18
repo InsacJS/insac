@@ -9,25 +9,25 @@ module.exports = (insac, models, db) => {
     title: 'Login',
     input: {
       body: {
-        username: Fields.COPY(models.usuario.fields.username, {allowNull:false}),
-        password: Fields.COPY(models.usuario.fields.password, {allowNull:false})
+        username: Fields.COPY(models.usuario.fields.username, {required:true}),
+        password: Fields.COPY(models.usuario.fields.password, {required:true})
       }
     },
     output: {
-      token: Fields.TOKEN({allowNull:false}),
+      token: Fields.TOKEN({required:true}),
       usuario: {
-        id: Fields.COPY(models.usuario.fields.id, {allowNull:true}),
-        nombre: Fields.COPY(models.usuario.fields.nombre, {allowNull:true}),
-        email: Fields.COPY(models.usuario.fields.email, {allowNull:true}),
+        id: Fields.COPY(models.usuario.fields.id, {required:false}),
+        nombre: Fields.COPY(models.usuario.fields.nombre, {required:false}),
+        email: Fields.COPY(models.usuario.fields.email, {required:false}),
         roles: [{
-          id: Fields.COPY(models.rol.fields.id, {allowNull:true}),
-          nombre: Fields.COPY(models.rol.fields.nombre, {allowNull:true}),
-          alias: Fields.COPY(models.rol.fields.alias, {allowNull:true})
+          id: Fields.COPY(models.rol.fields.id, {required:false}),
+          nombre: Fields.COPY(models.rol.fields.nombre, {required:false}),
+          alias: Fields.COPY(models.rol.fields.alias, {required:false})
         }]
       },
-      id_administrativo: Fields.INTEGER({description:'Identificador único del administrativo', allowNull:true}),
-      id_docente: Fields.INTEGER({description:'Identificador único del docente', allowNull:true}),
-      id_estudiante: Fields.INTEGER({description:'Identificador único del estudiante', allowNull:true})
+      id_administrativo: Fields.INTEGER({description:'Identificador único del administrativo', required:false}),
+      id_docente: Fields.INTEGER({description:'Identificador único del docente', required:false}),
+      id_estudiante: Fields.INTEGER({description:'Identificador único del estudiante', required:false})
     },
     controller: (req) => {
       let options = {

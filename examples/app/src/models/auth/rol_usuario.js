@@ -8,7 +8,7 @@ module.exports = (insac, models) => {
     fields: {
       estado: Fields.STRING({
         description: 'Estado de la cuenta',
-        allowNull: false,
+        required: true,
         validator: Validators.IN(['ACTIVO','INACTIVO']),
         defaultValue: 'ACTIVO'
       }),

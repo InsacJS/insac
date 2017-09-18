@@ -10,15 +10,15 @@ module.exports = (insac, models, db) => {
     rol: 'admin',
     middlewares: [ { name: 'auth', args: { rol:'admin' } } ],
     output: {
-      id: Fields.THIS({allowNull:true}),
-      cargo: Fields.THIS({allowNull:true}),
-      id_persona: Fields.THIS({allowNull:true}),
+      id: Fields.THIS({required:false}),
+      cargo: Fields.THIS({required:false}),
+      id_persona: Fields.THIS({required:false}),
       persona: {
-        id: Fields.THIS({allowNull:true}),
-        nombre: Fields.THIS({allowNull:true}),
-        paterno: Fields.THIS({allowNull:true}),
-        materno: Fields.THIS({allowNull:true}),
-        ci: Fields.THIS({allowNull:true})
+        id: Fields.THIS({required:false}),
+        nombre: Fields.THIS({required:false}),
+        paterno: Fields.THIS({required:false}),
+        materno: Fields.THIS({required:false}),
+        ci: Fields.THIS({required:false})
       }
     }
   })
@@ -35,25 +35,25 @@ module.exports = (insac, models, db) => {
   resource.addRoute('GET', `/mi`, {
     title: 'obtenerDatosUsuarioActual',
     output: {
-      id: Fields.THIS(),
-      cargo: Fields.THIS(),
-      id_persona: Fields.THIS(),
+      id: Fields.THIS({required:false}),
+      cargo: Fields.THIS({required:false}),
+      id_persona: Fields.THIS({required:false}),
       persona: {
-        id: Fields.THIS(),
-        nombre: Fields.THIS(),
-        paterno: Fields.THIS(),
-        materno: Fields.THIS(),
-        ci: Fields.THIS(),
-        email: Fields.THIS(),
-        direccion: Fields.THIS(),
-        telefono: Fields.THIS(),
-        id_usuario: Fields.THIS(),
+        id: Fields.THIS({required:false}),
+        nombre: Fields.THIS({required:false}),
+        paterno: Fields.THIS({required:false}),
+        materno: Fields.THIS({required:false}),
+        ci: Fields.THIS({required:false}),
+        email: Fields.THIS({required:false}),
+        direccion: Fields.THIS({required:false}),
+        telefono: Fields.THIS({required:false}),
+        id_usuario: Fields.THIS({required:false}),
         usuario: {
-          id: Fields.THIS(),
-          username: Fields.THIS(),
-          password: Fields.THIS(),
-          nombre: Fields.THIS(),
-          email: Fields.THIS()
+          id: Fields.THIS({required:false}),
+          username: Fields.THIS({required:false}),
+          password: Fields.THIS({required:false}),
+          nombre: Fields.THIS({required:false}),
+          email: Fields.THIS({required:false})
         }
       }
     },
@@ -72,7 +72,7 @@ module.exports = (insac, models, db) => {
   resource.addRoute('GET', `/:id`, {
     input: {
       params: {
-        id: Fields.THIS({allowNull:false})
+        id: Fields.THIS({required:true})
       }
     },
     controller: (req) => {
@@ -133,18 +133,18 @@ module.exports = (insac, models, db) => {
   resource.addRoute('PUT', `/:id`, {
     input: {
       params: {
-        id: Fields.THIS({allowNull:false})
+        id: Fields.THIS({required:true})
       },
       body: {
-        cargo: Fields.THIS({allowNull:true}),
+        cargo: Fields.THIS({required:false}),
         persona: {
-          nombre: Fields.THIS({allowNull:true}),
-          paterno: Fields.THIS({allowNull:true}),
-          materno: Fields.THIS({allowNull:true}),
-          ci: Fields.THIS({allowNull:true}),
-          email: Fields.THIS({allowNull:true}),
-          direccion: Fields.THIS({allowNull:true}),
-          telefono: Fields.THIS({allowNull:true})
+          nombre: Fields.THIS({required:false}),
+          paterno: Fields.THIS({required:false}),
+          materno: Fields.THIS({required:false}),
+          ci: Fields.THIS({required:false}),
+          email: Fields.THIS({required:false}),
+          direccion: Fields.THIS({required:false}),
+          telefono: Fields.THIS({required:false})
         }
       }
     },
@@ -182,7 +182,7 @@ module.exports = (insac, models, db) => {
   resource.addRoute('DELETE', `/:id`, {
     input: {
       params: {
-        id: Fields.THIS({allowNull:false})
+        id: Fields.THIS({required:true})
       }
     },
     controller: (req) => {
