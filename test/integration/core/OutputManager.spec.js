@@ -68,15 +68,15 @@ describe('\n - Clase: OutputManager\n', () => {
     app.addRoute(route)
     let db = app.db()
     let outputManager = new OutputManager(), options, optionsOptimized, req
-    outputManager.init(app.routes[0], app.models, db)
+    outputManager.init(app.routes[route.ID()], app.models, db)
     req = {query: { fields: 'id,cargo' }}
-    optionsOptimized = outputManager.getOptions(req, app.routes[0], app.models)
+    optionsOptimized = outputManager.getOptions(req, app.routes[route.ID()], app.models)
     options = {
       attributes: ['id','cargo']
     }
     expect(_.isEqual(optionsOptimized, options)).to.equal(true)
     req = {query: { fields: 'cargo,persona(ci)' }}
-    optionsOptimized = outputManager.getOptions(req, app.routes[0], app.models)
+    optionsOptimized = outputManager.getOptions(req, app.routes[route.ID()], app.models)
     options = {
       attributes: ['cargo','id'],
       include: [
@@ -85,7 +85,7 @@ describe('\n - Clase: OutputManager\n', () => {
     }
     expect(_.isEqual(optionsOptimized, options)).to.equal(true)
     req = {query: { fields: 'cargo,persona(ci,usuario(username,roles_usuarios(estado,rol(id,nombre))))' }}
-    optionsOptimized = outputManager.getOptions(req, app.routes[0], app.models)
+    optionsOptimized = outputManager.getOptions(req, app.routes[route.ID()], app.models)
     options = {
       attributes: ['cargo','id'],
       include: [
@@ -100,7 +100,7 @@ describe('\n - Clase: OutputManager\n', () => {
     }
     expect(_.isEqual(optionsOptimized, options)).to.equal(true)
     req = {query: { fields: 'all,persona(all,usuario(all,roles_usuarios(all,rol(all))))' }}
-    optionsOptimized = outputManager.getOptions(req, app.routes[0], app.models)
+    optionsOptimized = outputManager.getOptions(req, app.routes[route.ID()], app.models)
     options = {
       attributes: ['id','cargo'],
       include: [

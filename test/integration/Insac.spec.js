@@ -113,14 +113,14 @@ describe('\n - Clase: Insac\n', () => {
           return data
         }
       }))
-      expect(app.routes.length).to.equal(1)
+      expect(Object.keys(app.routes).length).to.equal(1)
     })
   })
 
   describe(` Método: addRoutes`, () => {
     it('Adicionando todas las rutas desde los archivos', () => {
       app.addRoutes()
-      expect(app.routes.length).to.equal(2)
+      expect(Object.keys(app.routes).length).to.equal(2)
     })
   })
 
