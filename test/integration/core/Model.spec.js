@@ -71,9 +71,9 @@ describe('\n - Clase: Model\n', () => {
     let db = app.db()
     let administrativoOptions = app.models.administrativo.queryOptions(output, app.models, db)
     let options = {
-      attributes: ['cargo','id'],
+      attributes: ['cargo','id_persona','id'],
       include: [
-        {model:db.persona, as:'persona', attributes:['nombre','id'], include:[
+        {model:db.persona, as:'persona', attributes:['nombre','id_usuario','id'], include:[
           {model:db.usuario, as:'usuario', attributes:['username','id'] }
         ]}
       ]
@@ -115,9 +115,9 @@ describe('\n - Clase: Model\n', () => {
     let db = app.db()
     let administrativoOptions = app.models.administrativo.queryOptions(output, app.models, db)
     let options = {
-      attributes: ['cargo','id'],
+      attributes: ['cargo','id_persona','id'],
       include: [
-        {model:db.persona, as:'persona', attributes:['nombre','id'], include:[
+        {model:db.persona, as:'persona', attributes:['nombre','id_usuario','id'], include:[
           {model:db.usuario, as:'usuario', attributes:['username','id'], include:[
             {model:db.rol_usuario, as:'roles_usuarios', attributes:['estado','id_usuario','id_rol','id'], include:[
               {model:db.usuario, as:'usuario', attributes:['username','id'], include:[

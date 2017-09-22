@@ -18,7 +18,7 @@ describe('\n - Clase: DateValidator\n', () => {
       let validator = new DateValidator()
       let result = validator.validate('2017-09-11')
       expect(result).to.have.property('isValid', true)
-      expect(result).to.have.property('value', 'Sun Sep 10 2017 20:00:00 GMT-0400 (BOT)')
+      expect(result).to.have.property('value', '2017-09-11')
       expect(result).to.have.property('message', 'El campo es válido')
     })
     it('Verificando la validación 2da forma', () => {
@@ -32,7 +32,7 @@ describe('\n - Clase: DateValidator\n', () => {
       let validator = new DateValidator()
       let result = validator.validate('11/09/2017 08:10:25')
       expect(result).to.have.property('isValid', true)
-      expect(result).to.have.property('value',  'Thu Nov 09 2017 08:10:25 GMT-0400 (BOT)')
+      expect(result).to.have.property('value',  '11/09/2017 08:10:25')
       expect(result).to.have.property('message', 'El campo es válido')
     })
     it('Verificando la validación 3da forma', () => {
