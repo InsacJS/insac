@@ -1,7 +1,7 @@
 'use strict'
 const { Model, Fields, Validators } = require(INSAC)
 
-module.exports = (insac, models) => {
+module.exports = (insac, models, db) => {
 
   return new Model('rol_usuario', {
     description: 'Modelo que describe todos los roles de un determinado usuario',

@@ -1,7 +1,7 @@
 'use strict'
 const { Model, Fields, Validators } = require(INSAC)
 
-module.exports = (insac, models) => {
+module.exports = (insac, models, db) => {
 
   return new Model('docente', {
     description: 'Modelo que representa a un docente',

@@ -62,6 +62,7 @@ describe('\n - Clase: Insac\n', () => {
       app.addModel('persona')
       expect(Object.keys(app.models).length).to.equal(3)
       expect(app.models.persona instanceof Model).to.equal(true)
+      console.log(app.database.sequelizeModels);
       expect(Object.keys(app.database.sequelizeModels).length).to.equal(3)
       expect(app.models.persona.name).to.equal('persona')
     })
