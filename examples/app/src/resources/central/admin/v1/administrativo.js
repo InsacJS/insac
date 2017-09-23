@@ -4,27 +4,26 @@ const { NotFoundError } = require(INSAC).ResponseErrors
 
 module.exports = (insac, models, db) => {
 
-  let resource = new Resource('administrativo', '/api/v1/administrativos', {
+  let resource = new Resource('/api/v1/administrativos', {
     model: models.administrativo,
     version: 1,
     rol: 'admin',
     middlewares: [ { name: 'auth', args: { rol:'admin' } } ],
     output: {
-      id: Fields.THIS({required:false}),
-      cargo: Fields.THIS({required:false}),
-      id_persona: Fields.THIS({required:false}),
+      id: Fields.THIS(),
+      cargo: Fields.THIS(),
+      id_persona: Fields.THIS(),
       persona: {
-        id: Fields.THIS({required:false}),
-        nombre: Fields.THIS({required:false}),
-        paterno: Fields.THIS({required:false}),
-        materno: Fields.THIS({required:false}),
-        ci: Fields.THIS({required:false})
+        id: Fields.THIS(),
+        nombre: Fields.THIS(),
+        paterno: Fields.THIS(),
+        materno: Fields.THIS(),
+        ci: Fields.THIS()
       }
     }
   })
 
   resource.addRoute('GET', `/`, {
-    title: 'listarAdministrativos',
     output: [resource.output],
     controller: (req) => {
       let options = req.options
@@ -35,25 +34,25 @@ module.exports = (insac, models, db) => {
   resource.addRoute('GET', `/mi`, {
     title: 'obtenerDatosUsuarioActual',
     output: {
-      id: Fields.THIS({required:false}),
-      cargo: Fields.THIS({required:false}),
-      id_persona: Fields.THIS({required:false}),
+      id: Fields.THIS(),
+      cargo: Fields.THIS(),
+      id_persona: Fields.THIS(),
       persona: {
-        id: Fields.THIS({required:false}),
-        nombre: Fields.THIS({required:false}),
-        paterno: Fields.THIS({required:false}),
-        materno: Fields.THIS({required:false}),
-        ci: Fields.THIS({required:false}),
-        email: Fields.THIS({required:false}),
-        direccion: Fields.THIS({required:false}),
-        telefono: Fields.THIS({required:false}),
-        id_usuario: Fields.THIS({required:false}),
+        id: Fields.THIS(),
+        nombre: Fields.THIS(),
+        paterno: Fields.THIS(),
+        materno: Fields.THIS(),
+        ci: Fields.THIS(),
+        email: Fields.THIS(),
+        direccion: Fields.THIS(),
+        telefono: Fields.THIS(),
+        id_usuario: Fields.THIS(),
         usuario: {
-          id: Fields.THIS({required:false}),
-          username: Fields.THIS({required:false}),
-          password: Fields.THIS({required:false}),
-          nombre: Fields.THIS({required:false}),
-          email: Fields.THIS({required:false})
+          id: Fields.THIS(),
+          username: Fields.THIS(),
+          password: Fields.THIS(),
+          nombre: Fields.THIS(),
+          email: Fields.THIS()
         }
       }
     },

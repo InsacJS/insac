@@ -4,19 +4,18 @@ const { NotFoundError } = require(INSAC).ResponseErrors
 
 module.exports = (insac, models, db) => {
 
-  let resource = new Resource('carrera', '/api/v1/carreras', {
+  let resource = new Resource('/api/v1/carreras', {
     model: models.carrera,
     version: 1,
     rol: 'admin',
     middlewares: [ { name: 'auth', args: { rol:'admin' } } ],
     output: {
-      id: Fields.THIS({required:false}),
-      nombre: Fields.THIS({required:false})
+      id: Fields.THIS(),
+      nombre: Fields.THIS()
     }
   })
 
   resource.addRoute('GET', `/`, {
-    title: 'listarCarreras',
     output: [resource.output],
     controller: (req) => {
       let options = req.options

@@ -14,15 +14,15 @@ module.exports = (insac, models, db) => {
       }
     },
     output: {
-      token: Fields.TOKEN({required:true}),
+      token: Fields.TOKEN(),
       usuario: {
-        id: Fields.COPY(models.usuario.fields.id, {required:false}),
-        nombre: Fields.COPY(models.usuario.fields.nombre, {required:false}),
-        email: Fields.COPY(models.usuario.fields.email, {required:false}),
+        id: Fields.COPY(models.usuario.fields.id),
+        nombre: Fields.COPY(models.usuario.fields.nombre),
+        email: Fields.COPY(models.usuario.fields.email),
         roles: [{
-          id: Fields.COPY(models.rol.fields.id, {required:false}),
-          nombre: Fields.COPY(models.rol.fields.nombre, {required:false}),
-          alias: Fields.COPY(models.rol.fields.alias, {required:false})
+          id: Fields.COPY(models.rol.fields.id),
+          nombre: Fields.COPY(models.rol.fields.nombre),
+          alias: Fields.COPY(models.rol.fields.alias)
         }]
       },
       id_administrativo: Fields.INTEGER({description:'Identificador único del administrativo', required:false}),

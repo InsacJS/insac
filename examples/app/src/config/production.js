@@ -6,7 +6,7 @@ module.exports = () => {
   return new Config({
     env: 'production',
     database: {
-      name: 'insac_sauron_production',
+      name: 'insac_test',
       username: 'postgres',
       password: '12345678'
     },
