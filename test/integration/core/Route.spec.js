@@ -12,7 +12,8 @@ describe('\n - Clase: Route\n', () => {
   let app, projectPath = path.resolve(__dirname, './Route/app'), db
 
   before(`Inicializando datos de entrada`, (done) => {
-    app = new Insac('test', projectPath)
+    process.env.NODE_ENV = 'test'
+    app = new Insac(projectPath)
     app.addModel('rol')
     app.addModel('usuario')
     app.addModel('rol_usuario')

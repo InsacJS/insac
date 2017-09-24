@@ -30,7 +30,8 @@ describe('\n - Clase: Insac\n', () => {
       expect(_.isEqual(app.config, defaultConfig)).to.equal(true)
     })
     it('Instanciando un objeto con parámetros', () => {
-      app = new Insac('test', projectPath)
+      process.env.NODE_ENV = 'test'
+      app = new Insac(projectPath)
       expect(app.config instanceof Config).to.equal(true)
       expect(app.config.env).to.equal('test')
       expect(app.config.projectPath).to.equal(projectPath)
