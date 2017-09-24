@@ -48,10 +48,10 @@ describe('\n - Clase: Model\n', () => {
     let db = app.db()
     let administrativoOptions = app.models.administrativo.queryOptions(output, app.models, db)
     let options = {
-      attributes: ['cargo','id_persona','id' ],
+      attributes: ['id','cargo','id_persona'],
       include: [
-        {model:db.persona, as:'persona', attributes:['nombre','paterno','materno','ci','email','direccion','telefono','id_usuario','id'], include:[
-          {model:db.usuario, as:'usuario', attributes:['username','password','nombre','email','id'] }
+        {model:db.persona, as:'persona', attributes:['id','nombre','paterno','materno','ci','email','direccion','telefono','id_usuario'], include:[
+          {model:db.usuario, as:'usuario', attributes:['id','username','password','nombre','email'] }
         ]}
       ]
     }
@@ -71,10 +71,10 @@ describe('\n - Clase: Model\n', () => {
     let db = app.db()
     let administrativoOptions = app.models.administrativo.queryOptions(output, app.models, db)
     let options = {
-      attributes: ['cargo','id_persona','id'],
+      attributes: ['id','cargo','id_persona'],
       include: [
-        {model:db.persona, as:'persona', attributes:['nombre','id_usuario','id'], include:[
-          {model:db.usuario, as:'usuario', attributes:['username','id'] }
+        {model:db.persona, as:'persona', attributes:['id','nombre','id_usuario'], include:[
+          {model:db.usuario, as:'usuario', attributes:['id','username'] }
         ]}
       ]
     }
@@ -115,17 +115,17 @@ describe('\n - Clase: Model\n', () => {
     let db = app.db()
     let administrativoOptions = app.models.administrativo.queryOptions(output, app.models, db)
     let options = {
-      attributes: ['cargo','id_persona','id'],
+      attributes: ['id','cargo','id_persona'],
       include: [
-        {model:db.persona, as:'persona', attributes:['nombre','id_usuario','id'], include:[
-          {model:db.usuario, as:'usuario', attributes:['username','id'], include:[
-            {model:db.rol_usuario, as:'roles_usuarios', attributes:['estado','id_usuario','id_rol','id'], include:[
-              {model:db.usuario, as:'usuario', attributes:['username','id'], include:[
-                {model:db.rol_usuario, as:'roles_usuarios', attributes:['estado','id_usuario','id_rol','id'], include:[
-                  {model:db.rol, as:'rol', attributes:['nombre','alias','id']}
+        {model:db.persona, as:'persona', attributes:['id','nombre','id_usuario'], include:[
+          {model:db.usuario, as:'usuario', attributes:['id','username'], include:[
+            {model:db.rol_usuario, as:'roles_usuarios', attributes:['id','estado','id_usuario','id_rol'], include:[
+              {model:db.usuario, as:'usuario', attributes:['id','username'], include:[
+                {model:db.rol_usuario, as:'roles_usuarios', attributes:['id','estado','id_usuario','id_rol'], include:[
+                  {model:db.rol, as:'rol', attributes:['id','nombre','alias']}
                 ]}
               ]},
-              {model:db.rol, as:'rol', attributes:['nombre','alias','id']}
+              {model:db.rol, as:'rol', attributes:['id','nombre','alias']}
             ]}
           ]}
         ]}
