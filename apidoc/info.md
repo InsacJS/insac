@@ -69,3 +69,45 @@
 
 #### Nota.-
 - La opción sort solo funciona en campos de primer nivel, es decir no funciona con campos que se encuentren dentro de un objeto.
+
+### Respuesta exitosa
+Todas las respuestas se enviarán con el código `200 Ok` (Si esta opción está activada, de no ser asi, se devolverá el mismo código que aparece en el cuerpo de la respuesta), el código final se incluirá en el cuerpo de la respuesta el cual tendrá el siguiente formato:
+```json
+HTTP/1.1 200 Ok
+{
+  "status": "OK",
+  "code": 200,
+  "data": [],
+  "metadata": {
+    "limit": 50,
+    "offset": 0,
+    "total": 1,
+    "count": 1
+  }
+}
+```
+
+#### Nota.-
+- El valor de la propiedad `status` siempre será `OK`.
+- La propiedad `code` puede tener los valores `200` o `201`, dependiendo, si es una operación exitosa ó si se crea un nuevo registro con exito.
+- El valor de la propiedad `data` puede ser un objeto o un array de objetos.
+- Si la petición se realizó sobre un recurso (tiene asignado un modelo) y la respuesta contiene un array de objetos, también se incluirá la propiedad `metadata` con la siguiente información.
+
+  - `limit`: Cantidad máxima de registros a devolver.
+  - `offset`: Posición desde la que se devolveran los datos.
+  - `total`: Cantidad total de registros sin filtros.
+  - `count`: Cantidad de registros devueltos.
+
+### Respuesta con error
+Cuando exista algún tipo de error, la respuesta se enviará con el código `200 Ok` (Si esta opción está activada, de no ser asi, se devolverá el mismo código que aparece en el cuerpo de la respuesta), el código de error se incluirá en el cuerpo de la respuesta con el siguiente formato:
+```json
+HTTP/1.1 200 Ok
+{
+  "status": "FAIL",
+  "code": 422,
+  "type": "Unprocessable Entity",
+  "message": "Algunos datos no son válidos"
+}
+```
+#### Nota.-
+- El valor de la propiedad `status` siempre será `FAIL`.
