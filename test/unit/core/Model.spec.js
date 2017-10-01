@@ -1,4 +1,5 @@
 'use strict'
+const Database = require('../../../lib/core/Database')
 const Model = require('../../../lib/core/Model')
 const Field = require('../../../lib/fields/Field')
 const Fields = require('../../../lib/tools/Fields')
@@ -51,57 +52,6 @@ describe('\n - Clase: Model\n', () => {
     })
   })
 
-  describe(` Método: updateModels`, () => {
-    it('Actualizando los modelos', () => {
-      let usuario = new Model('usuario')
-      let persona = new Model('persona',{
-        fields: {
-          id_usuario: Fields.ONE_TO_ONE(usuario)
-        }
-      })
-      let estudiante = new Model('estudiante', {
-        fields: {
-          id_persona: Fields.ONE_TO_ONE(persona, {as:'persona_custom'})
-        }
-      })
-      let models = []
-      models['usuario'] = usuario
-      models['persona'] = persona
-      models['estudiante'] = estudiante
-      expect(usuario.options.associations.length).to.equal(0)
-      expect(persona.options.associations.length).to.equal(0)
-      expect(estudiante.options.associations.length).to.equal(0)
-      usuario.updateModels(models)
-      expect(usuario.options.associations.length).to.equal(0)
-      expect(persona.options.associations.length).to.equal(0)
-      expect(estudiante.options.associations.length).to.equal(0)
-      persona.updateModels(models)
-      expect(usuario.options.associations.length).to.equal(1)
-      expect(usuario.options.associations[0].model).to.equal('persona')
-      expect(usuario.options.associations[0].as).to.equal('persona')
-      expect(persona.options.associations.length).to.equal(0)
-      expect(estudiante.options.associations.length).to.equal(0)
-      estudiante.updateModels(models)
-      expect(usuario.options.associations.length).to.equal(1)
-      expect(usuario.options.associations[0].model).to.equal('persona')
-      expect(usuario.options.associations[0].as).to.equal('persona')
-      expect(persona.options.associations.length).to.equal(1)
-      expect(persona.options.associations[0].model).to.equal('estudiante')
-      expect(persona.options.associations[0].as).to.equal('estudiante')
-      expect(estudiante.options.associations.length).to.equal(0)
-      // Verificamos que de actualizarse otra vez el mismo modelo,
-      // no se alteren los demas modelos
-      estudiante.updateModels(models)
-      expect(usuario.options.associations.length).to.equal(1)
-      expect(usuario.options.associations[0].model).to.equal('persona')
-      expect(usuario.options.associations[0].as).to.equal('persona')
-      expect(persona.options.associations.length).to.equal(1)
-      expect(persona.options.associations[0].model).to.equal('estudiante')
-      expect(persona.options.associations[0].as).to.equal('estudiante')
-      expect(estudiante.options.associations.length).to.equal(0)
-    })
-  })
-
   describe(` Método: sequelize`, () => {
     it('Verificando el objeto sequelize de un modelo', () => {
       let data = {
@@ -150,8 +100,8 @@ describe('\n - Clase: Model\n', () => {
       })
       let proyecto = new Model('proyecto', {
         fields: {
-          id_estudiante1: Fields.ONE_TO_MANY(estudiante),
-          id_estudiante2: Fields.ONE_TO_MANY(estudiante)
+          id_estudiante1: Fields.ONE_TO_MANY(estudiante, {as:'estudiante1'}),
+          id_estudiante2: Fields.ONE_TO_MANY(estudiante, {as:'estudiante2'})
         }
       })
       let models = []
@@ -159,10 +109,23 @@ describe('\n - Clase: Model\n', () => {
       models['persona'] = persona
       models['estudiante'] = estudiante
       models['proyecto'] = proyecto
-      usuario.updateModels(models)
-      persona.updateModels(models)
-      estudiante.updateModels(models)
-      proyecto.updateModels(models)
+      let database = new Database()
+      let define = usuario.sequelize()
+      let sequelizeModel = database.sequelize.define(define.name, define.attributes, define.options)
+      database.addModel(sequelizeModel)
+      database.updateModels(usuario, models)
+      define = persona.sequelize()
+      sequelizeModel = database.sequelize.define(define.name, define.attributes, define.options)
+      database.addModel(sequelizeModel)
+      database.updateModels(persona, models)
+      define = estudiante.sequelize()
+      sequelizeModel = database.sequelize.define(define.name, define.attributes, define.options)
+      database.addModel(sequelizeModel)
+      database.updateModels(estudiante, models)
+      define = proyecto.sequelize()
+      sequelizeModel = database.sequelize.define(define.name, define.attributes, define.options)
+      database.addModel(sequelizeModel)
+      database.updateModels(proyecto, models)
 
       let usuarioResult = usuario.getModelOfProperty('persona', models)
       expect(typeof usuarioResult).to.equal('object')
@@ -187,9 +150,7 @@ describe('\n - Clase: Model\n', () => {
 
       let estudianteResult = estudiante.getModelOfProperty('persona', models)
       expect(typeof estudianteResult).to.equal('object')
-      expect(estudianteResult.model instanceof Model).to.equal(true)
-      expect(estudianteResult.model.name).to.equal('persona')
-      expect(estudianteResult).to.have.property('isArray', false)
+      expect(estudianteResult.model instanceof Model).to.equal(false)
 
       // Como es de 1 a N, el nombre del campo debe estar en plural
       estudianteResult = estudiante.getModelOfProperty('proyecto', models)
