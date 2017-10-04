@@ -41,43 +41,23 @@ Esta diseñado para facilitar el trabajo al desarrollador backend, ofreciéndole
 
 # Ejemplo
 ``` javascript
-const { Insac, Fields, Config } = require('insac')
+const { Insac } = require('insac')
 
-let config = new Config({
-  env: 'development',
-  database: {
-    name: 'insac_test',
-    username: 'postgres',
-    password: '12345678'
-  },
-  server: { all200: false }
-})
+let app = new Insac()
 
-let app = new Insac(config)
+app.addModel('usuario')
+app.addModel('persona')
 
-let usuario = new Model('usuario', {
-  fields: {
-    username: Fields.STRING({description:'Nombre de usuario'}),
-    password: Fields.STRING({description:'Contraseña de usuario'})
-  }
-})
-app.adModel(usuario)
-
-let persona = new Model('persona', {
-  fields: {
-    nombre: Fields.STRING({description:'Nombre completo de la persona'}),
-    id_usuario: Fields.ONE_TO_ONE(usuario)
-  }
-})
-app.adModel(persona)
-
-app.generateResource('usuario')
-app.generateResource('persona')
+app.addMiddlewares()
+app.addRoutes()
+app.addResources()
+app.addSeeders()
 
 async function init() {
   try {
     await app.createApidoc()
     await app.migrate()
+    await app.seed()
     await app.listen()
   } catch(err) { console.log(err) }
 }
