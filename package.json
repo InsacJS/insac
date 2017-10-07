@@ -20,7 +20,8 @@
   "scripts": {
     "test-unit": "./node_modules/.bin/mocha --recursive test/unit",
     "test-integration": "./node_modules/.bin/mocha --recursive test/integration",
-    "doc": "./node_modules/.bin/esdoc"
+    "doc": "./node_modules/.bin/esdoc",
+    "eslint": "./node_modules/.bin/eslint ./lib"
   },
   "engines": {
     "node": ">=8.4.0"
@@ -40,6 +41,7 @@
     "chai": "^4.1.1",
     "esdoc": "^1.0.1",
     "esdoc-standard-plugin": "^1.0.0",
+    "eslint": "^4.8.0",
     "mocha": "^3.5.0",
     "request": "^2.81.0"
   }
