@@ -32,7 +32,6 @@ describe('\n - Clase: Config\n', () => {
       expect(config.server.port).to.equal(7890)
       expect(config.server.all200).to.equal(true)
       expect(config.path.public).to.equal(`${projectPath}/public`)
-      expect(config.path.config).to.equal(`${projectPath}/src/config`)
       expect(config.path.routes).to.equal(`${projectPath}/src/routes`)
       expect(config.path.seeders).to.equal(`${projectPath}/src/seeders`)
     })
