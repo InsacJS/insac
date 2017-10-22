@@ -4,33 +4,36 @@ const { UnauthorizedError } = require(INSAC).ResponseErrors
 
 module.exports = (insac, models, db) => {
 
+  const Usuario = models.usuario.fields
+  const Rol = models.rol.fields
+
   return new Route('POST', `/auth/login`, {
     group: 'Auth',
     title: 'Login',
     input: {
       body: {
-        username: Fields.COPY(models.usuario.fields.username, {required:true}),
-        password: Fields.COPY(models.usuario.fields.password, {required:true})
+        username: Fields.COPY(Usuario.username, {required:true}),
+        password: Fields.COPY(Usuario.password, {required:true})
       }
     },
     output: {
       token: Fields.TOKEN(),
       usuario: {
-        id: Fields.COPY(models.usuario.fields.id),
-        nombre: Fields.COPY(models.usuario.fields.nombre),
-        email: Fields.COPY(models.usuario.fields.email),
+        id: Fields.COPY(Usuario.id),
+        nombre: Fields.COPY(Usuario.nombre),
+        email: Fields.COPY(Usuario.email),
         roles: [{
-          id: Fields.COPY(models.rol.fields.id),
-          nombre: Fields.COPY(models.rol.fields.nombre),
-          alias: Fields.COPY(models.rol.fields.alias)
+          id: Fields.COPY(Rol.id),
+          nombre: Fields.COPY(Rol.nombre),
+          alias: Fields.COPY(Rol.alias)
         }]
       },
-      id_administrativo: Fields.INTEGER({description:'Identificador único del administrativo', required:false}),
-      id_docente: Fields.INTEGER({description:'Identificador único del docente', required:false}),
-      id_estudiante: Fields.INTEGER({description:'Identificador único del estudiante', required:false})
+      id_administrativo: Fields.INTEGER({description:'Identificador único del administrativo.', required:false}),
+      id_docente: Fields.INTEGER({description:'Identificador único del docente.', required:false}),
+      id_estudiante: Fields.INTEGER({description:'Identificador único del estudiante.', required:false})
     },
     controller: (req) => {
-      let options = {
+      let usuarioOptions = {
         where: {
           username: req.body.username,
           password: insac.encryptPassword(req.body.password)
@@ -46,9 +49,9 @@ module.exports = (insac, models, db) => {
           ]}
         ]
       }
-      return db.usuario.findOne(options).then(usuarioR => {
+      return db.usuario.findOne(usuarioOptions).then(usuarioR => {
         if (!usuarioR) {
-          throw new UnauthorizedError(`Usuario y/o contraseña incorrecta`)
+          throw new UnauthorizedError(`Usuario y/o contraseña incorrecto.`)
         }
         let data = {
           usuario: {

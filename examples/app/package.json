@@ -1,0 +1,9 @@
+{
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "start-production": "NODE_ENV=production && node app.js",
+    "setup": "insac migrate && insac seed",
+    "setup-production": "NODE_ENV=production && insac migrate && insac seed"
+  }
+}

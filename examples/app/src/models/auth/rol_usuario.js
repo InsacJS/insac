@@ -1,21 +1,30 @@
 'use strict'
-const { Model, Fields, Validators } = require(INSAC)
+const { Model, Fields } = require(INSAC)
 
-module.exports = (insac, models, db) => {
+module.exports = (insac) => {
 
   return new Model('rol_usuario', {
-    description: 'Modelo que describe todos los roles de un determinado usuario',
+    description: 'Contiene todos los roles de los usuarios.',
     fields: {
-      estado: Fields.STRING({
+      estado: Fields.ENUM(['ACTIVO','INACTIVO'], {
         description: 'Estado de la cuenta',
         required: true,
-        validator: Validators.IN(['ACTIVO','INACTIVO']),
         defaultValue: 'ACTIVO'
       }),
-      id_usuario: Fields.ONE_TO_MANY(models.usuario),
-      id_rol: Fields.ONE_TO_MANY(models.rol)
+      id_usuario: Fields.REFERENCE({
+        model: 'usuario',
+        key: 'id',
+        required: true,
+        association: { as:'roles_usuarios', type:'1:N' }
+      }),
+      id_rol: Fields.REFERENCE({
+        model: 'rol'
+        key: 'id',
+        required: true,
+        association: { as:'roles_usuarios', type:'1:N' } })
     },
     options: {
+      timestamps: true,
       uniqueKeys: [['id_usuario','id_rol']],
       plural: 'roles_usuarios'
     }

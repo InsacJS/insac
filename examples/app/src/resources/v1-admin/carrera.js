@@ -8,7 +8,7 @@ module.exports = (insac, models, db) => {
     model: models.carrera,
     version: 1,
     rol: 'admin',
-    middlewares: [ { name: 'auth', args: { rol:'admin' } } ],
+    middlewares: ['adminMiddleware'],
     output: {
       id: Fields.THIS(),
       nombre: Fields.THIS()
@@ -85,7 +85,7 @@ module.exports = (insac, models, db) => {
       options.where = { id:result.id }
       return db.carrera.findOne(options).then(carreraR => {
         if (!carreraR) {
-          throw new NotFoundError(`No existe el recurso`)
+          throw new NotFoundError()
         }
         return db.carrera.destroy(options).then(result => {
           return carreraR

@@ -57,6 +57,8 @@ typings/
 # dotenv environment variables file
 .env
 
-# documentation
+# custom
 docs/
 examples/app/public/
+temp/
+package-lock.json

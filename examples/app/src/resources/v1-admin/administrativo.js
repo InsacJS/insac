@@ -1,14 +1,14 @@
 'use strict'
-const { Resource, Fields } = require(INSAC)
-const { NotFoundError } = require(INSAC).ResponseErrors
+const { Resource, Fields, ResponseErrors } = require(INSAC)
+const { NotFoundError } = ResponseErrors
 
 module.exports = (insac, models, db) => {
 
   let resource = new Resource('/api/v1/administrativos', {
-    model: models.administrativo,
+    model: 'administrativo',
     version: 1,
     rol: 'admin',
-    middlewares: [ { name: 'auth', args: { rol:'admin' } } ],
+    middlewares: ['adminMiddleware'],
     output: {
       id: Fields.THIS(),
       cargo: Fields.THIS(),
@@ -26,8 +26,7 @@ module.exports = (insac, models, db) => {
   resource.addRoute('GET', `/`, {
     output: [resource.output],
     controller: (req) => {
-      let options = req.options
-      return db.administrativo.findAll(options)
+      return db.administrativo.findAll(req.options)
     }
   })
 
@@ -103,29 +102,27 @@ module.exports = (insac, models, db) => {
       }
     },
     controller: (req) => {
-      return db.sequelize.transaction(t => {
-        let usuario = {
-          username: req.body.persona.ci,
-          password: req.body.persona.ci,
-          nombre: `${req.body.persona.nombre} ${req.body.persona.paterno} ${req.body.persona.materno}`,
-          email: req.body.persona.email
-        }
-        return db.usuario.create(usuario, {transaction:t}).then(usuarioR => {
+      return async function task() {
+        return db.sequelize.transaction(t => {
           let persona = req.body.persona
-          persona.id_usuario = usuarioR.id
-          return db.persona.create(persona, {transaction:t}).then(personaR => {
-            let administrativo = {
-              cargo: req.body.cargo,
-              id_persona: personaR.id
-            }
-            return db.administrativo.create(administrativo, {transaction:t})
-          })
+          let personaR = await db.persona.create(persona, {transaction:t})
+          let administrativo = {
+            cargo: req.body.cargo,
+            id_persona: personaR.id
+          }
+          await db.administrativo.create(administrativo, {transaction:t})
+          let usuario = {
+            username: req.body.persona.ci,
+            password: req.body.persona.ci,
+            email: req.body.persona.email,
+            id_persona: personaR.id
+          }
+          let usuarioR = await db.usuario.create(usuario, {transaction:t})
+          let options = req.options
+          options.where = { id:usuarioR.id }
+          return db.administrativo.findOne(options)
         })
-      }).then(result => {
-        let options = req.options
-        options.where = { id:result.id }
-        return db.administrativo.findOne(options)
-      })
+      }
     }
   })
 
@@ -148,33 +145,25 @@ module.exports = (insac, models, db) => {
       }
     },
     controller: (req) => {
-      return db.sequelize.transaction(t => {
-        let options = {where: {id:req.params.id}, include:[
-          {model:db.persona, as:'persona'}
-        ]}
-        return db.administrativo.findOne(options).then(administrativoR => {
+      return async function task() {
+        return db.sequelize.transaction(t => {
+          let administrativoOptions = {where: {id:req.params.id}, include:[
+            {model:db.persona, as:'persona'}
+          ]}
+          let administrativoR = await db.administrativo.findOne(administrativoOptions)
           if (!administrativoR) {
             throw new NotFoundError()
           }
-          options = {where: {id:administrativoR.persona.id_usuario} }
-          let usuario = { }
-          if (req.body.persona && req.body.persona.nombre) usuario.nombre = req.body.persona.nombre
-          if (req.body.persona && req.body.persona.email) usuario.email = req.body.persona.email
-          return db.usuario.update(usuario, options, {transaction:t}).then(usuarioR => {
-            let persona = req.body.persona
-            persona.id_usuario = usuarioR.id
-            return db.persona.update(persona, options, {transaction:t}).then(personaR => {
-              let administrativo = { }
-              if (req.body.cargo && req.body.cargo) administrativo.cargo = req.body.cargo
-              return db.administrativo.create(administrativo, {transaction:t})
-            })
-          })
+          let persona = req.body.persona
+          await db.persona.update(persona, {where:{id:administrativoR.id_persona}}, {transaction:t})
+          let administrativo = { }
+          if (req.body && req.body.cargo) administrativo.cargo = req.body.cargo
+          await db.administrativo.update(administrativo, {transaction:t})
+          administrativoOptions = req.options
+          administrativoOptions.id = req.params.id
+          return db.administrativo.findOne(administrativoOptions)
         })
-      }).then(result => {
-        let options = req.options
-        options.where = { id:req.params.id }
-        return db.administrativo.findOne(options)
-      })
+      }
     }
   })
 
@@ -192,7 +181,7 @@ module.exports = (insac, models, db) => {
           throw new NotFoundError()
         }
         return db.administrativo.destroy(options).then(result => {
-          return carreraR
+          return administrativoR
         })
       })
     }

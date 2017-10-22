@@ -2,7 +2,15 @@
 
 module.exports = {
   database: {
-    name: 'insac_test',
+    development: {
+      name: 'insac_development',
+    },
+    test: {
+      name: 'insac_test',
+    },
+    production: {
+      name: 'insac_production',
+    },
     username: 'postgres',
     password: '12345678'
   },

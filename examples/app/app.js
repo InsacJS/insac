@@ -7,29 +7,11 @@ const { Insac, Config } = require(INSAC)
 // actualiza la ruta por defecto del proyecto
 Config.DEFAULT_PROJECT_PATH = __dirname
 
+// Crea la aplicación
 let app = new Insac()
 
-app.addModel('rol')
-app.addModel('usuario')
-app.addModel('rol_usuario')
-app.addModel('persona')
-app.addModel('carrera')
-app.addModel('administrativo')
-app.addModel('docente')
-app.addModel('estudiante')
+// Carga los modelos, middlewares, recursos y rutas.
+app.load()
 
-app.addMiddlewares()
-app.addRoutes()
-app.addResources()
-app.addSeeders()
-
-async function init() {
-  try {
-    await app.createApidoc()
-    await app.migrate()
-    await app.seed()
-    await app.listen()
-  } catch(err) { console.log(err) }
-}
-
-init()
+// Ejecuta la aplicación
+app.listen()
