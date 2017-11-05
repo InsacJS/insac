@@ -10,6 +10,10 @@ module.exports = (insac) => {
         description: 'Nombre.',
         required: true,
         example: 'Ingeniería Civil'
+      }),
+      estado: Fields.BOOLEAN({
+        description: 'Estado de la carrera',
+        defaultValue: false
       })
     },
     options: {

@@ -11,7 +11,8 @@ module.exports = (insac, models, db) => {
     middlewares: ['adminMiddleware'],
     output: {
       id: Fields.THIS(),
-      nombre: Fields.THIS()
+      nombre: Fields.THIS(),
+      estado: Fields.THIS()
     }
   })
 
@@ -44,7 +45,8 @@ module.exports = (insac, models, db) => {
   resource.addRoute('POST', `/`, {
     input: {
       body: {
-        nombre: Fields.THIS()
+        nombre: Fields.THIS(),
+        estado: Fields.THIS()
       }
     },
     controller: (req) => {
@@ -62,12 +64,13 @@ module.exports = (insac, models, db) => {
         id: Fields.THIS({required:true})
       },
       body: {
-        nombre: Fields.THIS({required:false})
+        nombre: Fields.THIS({required:false}),
+        estado: Fields.THIS({required:false})
       }
     },
     controller: (req) => {
       let options = req.options
-      options.where = { id:result.id }
+      options.where = { id:req.params.id }
       return db.carrera.update(req.body, options).then(result => {
         return db.carrera.findOne(options)
       })
@@ -82,7 +85,7 @@ module.exports = (insac, models, db) => {
     },
     controller: (req) => {
       let options = req.options
-      options.where = { id:result.id }
+      options.where = { id:req.params.id }
       return db.carrera.findOne(options).then(carreraR => {
         if (!carreraR) {
           throw new NotFoundError()

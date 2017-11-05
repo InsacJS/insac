@@ -27,7 +27,7 @@ Esta diseñado para facilitar el trabajo al desarrollador backend, ofreciéndole
 
 - **Relaciones 1:1 y 1:N** Las relaciones entre tablas soportadas son 1:1 y 1:N.
 
-- **Tipos de datos básicos** Los tipos de datos soportados son: INTEGER, STRING, FLOAT, DATE, TIME.
+- **Tipos de datos básicos** Los tipos de datos soportados son: INTEGER, STRING, BOOLEAN, FLOAT, DATE, TIME, DATETIME, ENUM.
 
 # Aportes
 - Este framework permite construir aplicaciones de forma sencilla y organizada, acompañado de funciones y herramientas que simplifican enormemente el trabajo del desarrollador backend, logrando convertirse en una alternativa real a los actuales frameworks de desarrollo de APIs.
