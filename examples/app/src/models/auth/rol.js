@@ -7,18 +7,22 @@ module.exports = (insac) => {
     description: 'Rol que se asigna a un usuario del sistema.',
     fields: {
       nombre: Fields.STRING({
-        description: 'Nombre completo.'
+        description: 'Nombre completo.',
+        example: 'Administrador'
       }),
       alias: Fields.STRING({
         description: 'Nombre corto que identifica al rol.',
-        required: true
+        required: true,
+        example: 'admin'
       }),
-      peso: Fiels.INTEGER({
+      peso: Fields.INTEGER({
         descripcion: 'Número que indica el rango que tiene el rol. Rango: 0 (menor rango) hasta 10 (mayor rango).',
-        required: true
+        required: true,
+        example: 5
       }),
       descripcion: Fields.STRING({
-        description: 'Texto informativo acerca del rol.'
+        description: 'Texto informativo acerca del rol.',
+        example: 'Rol del administrador'
       })
     },
     options: {

@@ -8,24 +8,27 @@ module.exports = (insac) => {
     fields: {
       username: Fields.STRING({
         description: 'Usuario.',
-        required: true
+        required: true,
+        example: 'admin'
       }),
       password: Fields.STRING({
         description: 'Contraseña.',
-        required: true
+        required: true,
+        example: '123'
       }),
       email: Fields.EMAIL({
         required: true
       }),
       reset_password_token: Fields.TOKEN({
-        description: 'Token de recuperación de contraseña.'
+        description: 'Token de recuperación de contraseña.',
+        example: 'ABC123'
       }),
       reset_password_expires: Fields.DATETIME({
-        description: 'Fecha de expiración del token de recuperación de contraseña.'
+        description: 'Fecha de expiración del token de recuperación de contraseña.',
+        example: 'ABC123'
       }),
       id_persona: Fields.REFERENCE({
-        model: 'persona',
-        key: 'id',
+        reference: { model:'persona', key:'id' },
         association: { as:'usuario', type:'1:1' }
       })
     },

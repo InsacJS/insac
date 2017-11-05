@@ -12,16 +12,15 @@ module.exports = (insac) => {
         defaultValue: 'ACTIVO'
       }),
       id_usuario: Fields.REFERENCE({
-        model: 'usuario',
-        key: 'id',
         required: true,
+        reference: { model:'usuario' },
         association: { as:'roles_usuarios', type:'1:N' }
       }),
       id_rol: Fields.REFERENCE({
-        model: 'rol'
-        key: 'id',
         required: true,
-        association: { as:'roles_usuarios', type:'1:N' } })
+        reference: { model:'rol' },
+        association: { as:'roles_usuarios', type:'1:N' }
+      })
     },
     options: {
       timestamps: true,

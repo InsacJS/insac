@@ -20,7 +20,6 @@ module.exports = (insac, models, db) => {
       token: Fields.TOKEN(),
       usuario: {
         id: Fields.COPY(Usuario.id),
-        nombre: Fields.COPY(Usuario.nombre),
         email: Fields.COPY(Usuario.email),
         roles: [{
           id: Fields.COPY(Rol.id),

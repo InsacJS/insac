@@ -7,13 +7,16 @@ module.exports = (insac) => {
     description: 'Modelo que representa a un docente.',
     fields: {
       item: Fields.INTEGER({
-        description: 'Nro de item.'
+        description: 'Nro de item.',
+        example: 124
       }),
       grado: Fields.STRING({
-        description: 'Grado académico.'
+        description: 'Grado académico.',
+        example: 'Ingeniero'
       }),
       carga_horaria: Fields.INTEGER({
-        description: 'Carga horaria.'
+        description: 'Carga horaria.',
+        example: 20
       }),
       tipo_contratacion: Fields.ENUM(['TITULAR','INTERINO','INVITADO'], {
         description: 'Tipo de contratación.',
@@ -24,9 +27,7 @@ module.exports = (insac) => {
         defaultValue: 'A'
       }),
       id_persona: Fields.REFERENCE({
-        model: 'persona',
-        key: 'id',
-        required: true,
+        reference: { model:'persona' },
         association: { as:'docente', type:'1:1' }
       })
     },

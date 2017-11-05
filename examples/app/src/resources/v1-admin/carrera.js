@@ -1,11 +1,11 @@
 'use strict'
-const { Resource, Fields } = require(INSAC)
-const { NotFoundError } = require(INSAC).ResponseErrors
+const { Resource, Fields, ResponseErrors } = require(INSAC)
+const { NotFoundError } = ResponseErrors
 
 module.exports = (insac, models, db) => {
 
   let resource = new Resource('/api/v1/carreras', {
-    model: models.carrera,
+    model: 'carrera',
     version: 1,
     rol: 'admin',
     middlewares: ['adminMiddleware'],

@@ -45,12 +45,10 @@ module.exports = (insac, models, db) => {
         email: Fields.THIS(),
         direccion: Fields.THIS(),
         telefono: Fields.THIS(),
-        id_usuario: Fields.THIS(),
         usuario: {
           id: Fields.THIS(),
           username: Fields.THIS(),
           password: Fields.THIS(),
-          nombre: Fields.THIS(),
           email: Fields.THIS()
         }
       }
@@ -102,8 +100,8 @@ module.exports = (insac, models, db) => {
       }
     },
     controller: (req) => {
-      return async function task() {
-        return db.sequelize.transaction(t => {
+      return db.sequelize.transaction(t => {
+        async function task() {
           let persona = req.body.persona
           let personaR = await db.persona.create(persona, {transaction:t})
           let administrativo = {
@@ -121,8 +119,9 @@ module.exports = (insac, models, db) => {
           let options = req.options
           options.where = { id:usuarioR.id }
           return db.administrativo.findOne(options)
-        })
-      }
+        }
+        return task()
+      })
     }
   })
 
@@ -145,8 +144,8 @@ module.exports = (insac, models, db) => {
       }
     },
     controller: (req) => {
-      return async function task() {
-        return db.sequelize.transaction(t => {
+      return db.sequelize.transaction(t => {
+        return async function task() {
           let administrativoOptions = {where: {id:req.params.id}, include:[
             {model:db.persona, as:'persona'}
           ]}
@@ -162,8 +161,8 @@ module.exports = (insac, models, db) => {
           administrativoOptions = req.options
           administrativoOptions.id = req.params.id
           return db.administrativo.findOne(administrativoOptions)
-        })
-      }
+        }
+      })
     }
   })
 

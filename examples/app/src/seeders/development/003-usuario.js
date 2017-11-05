@@ -12,5 +12,5 @@ module.exports = (insac) => {
     id_persona: 1
   }]
 
-  return new Seed('administrativo', data)
+  return new Seed('usuario', data)
 }

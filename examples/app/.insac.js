@@ -22,9 +22,9 @@ module.exports = {
       key: 'CLAVE_SECRETA'
     },
     roles: [
-      {id:1, nombre:'Administrativo', alias:'admin'},
-      {id:2, nombre:'Docente', alias:'doc'},
-      {id:3, nombre:'Estudiante', alias:'est'}
+      {id:1, nombre:'Administrativo', alias:'admin', peso:10},
+      {id:2, nombre:'Docente', alias:'doc', peso:0},
+      {id:3, nombre:'Estudiante', alias:'est', peso:0}
     ]
   },
   apidoc: {

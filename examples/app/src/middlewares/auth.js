@@ -6,7 +6,12 @@ module.exports = (insac, models, db) => {
 
   function createMiddleware(rol) {
 
-    return new Middleware(`${rol}Middleware`, (req, res, next) => {
+    return new Middleware(`${rol}Middleware`, {
+      input: {
+        headers: {
+          authorization: Fields.TOKEN({description:'Token de acceso', required:true})
+        }
+      },
       controller: (req, res, next) => {
         if (req.method == 'OPTIONS') { return next() }
         // Decodifica el token

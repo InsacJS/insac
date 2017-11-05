@@ -13,5 +13,12 @@ let app = new Insac()
 // Carga los modelos, middlewares, recursos y rutas.
 app.load()
 
-// Ejecuta la aplicación
-app.listen()
+async function init() {
+  app.addSeeders()
+  await app.createApidoc()
+  await app.migrate()
+  await app.seed()
+  app.listen()
+}
+
+init()

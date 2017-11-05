@@ -7,19 +7,18 @@ module.exports = (insac) => {
     description: 'Modelo que representa a un estudiante.',
     fields: {
       ru: Fields.INTEGER({
-        description: 'Nro de registro universitario.'
+        description: 'Nro de registro universitario.',
+        example: 323434
       }),
       id_persona: Fields.REFERENCE({
-        model: 'persona',
-        key: 'id',
         required: true,
+        reference: { model:'persona' },
         association: { as:'estudiante', type:'1:1' }
       }),
       id_carrera: Fields.REFERENCE({
-        model: 'carrera',
-        key: 'id',
         required: true,
-        association: { as:'estudiante', type:'1:1' }
+        reference: { model:'carrera' },
+        association: { as:'estudiantes', type:'1:N' }
       })
     },
     options: {
