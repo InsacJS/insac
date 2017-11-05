@@ -14,14 +14,7 @@ describe('\n - Clase: Route\n', () => {
   before(`Inicializando datos de entrada`, (done) => {
     process.env.NODE_ENV = 'test'
     app = new Insac(projectPath)
-    app.addModel('rol')
-    app.addModel('usuario')
-    app.addModel('rol_usuario')
-    app.addModel('persona')
-    app.addModel('carrera')
-    app.addModel('administrativo')
-    app.addModel('docente')
-    app.addModel('estudiante')
+    app.load()
     app.addSeeders()
     app.migrate().then(() => {
       app.seed().then(() => {
@@ -33,7 +26,7 @@ describe('\n - Clase: Route\n', () => {
   it('Adicionando rutas', () => {
     let db = app.db()
     app.addRoute(new Route('GET', '/admin1', {
-      model: app.models.administrativo,
+      model: 'administrativo',
       output: [{
         id: Fields.THIS(),
         cargo: Fields.THIS()
@@ -43,7 +36,7 @@ describe('\n - Clase: Route\n', () => {
       }
     }))
     app.addRoute(new Route('GET', '/admin2/:id', {
-      model: app.models.administrativo,
+      model: 'administrativo',
       input: {
         params: {
           id: Fields.THIS()

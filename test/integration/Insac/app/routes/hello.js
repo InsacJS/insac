@@ -7,9 +7,7 @@ module.exports = (insac, models, db) => {
     output: {
       msg: Fields.STRING({description:'Mensaje de bienvenida'})
     },
-    middlewares: [
-      { name:'auth', args:{ rol:'admin' } }
-    ],
+    middlewares: ['adminMiddleware'],
     controller: (req) => {
       return { msg: `Bienvenido al mundo real`, token: req.token }
     }

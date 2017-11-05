@@ -63,7 +63,6 @@ describe('\n - Clase: Insac\n', () => {
       app.addModel('persona')
       expect(Object.keys(app.models).length).to.equal(3)
       expect(app.models.persona instanceof Model).to.equal(true)
-      console.log(app.database.sequelizeModels);
       expect(Object.keys(app.database.sequelizeModels).length).to.equal(3)
       expect(app.models.persona.name).to.equal('persona')
     })
@@ -78,7 +77,7 @@ describe('\n - Clase: Insac\n', () => {
         }
       }))
       expect(Object.keys(app.middlewares).length).to.equal(1)
-      expect(typeof app.middlewares['/api']).to.equal('function')
+      expect(typeof app.middlewares['/api']).to.equal('object')
     })
     it('Adicionando un middleware local', () => {
       app.addMiddleware(new Middleware('welcome', {
@@ -88,7 +87,7 @@ describe('\n - Clase: Insac\n', () => {
         }
       }))
       expect(Object.keys(app.middlewares).length).to.equal(2)
-      expect(typeof app.middlewares['welcome']).to.equal('function')
+      expect(typeof app.middlewares['welcome']).to.equal('object')
     })
   })
 
@@ -106,7 +105,7 @@ describe('\n - Clase: Insac\n', () => {
           msg: Fields.STRING(),
           info: Fields.STRING()
         },
-        middlewares: [ { name:'welcome' } ],
+        middlewares: ['welcome'],
         controller: (req) => {
           let data = {
             msg: `Bienvenido ${req.user}`,

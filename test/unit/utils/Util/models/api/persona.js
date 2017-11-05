@@ -1,12 +1,15 @@
 'use strict'
-const { Fields } = require(INSAC)
+const { Model, Fields } = require(INSAC)
 
-module.exports = (insac, models) => {
+module.exports = (insac) => {
 
-  insac.addModel('persona', {
+  return new Model('persona', {
     fields: {
-      nombre: {},
-      id_usuario: Fields.ONE_TO_ONE(models.usuario, {required:true})
+      nombre: Fields.STRING(),
+      id_usuario: Fields.REFERENCE({
+        reference: { model:'usuario', key:'id' },
+        association: { as:'persona', type:'1:1' }
+      })
     }
   })
 

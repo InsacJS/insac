@@ -1,7 +1,7 @@
 'use strict'
 const { Model, Fields } = require(INSAC)
 
-module.exports = (insac, models, db) => {
+module.exports = (insac) => {
 
   return new Model('usuario', {
     fields: {

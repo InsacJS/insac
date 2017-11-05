@@ -1,24 +1,29 @@
 'use strict'
 const { Model, Fields } = require(INSAC)
 
-module.exports = (insac, models, db) => {
+module.exports = (insac) => {
 
   return new Model('usuario', {
-    description: 'Modelo que representa a un usuario del sistema',
+    description: 'Usuario del sistema.',
     fields: {
       username: Fields.STRING({
-        description: 'Usuario',
+        description: 'Usuario.',
         required: true
       }),
       password: Fields.STRING({
-        description: 'Contraseña'
+        description: 'Contraseña.',
+        required: true
       }),
       nombre: Fields.STRING({
-        description: 'Nombre completo'
+        description: 'Nombre.',
+        required: true
       }),
-      email: Fields.EMAIL({required:true})
+      email: Fields.EMAIL({
+        required: true
+      })
     },
     options: {
+      timestamps: true,
       uniqueKeys: ['username', 'email']
     }
   })

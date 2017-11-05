@@ -13,19 +13,12 @@ describe('\n - Clase: OutputManager\n', () => {
   before(`Inicializando datos de entrada`, () => {
     process.env.NODE_ENV = 'test'
     app = new Insac(projectPath)
-    app.addModel('rol')
-    app.addModel('usuario')
-    app.addModel('rol_usuario')
-    app.addModel('persona')
-    app.addModel('carrera')
-    app.addModel('administrativo')
-    app.addModel('docente')
-    app.addModel('estudiante')
+    app.load()
   })
 
   it('Verificando la propiedad queryOptions para el modelo administrativo 1', () => {
     let route = new Route('GET', '/administrativos', {
-      model: app.models.administrativo,
+      model: 'administrativo',
       output: {
         id: Fields.THIS(),
         cargo: Fields.THIS(),

@@ -90,24 +90,40 @@ describe('\n - Clase: Model\n', () => {
       let usuario = new Model('usuario')
       let persona = new Model('persona',{
         fields: {
-          id_usuario: Fields.ONE_TO_ONE(usuario)
+          id_usuario: Fields.REFERENCE({
+            reference: { model:'usuario', key:'id' },
+            association: { as:'persona', type:'1:1' }
+          })
         }
       })
       let estudiante = new Model('estudiante', {
         fields: {
-          id_persona: Fields.ONE_TO_ONE(persona, {as:'persona_custom'})
+          id_persona: Fields.REFERENCE({
+            reference: { as:'persona_custom', model:'persona', key:'id' },
+            association: { as:'estudiante', type:'1:1' }
+          })
         }
       })
       let proyecto = new Model('proyecto', {
         fields: {
-          id_estudiante1: Fields.ONE_TO_MANY(estudiante, {as:'estudiante1'}),
-          id_estudiante2: Fields.ONE_TO_MANY(estudiante, {as:'estudiante2'})
+          id_estudiante1: Fields.REFERENCE({
+            reference: { as:'estudiante1', model:'estudiante', key:'id' },
+            association: { as:'proyectos1', type:'1:N' }
+          }),
+          id_estudiante2: Fields.REFERENCE({
+            reference: { as:'estudiante2', model:'estudiante', key:'id' },
+            association: { as:'proyectos2', type:'1:N' }
+          })
         }
       })
       let models = []
+      usuario.init(models)
       models['usuario'] = usuario
+      persona.init(models)
       models['persona'] = persona
+      estudiante.init(models)
       models['estudiante'] = estudiante
+      proyecto.init(models)
       models['proyecto'] = proyecto
       let database = new Database()
       let define = usuario.sequelize()
@@ -157,7 +173,7 @@ describe('\n - Clase: Model\n', () => {
       expect(typeof estudianteResult).to.equal('object')
       expect(estudianteResult).to.have.property('model', undefined)
       expect(estudianteResult).to.have.property('isArray', false)
-      estudianteResult = estudiante.getModelOfProperty('proyectos', models)
+      estudianteResult = estudiante.getModelOfProperty('proyectos1', models)
       expect(typeof estudianteResult).to.equal('object')
       expect(estudianteResult.model instanceof Model).to.equal(true)
       expect(estudianteResult.model.name).to.equal('proyecto')
