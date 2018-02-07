@@ -1,48 +1,51 @@
 {
-  "author": "Wilmer Alex QUispe Quispe <q.wilmer.alex@gmail.com>",
   "name": "insac",
-  "homepage": "https://insac.waquispe.com",
-  "description": "Framework de creación de servicios web basado en lenguaje script, utilizando arquitectura REST",
-  "keywords": [
-    "insac",
-    "framework",
-    "web",
-    "service",
-    "REST"
-  ],
-  "version": "1.0.0",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/waquispe/insac.git"
-  },
+  "version": "2.0.0",
+  "description": "Framework de creación de servicios web basado en lenguaje script, utilizando arquitectura REST.",
   "main": "index.js",
   "scripts": {
     "test-unit": "./node_modules/.bin/mocha --recursive test/unit",
     "test-integration": "./node_modules/.bin/mocha --recursive test/integration",
     "doc": "./node_modules/.bin/esdoc",
-    "eslint": "./node_modules/.bin/eslint ./lib"
+    "lint": "./node_modules/.bin/eslint ./lib ./example ./test"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/waquispe/insac.git"
+  },
+  "keywords": [
+    "insac",
+    "web",
+    "service"
+  ],
+  "author": "WIlmer Alex Quispe Quispe <q.wilmer.alex@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/waquispe/insac/issues"
+  },
+  "homepage": "https://github.com/waquispe/insac#readme",
   "engines": {
-    "node": ">=8.4.0"
+    "node": ">=9.5.0"
   },
   "dependencies": {
     "apidoc": "^0.17.6",
-    "async": "^2.5.0",
-    "body-parser": "^1.17.2",
+    "body-parser": "^1.18.2",
     "cors": "^2.8.4",
-    "express": "^4.15.4",
-    "jwt-simple": "^0.5.1",
-    "pg": "^7.2.0",
-    "sequelize": "^4.7.5"
+    "express": "^4.16.2",
+    "pg": "^7.4.1",
+    "sequelize": "^4.32.7"
   },
   "devDependencies": {
-    "babel-register": "^6.26.0",
-    "chai": "^4.1.1",
-    "esdoc": "^1.0.1",
+    "chai": "^4.1.2",
+    "esdoc": "^1.0.4",
     "esdoc-standard-plugin": "^1.0.0",
-    "eslint": "^4.8.0",
-    "mocha": "^3.5.0",
-    "request": "^2.81.0"
+    "eslint": "^4.17.0",
+    "eslint-config-standard": "^11.0.0-beta.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-node": "^6.0.0",
+    "eslint-plugin-promise": "^3.6.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "mocha": "^5.0.0",
+    "request": "^2.83.0"
   }
 }

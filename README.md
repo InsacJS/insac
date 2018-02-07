@@ -1,16 +1,15 @@
 # INSAC
-INSAC, es un framework diseñado para crear de servicios web desarrollado en Javascript utilizando arquitectura REST.
+Framework de creación de servicios web basado en lenguaje script, utilizando arquitectura REST.
 
-Esta diseñado para facilitar el trabajo al desarrollador backend, ofreciéndole una serie de herramientas que permiten desarrollar aplicaciones mas o menos complejas.
+Diseñado para facilitar el trabajo al desarrollador backend, ofreciéndo una serie de herramientas que permiten desarrollar aplicaciones mas o menos complejas.
+
+# Objetivo Principal
+Crear servicios web, enfocado en el desarrollo ágil y colaborativo.
 
 # Caracteristicas (Alcances)
-- **Estructura sólida:** Ofrece una estructura de proyecto sólida, escalable y mantenible a largo plazo.
+- **Estructura de proyecto:** Estructura de proyecto sólida, escalable y mantenible a largo plazo.
 
-- **Validador automático** Por defecto se validan los datos de entrada (que los tipos de datos sean los correctos) antes de realizar cualquier otra acción propia de la ruta.
-
-- **Generador de funciones básicas** Dispone de herramientas que permiten generar las funciones básicas de un servicio web (obtener, listar, crear, actualizar y eliminar registros) a partir de los modelos, en el caso de las peticiones GET, devuelve la información no solo del recurso especificado también de todos aquellos recursos con los que este relacionado.
-
-- **Sistema de autenticación** Incorpora un sistema de autenticación mediante tokens.
+- **Validador automático** Se validan todos los datos de entrada, antes de realizar cualquier otra acción propia de la ruta.
 
 - **Herramienta para crear datos** Incluye una herramienta para generar datos por defecto de forma sencilla, en base a los modelos.
 
@@ -19,33 +18,35 @@ Esta diseñado para facilitar el trabajo al desarrollador backend, ofreciéndole
 - **Filtrado de datos** La forma en la que se definen las rutas, permite generar consultas con múltiples opciones de filtrado, para que el cliente consuma solamente los datos que necesita.
 
 # Límites
-- **Bases de datos relacionales** Soporta bases de datos relacionales postgres y mysql.
+- **Bases de datos relacionales** Optimizado para el gestor de Base de datos PostgreSQL.
 
-- **Sistemas centralizados** Se limita al desarrollo de la parte del backend en sistemas centralizados basados en la arquitectura cliente servidor.
+- **Sistemas centralizados** Soporta sistemas centralizados basados en la arquitectura cliente servidor.
 
 - **Formato JSON** El formato de transferencia de datos por defecto es JSON.
 
 - **Relaciones 1:1 y 1:N** Las relaciones entre tablas soportadas son 1:1 y 1:N.
 
-- **Tipos de datos básicos** Los tipos de datos soportados son: INTEGER, STRING, BOOLEAN, FLOAT, DATE, TIME, DATETIME, ENUM.
+- **Tipos de datos** Soporta los tipos de datos básicos: STRING, INTEGER, FLOAT, BOOLEAN, DATE, TIME, DATETIME. Adicionalmente se incluyen algunos tipos de datos avanzados: ENUM, ARRAY, JSON y JSONB.
 
 # Aportes
-- Este framework permite construir aplicaciones de forma sencilla y organizada, acompañado de funciones y herramientas que simplifican enormemente el trabajo del desarrollador backend, logrando convertirse en una alternativa real a los actuales frameworks de desarrollo de APIs.
+- El framework permite construir aplicaciones de forma sencilla y organizada, acompañado de funciones y herramientas que simplifican enormemente el trabajo del desarrollador backend, logrando convertirse en una alternativa real a los actuales frameworks de desarrollo de APIs.
+
+- Está diseñado de tal forma que es posible reutilizar sus módulos, en proyectos que utilizan express y Sequelize.
 
 # Tecnologías utilizadas
-- NodeJS v8.4.0: Entorno de programación de javascript
+- NodeJS v9.5: Entorno de programación de javascript
 
-- Express v4.15.4: Framework de NodeJS
+- Express v4.16: Framework de NodeJS
 
-- Sequelize v4.7.5: Framework ORM de NodeJS
+- Sequelize v4.32: Framework ORM de NodeJS
 
 # Ejemplo
 ``` javascript
 const { Insac } = require('insac')
 
-let app = new Insac()
+const app = new Insac()
 
-app.load()
+app.addModule('API')
 
-app.listen()
+app.init()
 ```

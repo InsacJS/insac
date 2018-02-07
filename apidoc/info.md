@@ -1,113 +1,122 @@
-# Consideraciones acerca del uso de la API
+# Consideraciones para el uso de la API
 
-### Códigos de respuesta
+# Formato de respuesta
 
-- `200` **Ok**. La petición se ha completado con éxito.
-- `201` **Created**. La petición se ha completado con éxito y como resultado ha creado un recurso.
-- `400` **Bad Request**. El servidor no es capaz de entender la petición porque su sintaxis no es correcta.
-- `401` **Unauthorized**. El recurso solicitado requiere de autenticación.
-- `403` **Forbidden**. El servidor no puede responder con el recurso solicitado porque se ha denegado el acceso.
-- `404` **Not Found**. El servidor no puede encontrar el recurso solicitado.
-- `422` **Unprocessable Entity**. La petición tiene el formato correcto, pero sus contenidos tienen algún error semántico.
-- `500` **Internal Server Error**. Se ha producido un error interno.
+## Respuesta exitosa
+``` json
+{
+ "status": "success",
+ "message": "La tarea ha sido completada exitosamente.",
+ "count": 100,
+ "data": "Objeto o Array de objetos"
+}
+```
 
-### Métodos HTTP aceptados:
+| Campo | Descripción |
+|------------------|-------------|
+| `status` | Siempre será `success`. Indica que la tarea se completó con éxito. |
+| `message` | Describe el resultado obtenido. **Puede mostrarse al cliente** como el título de una notificación. |
+| `count` | Cantidad de registros existentes. **[OPCIONAL]** |
+| `data` | Contiene el resultado. |
 
-| Método   | Descripción                            |
-|----------|----------------------------------------|
-| `GET`    | Obtiene un recurso o lista de recursos |
-| `POST`   | Crea un recurso                        |
-| `PUT`    | Actualiza un recurso                   |
-| `DELETE` | Elimina un recurso                     |
+## Respuesta con error
+``` json
+{
+ "status": "error",
+ "message": "Error de validación",
+ "errors": [
+   {
+     "path": "body.usuario.usename",
+     "value": "abc",
+     "msg": "El nombre de usuario debe tener entre 4 y 12 caracteres.",
+     "dev": "El campo 'username' debe tener entre 4 y 12 caracteres."
+   }
+ ]
+}
+```
 
-### Opciones de una consulta:
+| Campo | Descripción |
+|------------------|-------------|
+| `status` | Siempre será `error`. Indica que el proceso finalizó con un error. |
+| `message` | Describe el tipo de error. **Puede mostrarse al cliente** |
+| `errors` | Lista de errores. |
+| `errors.path` | Ruta del campo que produjo el error. **[OPCIONAL]** |
+| `errors.value` | Valor del campo que produjo el error. **[OPCIONAL]** |
+| `errors.msg` | Describe la causa del error. **Puede mostrarse al cliente** |
+| `errors.dev` | Información para el desarrollador. **[OPCIONAL]** |
 
-| Opción    | Descripción                                     | Valor por defecto |
+# Tipos de Error
+
+| Tipo | Código | Titulo | Mensaje | Causa |
+|------|--------|--------|---------|-------------|
+| `BAD_REQUEST_ERROR` | 400 | Error de validación | Algunos campos no son válidos. | El valor de un campo de entrada no tiene el formato correcto. |
+| `AUTHORIZATION_ERROR` | 401 | Error de acceso | Debe autenticarse para acceder al recurso. | Ocurre cuando se intenta acceder a un recurso privado. |
+| `FORBIDDEN_ERROR` | 403 | Error de acceso | No cuenta con los privilegios suficientes para acceder al recurso. | Ocurre cuando se intenta acceder a un recurso privado, utilizando una credencial incorrecta. |
+| `PRECONDITION_ERROR` | 412 | Error de proceso | No se cumple con algunas condiciones, necesarias para completar la tarea. | Este error puede ocurrir por diversas razones, por ejemplo: cuando se intenta acceder a un registro que no existe, cuando se intenta modificar un registro cuyo estado no permite mas modificaciones, por lo general cuando los datos de entrada en conjunto no tienen un sentido lógico. |
+| `INTERNAL_SERVER_ERROR` | 500 | Error interno | Hubo un error inesperado, inténtelo mas tarde. | Este error nunca debería ocurrir, y si ocurre debe informarse al encargado de sistemas. |
+
+# Métodos HTTP aceptados
+
+| Método   | Descripción                                    |
+|----------|------------------------------------------------|
+| `GET`    | Devuelve un registro o una lista de registros. |
+| `POST`   | Crea un registro.                              |
+| `PUT`    | Actualiza un registro.                         |
+| `DELETE` | Elimina un registro.                           |
+
+# Filtros de una consulta
+
+| Filtro    | Descripción                                     | Valor por defecto |
 |-----------|-------------------------------------------------|-------------------|
-| `fields`  | Nombres de los atributos devueltos.             | `all`             |
-| `offset`  | Posición inicial.                               | `0`               |
-| `limit`   | Nro. Máximo de recursos devueltos.              | `50`              |
-| `sort`    | Ordena el resultado (`field+asc`, `field+desc`) | `<ninguno>`       |
+| `fields`  | Campos que serán devueltos en el resultado.     | `all`             |
+| `limit`   | Cantidad de registros por página.               | `50`              |
+| `page`    | Número de página.                               | `0`               |
+| `order`   | Ordena el resultado (`field`, `-field`)         | `<ninguno>`       |
 | `<field>` | Consulta simple (`field=valor`)                 | `<ninguno>`       |
 
-#### Ejemplos de consulta utilizando la opción `fields`:
+## Modo de uso del filtro `fields`
 
+Todos los campos.
 - `/personas`
 - `/personas?fields=all`
-- `/personas?fields=id,ci`
-- `/personas?fields=id,ci,usuario()`
-- `/personas?fields=id,ci,usuario(all)`
-- `/personas?fields=all,usuario(id,username)`
-- `/personas?fields=usuario(all,roles_usuarios())`
-- `/personas?fields=usuario(id,roles_usuarios(id))`
-- `/personas?fields=usuario(roles_usuarios(id,rol(id)))`
-- `/personas?fields=all,usuario(all,roles_usuarios(all))`
 
-#### Nota.-
-- EL campo `all` incluirá a todos los campos del objeto, excluyendo aquellos campos que representan objetos.
-- Para realizar una consulta con todos los campos posibles, puede utilizar la opción `fields=ALL`.
+Todos los campos. Incluyendo a los objetos.
+- `/personas?fields=ALL`
 
-#### Ejemplos de consulta utilizando condiciones:
+Todos los campos, excluyendo algunos.
+- `/personas?fields=-_fecha_creacion,-_fecha_modificacion`
+- `/personas?fields=-id,-ci`
 
-- `/personas`
+Incluyendo objetos.
+- `/personas?fields=usuario()`
+- `/personas?fields=usuario(id,username)`
+- `/personas?fields=usuario(roles(rol()))`
+
+Incluyendo consultas. **[ required = false ]**
+- `/personas?fields=id,nombre=john`
+- `/personas?fields=id,usuario(roles(estado=ACTIVO))`
+
+## Modo de uso del filtro `<field>`
+
+Incluyendo consultas. **[ required = true ]**
 - `/personas?id=1`
 - `/personas?id=1,2,3`
-- `/personas?nombre=jhon`
+- `/personas?nombre=john`
 - `/personas?usuario.username=admin`
-- `/personas?usuario.roles_usuarios.rol.alias=admin`
+- `/personas?usuario.roles.estado=ACTIVO`
 
 #### Nota.-
-- Al aplicar filtros en un objeto, puede que el resultado no incluya al objeto, esto significa que dicho objeto no cumple con las condiciones, por lo tanto, una vez aplicada la condición habrá que verificar que el objeto exista y sea diferente de `null`.
+Al incluir consultas sobre un objeto (`usuario(estado=ACTIVO)` o `usuario.estado=ACTIVO`), si el objeto no cumple con la condición, el valor de este campo será `undefined` y si la condición es requerida el registro al que pertenece el objeto no se incluirá en el resultado.
 
-#### Ejemplos de consulta utilizando las opciones `offset` y `limit`:
-- `/personas?offset=0&limit=50`
+## Modo de uso de los filtros `limit` y `page`
 
-#### Ejemplos de consulta utilizando la opción `sort`:
-- `/personas?sort=id+asc`
-- `/personas?sort=nombre+asc,paterno+asc,materno+asc`
-- `/personas?sort=ci+desc`
+Devuelve una cierta cantidad de registros, indicando el número de página.
+- `/personas?limit=50&page=1`
 
-#### Nota.-
-- La opción sort solo funciona en campos de primer nivel, es decir no funciona con campos que se encuentren dentro de un objeto.
+## Modo de uso del filtro `order`
 
-### Respuesta exitosa
-Todas las respuestas se enviarán con el código `200 Ok` (Si esta opción está activada, de no ser asi, se devolverá el mismo código que aparece en el cuerpo de la respuesta), el código final se incluirá en el cuerpo de la respuesta el cual tendrá el siguiente formato:
-```json
-HTTP/1.1 200 Ok
-{
-  "status": "OK",
-  "code": 200,
-  "data": [],
-  "metadata": {
-    "limit": 50,
-    "offset": 0,
-    "total": 1,
-    "count": 1
-  }
-}
-```
-
-#### Nota.-
-- El valor de la propiedad `status` siempre será `OK`.
-- La propiedad `code` puede tener los valores `200` o `201`, dependiendo, si es una operación exitosa ó si se crea un nuevo registro con exito.
-- El valor de la propiedad `data` puede ser un objeto o un array de objetos.
-- Si la petición se realizó sobre un recurso (tiene asignado un modelo) y la respuesta contiene un array de objetos, también se incluirá la propiedad `metadata` con la siguiente información.
-
-  - `limit`: Cantidad máxima de registros a devolver.
-  - `offset`: Posición desde la que se devolveran los datos.
-  - `total`: Cantidad total de registros sin filtros.
-  - `count`: Cantidad de registros devueltos.
-
-### Respuesta con error
-Cuando exista algún tipo de error, la respuesta se enviará con el código `200 Ok` (Si esta opción está activada, de no ser asi, se devolverá el mismo código que aparece en el cuerpo de la respuesta), el código de error se incluirá en el cuerpo de la respuesta con el siguiente formato:
-```json
-HTTP/1.1 200 Ok
-{
-  "status": "FAIL",
-  "code": 422,
-  "type": "Unprocessable Entity",
-  "message": "Algunos datos no son válidos"
-}
-```
-#### Nota.-
-- El valor de la propiedad `status` siempre será `FAIL`.
+Devuelve una lista ordenada de forma ascendente `field` o descendente `-field`.
+- `/personas?order=id`
+- `/personas?order=-ci`
+- `/personas?order=nombre,paterno,materno`
+- `/personas?order=-_fecha_creacion,-_fecha_modificacion`
