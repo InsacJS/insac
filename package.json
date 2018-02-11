@@ -4,10 +4,11 @@
   "description": "Framework de creación de servicios web basado en lenguaje script, utilizando arquitectura REST.",
   "main": "index.js",
   "scripts": {
+    "test": "nmp run tes-unit && npm run test-integration",
     "test-unit": "./node_modules/.bin/mocha --recursive test/unit",
     "test-integration": "./node_modules/.bin/mocha --recursive test/integration",
     "doc": "./node_modules/.bin/esdoc",
-    "lint": "./node_modules/.bin/eslint ./lib ./example ./test"
+    "lint": "./node_modules/.bin/eslint ./lib ./example/app/src ./test"
   },
   "repository": {
     "type": "git",
@@ -31,7 +32,14 @@
     "apidoc": "^0.17.6",
     "body-parser": "^1.18.2",
     "cors": "^2.8.4",
+    "dotenv": "^5.0.0",
     "express": "^4.16.2",
+    "insac-apidoc": "^1.0.0",
+    "insac-field": "^1.0.0",
+    "insac-options": "^1.0.0",
+    "insac-response": "^1.0.0",
+    "insac-seed": "^1.0.0",
+    "insac-validator": "^1.0.0",
     "pg": "^7.4.1",
     "sequelize": "^4.32.7"
   },

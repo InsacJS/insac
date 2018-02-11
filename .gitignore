@@ -1,2 +1,5 @@
 /node_modules
 /docs
+/tmp
+/example/app/logs
+/example/app/public
