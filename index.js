@@ -3,5 +3,6 @@ module.exports = {
   AuthModule: require('./lib/modules/AuthModule/AuthModule'),
   ResourceModule: require('./lib/modules/ResourceModule/ResourceModule'),
   Field: require('insac-field').Field,
-  FieldContainer: require('insac-field').FieldContainer
+  FieldContainer: require('insac-field').FieldContainer,
+  THIS: require('insac-field').FieldContainer.THIS
 }
