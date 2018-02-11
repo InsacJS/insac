@@ -4,7 +4,7 @@ module.exports = (app) => {
   const MIDDLEWARE = {}
 
   MIDDLEWARE.listar = async (req) => {
-    await app.AUTH.access('admin', req)
+    // await app.AUTH.access('ADMIN', req)
   }
 
   MIDDLEWARE.obtener = async (req) => {

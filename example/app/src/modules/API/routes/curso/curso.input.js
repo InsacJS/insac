@@ -1,22 +1,10 @@
-const { Field } = require(global.INSAC)
-
 module.exports = (app) => {
   const MODEL = app.FIELD.models
   const INPUT = {}
 
-  INPUT.listar = {
-    query: {
-      fields: Field.FIELDS(),
-      order: Field.ORDER(),
-      limit: Field.LIMIT(),
-      page: Field.PAGE()
-    }
-  }
+  INPUT.listar = {}
 
   INPUT.obtener = {
-    query: {
-      fields: Field.FIELDS()
-    },
     params: {
       id: MODEL.curso('id_curso', { allowNull: false })
     }

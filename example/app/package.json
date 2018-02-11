@@ -1,0 +1,28 @@
+{
+  "name": "academico",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "CREATE_APIDOC=true node index.js",
+    "start-sql": "CREATE_APIDOC=true LOGGER_SQL=true node index.js",
+    "start-json": "CREATE_APIDOC=true LOGGER_JSON=true node index.js",
+    "setup": "SETUP=true node index.js",
+    "setup-auth": "SETUP=true MODULE=AUTH node index.js",
+    "setup-api": "SETUP=true MODULE=API node index.js",
+    "lint": "eslint index.js src/",
+    "test": "NODE_ENV=test node index.js"
+  },
+  "author": "Alex Quispe",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^4.14.0",
+    "eslint-config-standard": "^11.0.0-beta.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-node": "^5.2.1",
+    "eslint-plugin-promise": "^3.6.0",
+    "eslint-plugin-standard": "^3.0.1"
+  },
+  "engines": {
+    "node": ">=9.5.0"
+  }
+}

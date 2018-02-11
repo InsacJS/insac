@@ -7,5 +7,5 @@ module.exports = (seed) => {
     { nombre: 'Desarrollo personal', categoria: 'Superación' }
   ]
 
-  return seed.create('curso', DATOS)
+  return seed('curso', DATOS)
 }
