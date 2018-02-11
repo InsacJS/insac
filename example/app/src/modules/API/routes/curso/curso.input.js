@@ -1,35 +1,37 @@
+
+const { THIS } = require(global.INSAC)
+
 module.exports = (app) => {
-  const MODEL = app.FIELD.models
   const INPUT = {}
 
   INPUT.listar = {}
 
   INPUT.obtener = {
     params: {
-      id: MODEL.curso('id_curso', { allowNull: false })
+      id_curso: THIS({ allowNull: false })
     }
   }
 
   INPUT.crear = {
     body: {
-      nombre: MODEL.curso('nombre', { allowNull: false }),
-      categoria: MODEL.curso('categoria', { allowNull: false })
+      nombre: THIS({ allowNull: false }),
+      categoria: THIS({ allowNull: false })
     }
   }
 
   INPUT.actualizar = {
     params: {
-      id: MODEL.curso('id_curso', { allowNull: false })
+      id_curso: THIS({ allowNull: false })
     },
     body: {
-      nombre: MODEL.curso('nombre', { allowNull: true }),
-      categoria: MODEL.curso('categoria', { allowNull: true })
+      nombre: THIS({ allowNull: true }),
+      categoria: THIS({ allowNull: true })
     }
   }
 
   INPUT.eliminar = {
     params: {
-      id: MODEL.curso('id_curso', { allowNull: false })
+      id_curso: THIS({ allowNull: false })
     }
   }
 
