@@ -14,26 +14,22 @@ module.exports = (app) => {
   }
 
   INPUT.obtener = {
-    params: { id_curso: THIS({ allowNull: false }) }
+    headers: { authorization: THIS('auth') },
+    query: {
+      fields: THIS('query')
+    }
   }
 
   INPUT.crear = {
-    body: {
-      nombre: THIS({ allowNull: false }),
-      categoria: THIS({ allowNull: false })
-    }
+    headers: { authorization: THIS('auth') }
   }
 
   INPUT.actualizar = {
-    params: { id_curso: THIS({ allowNull: false }) },
-    body: {
-      nombre: THIS({ allowNull: true }),
-      categoria: THIS({ allowNull: true })
-    }
+    headers: { authorization: THIS('auth') }
   }
 
   INPUT.eliminar = {
-    params: { id_curso: THIS({ allowNull: false }) }
+    headers: { authorization: THIS('auth') }
   }
 
   return INPUT
