@@ -3,15 +3,7 @@ const { THIS } = require(global.INSAC)
 module.exports = (app) => {
   const INPUT = {}
 
-  INPUT.listar = {
-    headers: { authorization: THIS('auth') },
-    query: {
-      fields: THIS('query'),
-      order: THIS('query'),
-      limit: THIS('query'),
-      page: THIS('query')
-    }
-  }
+  INPUT.listar = {}
 
   INPUT.obtener = {
     params: { id_curso: THIS({ allowNull: false }) }
