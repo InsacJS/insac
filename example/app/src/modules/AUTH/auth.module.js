@@ -2,7 +2,7 @@ const { AuthModule } = require(global.INSAC)
 
 module.exports = (app, CONFIG) => {
   CONFIG.roles = [
-    { id_rol: 1, codigo: 'ADMIN', nombre: 'Administrador' }
+    { id_rol: 1, nombre: 'ADMIN', descripcion: 'Administrador' }
   ]
 
   CONFIG.usuarios = [

@@ -13,11 +13,13 @@ module.exports = (app) => {
 
   OUTPUT.obtener = OUTPUT.listar[0]
 
-  OUTPUT.crear = OUTPUT.obtener
-
-  OUTPUT.actualizar = {}
-
-  OUTPUT.eliminar = {}
+  OUTPUT.crear = {
+    id_curso: THIS(),
+    nombre: THIS(),
+    categoria: THIS(),
+    _fecha_creacion: THIS(),
+    _fecha_modificacion: THIS()
+  }
 
   return OUTPUT
 }

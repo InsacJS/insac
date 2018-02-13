@@ -3,8 +3,6 @@ const { THIS } = require(global.INSAC)
 module.exports = (app) => {
   const INPUT = {}
 
-  INPUT.listar = {}
-
   INPUT.obtener = {
     params: { id_curso: THIS({ allowNull: false }) }
   }
