@@ -8,7 +8,7 @@ module.exports = (app) => {
   }
 
   MIDDLEWARE.obtener = async (req) => {
-    const ID_CURSO = req.params.id
+    const ID_CURSO = req.params.id_curso
     if (!await app.DAO.curso.buscar({ id_curso: ID_CURSO })) {
       throw new errors.PreconditionFailedError(`No se encuentra el registro del curso solicitado.`)
     }
@@ -24,7 +24,7 @@ module.exports = (app) => {
   MIDDLEWARE.actualizar = async (req) => {
     const NOMBRE = req.body.nombre
     const CATEGORIA = req.body.categoria
-    const ID_CURSO = req.params.id
+    const ID_CURSO = req.params.id_curso
     if (!await app.DAO.curso.buscar({ id_curso: ID_CURSO })) {
       throw new errors.PreconditionFailedError(`No se encuentra el registro del curso que desea actualizar.`)
     }
@@ -37,7 +37,7 @@ module.exports = (app) => {
   }
 
   MIDDLEWARE.eliminar = async (req) => {
-    const ID_CURSO = req.params.id
+    const ID_CURSO = req.params.id_curso
     if (!await app.DAO.curso.buscar({ id_curso: ID_CURSO })) {
       throw new errors.PreconditionFailedError(`No se encuentra el registro del curso que desea eliminar.`)
     }

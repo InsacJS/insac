@@ -11,7 +11,7 @@ module.exports = (app) => {
 
   CONTROLLER.obtener = async (req, success) => {
     const OPTIONS = req.options
-    OPTIONS.where = { id_curso: req.params.id }
+    OPTIONS.where = { id_curso: req.params.id_curso }
     const RESULT = await app.DB.sequelize.transaction(async () => {
       return app.DAO.curso.obtener(OPTIONS)
     })
@@ -28,7 +28,7 @@ module.exports = (app) => {
 
   CONTROLLER.actualizar = async (req, success) => {
     const CURSO = req.body
-    const ID_CURSO = req.params.id
+    const ID_CURSO = req.params.id_curso
     const RESULT = await app.DB.sequelize.transaction(async () => {
       await app.DAO.curso.actualizar(CURSO, ID_CURSO)
     })
@@ -36,7 +36,7 @@ module.exports = (app) => {
   }
 
   CONTROLLER.eliminar = async (req, success) => {
-    const ID_CURSO = req.params.id
+    const ID_CURSO = req.params.id_curso
     const RESULT = await app.DB.sequelize.transaction(async () => {
       return app.DAO.curso.eliminar(ID_CURSO)
     })

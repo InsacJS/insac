@@ -4,5 +4,6 @@ module.exports = {
   ResourceModule: require('./lib/modules/ResourceModule/ResourceModule'),
   Field: require('insac-field').Field,
   FieldContainer: require('insac-field').FieldContainer,
-  THIS: require('insac-field').FieldContainer.THIS
+  THIS: require('insac-field').FieldContainer.THIS,
+  errors: require('insac-response').errors
 }
