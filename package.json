@@ -16,6 +16,9 @@
   },
   "keywords": [
     "insac",
+    "framework",
+    "api",
+    "rest",
     "web",
     "service"
   ],
@@ -29,19 +32,20 @@
     "node": ">=9.5.0"
   },
   "dependencies": {
-    "apidoc": "^0.17.6",
-    "body-parser": "^1.18.2",
+    "apidoc-creator": "^1.0.2",
     "cors": "^2.8.4",
-    "dotenv": "^5.0.0",
+    "dotenv": "^5.0.1",
     "express": "^4.16.2",
-    "insac-apidoc": "^1.0.0",
-    "insac-field": "^1.0.0",
-    "insac-options": "^1.0.0",
-    "insac-response": "^1.0.0",
-    "insac-seed": "^1.0.0",
-    "insac-validator": "^1.0.0",
+    "field-creator": "^1.0.1",
+    "input-data-validator": "^1.0.3",
+    "lodash": "^4.17.5",
+    "mkdirp": "^0.5.1",
     "pg": "^7.4.1",
-    "sequelize": "^4.32.7"
+    "response-handler": "^1.1.0",
+    "seed-creator": "^1.0.2",
+    "sequelize": "^4.35.0",
+    "sequelize-options": "^1.0.1",
+    "winston": "^2.4.0"
   },
   "devDependencies": {
     "chai": "^4.1.2",
