@@ -13,10 +13,9 @@
         "typeInference": { "enable": true },
         "brand": {
           "title": "Insac Framework",
-          "description": "Framework de creación de servicios web",
+          "description": "Framework de creación de servicios web.",
           "repository": "https://github.com/waquispe/insac",
-          "site": "https://insac.waquispe.com",
-          "author": "https://waquispe.com"
+          "site": "https://insac.waquispe.com"
         },
         "manual": {
           "index": "./manual/index.md",
