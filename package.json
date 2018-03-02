@@ -32,7 +32,7 @@
     "node": ">=9.5.0"
   },
   "dependencies": {
-    "apidoc-creator": "^1.0.2",
+    "apidoc-creator": "^1.0.3",
     "cors": "^2.8.4",
     "dotenv": "^5.0.1",
     "express": "^4.16.2",
