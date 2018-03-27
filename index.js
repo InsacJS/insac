@@ -11,6 +11,7 @@ module.exports = {
   Module             : require('./lib/modules/Module'),
   ResourceModule     : require('./lib/modules/ResourceModule'),
   SendGridMailModule : require('./lib/modules/SendGridMailModule'),
+  ServiceModule      : require('./lib/modules/ServiceModule'),
   Validator          : require('input-data-validator').Validator,
   successes          : require('response-handler').successes,
   Response           : require('response-handler').Response,
