@@ -54,6 +54,7 @@
 | `AUTHORIZATION_ERROR`   | 401    | Error de acceso     | Debe autenticarse para acceder al recurso. | Ocurre cuando se intenta acceder a un recurso privado. |
 | `FORBIDDEN_ERROR`       | 403    | Error de acceso     | No cuenta con los privilegios suficientes para acceder al recurso. | Ocurre cuando se intenta acceder a un recurso privado, utilizando una credencial incorrecta. |
 | `PRECONDITION_ERROR`    | 412    | Error de proceso    | No se cumple con algunas condiciones, necesarias para completar la tarea. | Este error puede ocurrir por diversas razones, por ejemplo: cuando se intenta acceder a un registro que no existe, cuando se intenta modificar un registro cuyo estado no permite mas modificaciones, por lo general cuando los datos de entrada en conjunto no tienen un sentido lógico. |
+| `INVALID_TOKEN`         | 498    | Token inválido      | El token ha expirado. | EL token ha excedido su tiempo de validez. |
 | `INTERNAL_SERVER_ERROR` | 500    | Error interno       | Hubo un error inesperado, inténtelo mas tarde. | Este error nunca debería ocurrir, y si ocurre debe informarse al encargado de sistemas. |
 
 ## Métodos HTTP aceptados
