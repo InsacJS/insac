@@ -47,7 +47,7 @@
     "moment": "^2.21.0",
     "pg": "^7.4.1",
     "response-handler": "^1.1.1",
-    "seed-creator": "^1.0.2",
+    "seed-creator": "^1.0.3",
     "sequelize": "^4.37.1",
     "sequelize-options": "^1.0.3",
     "uuid": "^3.2.1",

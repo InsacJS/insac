@@ -7,7 +7,6 @@ module.exports = {
   Insac              : require('./lib/Insac'),
   Module             : require('./lib/core/Module'),
   Dao                : require('./lib/core/Dao'),
-  Seed               : require('./lib/core/Seed'),
   Field              : require('./lib/core/Field'),
   THIS               : require('./lib/core/Field').THIS,
   ResourceModule     : require('./lib/modules/ResourceModule'),
