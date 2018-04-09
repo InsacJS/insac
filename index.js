@@ -13,7 +13,6 @@ module.exports = {
   SendGridMailModule : require('./lib/modules/SendGridMailModule'),
   ServiceModule      : require('./lib/modules/ServiceModule'),
   util               : require('./lib/tools/util'),
-  auth               : require('./lib/tools/auth'),
   logger             : require('./lib/tools/logger'),
   errors             : require('./lib/tools/errors')
 }
