@@ -33,7 +33,7 @@
   },
   "dependencies": {
     "@sendgrid/mail": "^6.2.1",
-    "apidoc-creator": "^1.0.4",
+    "apidoc-creator": "^1.0.5",
     "cors": "^2.8.4",
     "dotenv": "^5.0.1",
     "ejs": "^2.5.7",
@@ -46,7 +46,7 @@
     "mkdirp": "^0.5.1",
     "moment": "^2.21.0",
     "pg": "^7.4.1",
-    "response-handler": "^1.1.1",
+    "response-handler": "^1.1.2",
     "seed-creator": "^1.0.3",
     "sequelize": "^4.37.1",
     "sequelize-options": "^1.0.4",
