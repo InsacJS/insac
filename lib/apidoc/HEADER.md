@@ -48,14 +48,16 @@
 
 ## Tipos de Error
 
-| Tipo                    | Código | Titulo              | Mensaje | Causa |
-|-------------------------|--------|---------------------|---------|-------------|
-| `BAD_REQUEST_ERROR`     | 400    | Error de validación | Algunos campos no son válidos. | El valor de un campo de entrada no tiene el formato correcto. |
-| `AUTHORIZATION_ERROR`   | 401    | Error de acceso     | Debe autenticarse para acceder al recurso. | Ocurre cuando se intenta acceder a un recurso privado. |
-| `FORBIDDEN_ERROR`       | 403    | Error de acceso     | No cuenta con los privilegios suficientes para acceder al recurso. | Ocurre cuando se intenta acceder a un recurso privado, utilizando una credencial incorrecta. |
-| `PRECONDITION_ERROR`    | 412    | Error de proceso    | No se cumple con algunas condiciones, necesarias para completar la tarea. | Este error puede ocurrir por diversas razones, por ejemplo: cuando se intenta acceder a un registro que no existe, cuando se intenta modificar un registro cuyo estado no permite mas modificaciones, por lo general cuando los datos de entrada en conjunto no tienen un sentido lógico. |
-| `INVALID_TOKEN`         | 498    | Token inválido      | El token ha expirado. | EL token ha excedido su tiempo de validez. |
-| `INTERNAL_SERVER_ERROR` | 500    | Error interno       | Hubo un error inesperado, inténtelo mas tarde. | Este error nunca debería ocurrir, y si ocurre debe informarse al encargado de sistemas. |
+| Tipo | Código | Titulo | Mensaje | Causa |
+|------|--------|--------|---------|-------------|
+| `BAD_REQUEST` | 400 | Petición incorrecta | Hubo un error al procesar su solicitud, revise el formato en el envío de datos e inténtelo nuevamente. | Ocurre cuando algún dato de entrada no tiene el formato correcto. |
+| `UNAUTHORIZED` | 401 | Acceso no autorizado | Debe autenticarse para acceder al recurso. | Ocurre cuando se intenta acceder a un recurso privado. |
+| `FORBIDDEN` | 403 | Acceso denegado | No cuenta con los privilegios suficientes para acceder al recurso. | Ocurre cuando se intenta acceder a un recurso privado, utilizando una credencial incorrecta. |
+| `NOT_FOUND` | 404 | Recurso no disponible | El servidor no puede encontrar el recurso solicitado. | Ocurre generalmente cuando el registro no existe o ha sido eliminado. |
+| `CONFLICT` | 409 | Conflicto | Hubo un error durante el proceso, inténtelo nuevamente. | Ocurre generalmente cuando el registro ha sido modificado y no se puede continuar con el proceso. |
+| `PRECONDITION_FAILED` | 412 | Condición insuficiente | No se cumple con algunas condiciones que son necesarias para completar la tarea. | Ocurre cuando no se cumple con ciertas condiciones (validaciones lógicas), por lo general cuando los datos de entrada en conjunto no tienen un sentido lógico. |
+| `INVALID_TOKEN` | 498 | Token inválido | El token es inválido | Ocurre generalmente cuando el token ha expirado. |
+| `INTERNAL_SERVER` | 500 | Error interno | Hubo un error inesperado, inténtelo mas tarde. | Este error nunca debería ocurrir, generalmente son errores desconocidos que no han sido controlados. |
 
 ## Métodos HTTP aceptados
 
