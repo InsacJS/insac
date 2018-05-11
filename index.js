@@ -11,7 +11,6 @@ module.exports = {
   THIS               : require('./lib/core/Field').THIS,
   ResourceModule     : require('./lib/modules/ResourceModule'),
   SendGridMailModule : require('./lib/modules/SendGridMailModule'),
-  ServiceModule      : require('./lib/modules/ServiceModule'),
   util               : require('./lib/tools/util'),
   auth               : require('./lib/tools/auth'),
   logger             : require('./lib/tools/logger'),
