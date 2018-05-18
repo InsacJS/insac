@@ -14,8 +14,8 @@
         "brand": {
           "title": "Insac Framework",
           "description": "Framework de creación de servicios web.",
-          "repository": "https://github.com/waquispe/insac",
-          "site": "https://insac.waquispe.com"
+          "repository": "https://github.com/insacjs/insac",
+          "site": "http://insacjs.com"
         },
         "manual": {
           "index": "./manual/index.md",

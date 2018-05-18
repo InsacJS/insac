@@ -1,64 +1,42 @@
-# Insac
+![Kiku](assets/insac-logo-512.png)
 
-Framework de creación de servicios web basado en lenguaje script,
-utilizando arquitectura REST.
+Insac JS es un framework de creación de servicios web basado en lenguaje script que utiliza la arquitectura REST.
 
-# Caracteristicas (Alcances)
+## Filosofía
 
-- **Estructura de proyecto:** Estructura de proyecto sólida, escalable y
-mantenible a largo plazo.
+El framework está enfocado en la automatización de procesos, la reutilización de código e impulsa el trabajo colaborativo.
 
-- **Formato de respuesta:** Formato de respuesta único para todas las tareas
-que hayan finalizado correctamente o con algún tipo de error.
+## Tecnologías utilizadas
 
-- **Validador automático** Se validan todos los datos de entrada,
-antes de realizar cualquier otra acción propia de la ruta.
+El framework ha sido implementado utilizando el lenguaje JavaScript bajo el estándar de programación ECMAScript 2017, esto por el potencial que alcanzó el lenguaje gracias a NodeJS, un entorno de ejecución para JavaScript construido con el motor de JavaScript V8 de Chrome.
 
-- **Herramienta para crear datos** Incluye una herramienta para generar
-datos por defecto de forma sencilla, en base a los modelos.
+NodeJS permite crear aplicaciones del lado del servidor, además de que es una excelente herramienta para crear servicios web gracias a su modelo de operaciones E/S sin bloqueo orientado a eventos, que lo hace liviano y eficiente.
 
-- **Documentación automática** La documentación se genera de tal forma que el
-desarrollador frontend puede consumir el servicio teniendo la certeza
-de que ésta se encuentra completamente actualizada.
+A continuación de describen las diferentes tecnologías y herramientas con las que trabaja el framework:
 
-- **Filtrado de datos** - En cada petición se puede indicar los campos
-que se requiere en el resultado.
+- **NodeJS v9.5:** Entorno de programación de JavaScript.
+- **Express v4.16:** Framework de NodeJS.
+- **Sequelize v4.32:** Framework ORM de NodeJS.
+- **Yarn:** Manejador de dependencias.
+- **PM2:** Gestor avanzado de procesos de producción para NodeJS.
+- **Git:** Sistema de control de versiones distribuido de código abierto.
+- **Eslint:** Herramienta de linting para JavaScript, un linter es un programa que se encarga de revisar el código escrito y es - capaz de señalar errores y posibles bugs.
 
-# Límites
+## Caracteristicas
 
-- **Bases de datos relacionales** Optimizado para el gestor de Base de datos
-PostgreSQL.
+- **Estructura de proyecto:** El framework organiza el proyecto utilizando un sistema que permite identificar a los componentes de la aplicación y sus respectivas funciones a través del nombre y la extensión de los ficheros.
 
-- **Sistemas centralizados** Soporta sistemas centralizados basados en la
-arquitectura cliente servidor.
+- **Documentación automática** El framework se encarga de crear el apidoc de manera automática cada vez que se ejecuta la aplicación, logrando de esta forma que siempre se encuentre actualizada.
 
-- **Formato JSON** El formato de transferencia de datos por defecto es JSON.
+- **Validador automático** El framework se encarga de validar los datos de entrada de forma automática, cuando los datos llegan al middleware o al controlador, éstos ya se encuentran validados y convertidos al tipo de dato esperado.
 
-- **Relaciones 1:1 y 1:N** Las relaciones entre tablas soportadas son 1:1 y 1:N.
+- **Filtrado de datos** - El framework proporciona herramientas para facilitar la creación de filtros. Por defecto todas las peticiones incluyen el filtro `fields` el cual indica que campos se requiere en la respuesta.
 
-- **Tipos de datos** Soporta los tipos de datos básicos: STRING, INTEGER,
-FLOAT, BOOLEAN, DATE, TIME, DATETIME. Adicionalmente se incluyen algunos
-tipos de datos avanzados: ENUM, ARRAY, JSON y JSONB.
+- **Herramienta para crear datos** Incluye un nuevo mecanismo para inssertar registros en la base de datos cuando ésta se instale.
 
-# Aportes
+- **Sistema de logs y control de errores** El framework incluye un sistema para monitorear todas las peticiones y capturar cualquier tipo de error no controlado, asegurando de esta forma el correcto funcionamiento del sistema en caso de producirse algún tipo de error, registrándolo a su vez en un archivo de logs.
 
-- El framework permite construir aplicaciones de forma sencilla y organizada,
-acompañado de funciones y herramientas que simplifican enormemente el trabajo
-del desarrollador backend, logrando convertirse en una alternativa real a los
-actuales frameworks de desarrollo de APIs.
-
-- Está diseñado de tal forma que es posible reutilizar sus módulos, en
-proyectos que trabajan con express y Sequelize.
-
-# Tecnologías utilizadas
-
-- NodeJS v9.5: Entorno de programación de javascript
-
-- Express v4.16: Framework de NodeJS
-
-- Sequelize v4.32: Framework ORM de NodeJS
-
-# Ejemplo
+## Ejemplo
 
 ``` js
 const { Insac } = require('insac')
