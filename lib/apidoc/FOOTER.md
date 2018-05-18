@@ -1,4 +1,4 @@
-# Instrucciones de uso
+# Instrucciones de uso de la API
 
 ## Respuesta exitosa
 ``` json
@@ -6,7 +6,11 @@
  "status": "success",
  "message": "La tarea ha sido completada exitosamente.",
  "metadata": {
-   "count": 100
+   "count": 1000,
+   "limit": 30,
+   "page": 2,
+   "start": 31,
+   "end": 60
  },
  "data": "Objeto o Array de objetos"
 }
@@ -17,8 +21,12 @@
 | `status`         | Siempre será `success`. Indica que la tarea se completó con éxito.                                 |
 | `message`        | Describe el resultado obtenido. **Puede mostrarse al cliente** como el título de una notificación. |
 | `metadata`       | Metadatos adicionales. **[OPCIONAL]**                                                              |
-| `metadata.count` | Cantidad de registros existentes. **[OPCIONAL]**                                                   |
-| `data`           | Contiene el resultado.                                                                             |
+| `metadata.count` | Cantidad de registros existentes.                                                                  |
+| `metadata.limit` | Cantidad de archivos por página.                                                                   |
+| `metadata.page`  | Número de página.                                                                                  |
+| `metadata.start` | Posición que ocupa el primer registro devuelto. Contando desde el Nro. 1.                          |
+| `metadata.end`   | Posición que ocupa el último registro devuelto. Contando desde el Nro. 1.                          |
+| `data`           | Resultado.                                                                             |
 
 ## Respuesta con error
 ``` json
@@ -27,10 +35,10 @@
  "message": "Error de validación",
  "errors": [
    {
-     "path": "body.usuario.usename",
+     "path": "body.usuario.username",
      "value": "abc",
-     "msg": "El nombre de usuario debe tener entre 4 y 12 caracteres.",
-     "dev": "El campo 'username' debe tener entre 4 y 12 caracteres."
+     "msg": "Se requiere el nombre de usuario.",
+     "dev": "Se requiere el campo 'username'."
    }
  ]
 }
@@ -46,7 +54,7 @@
 | `errors.msg`   | Describe la causa del error. **Puede mostrarse al cliente**        |
 | `errors.dev`   | Información para el desarrollador. **[OPCIONAL]**                  |
 
-## Tipos de Error
+## Tipos de errores
 
 | Tipo | Código | Titulo | Mensaje | Causa |
 |------|--------|--------|---------|-------------|
@@ -72,13 +80,13 @@
 
 | Filtro    | Descripción                                     | Valor por defecto |
 |-----------|-------------------------------------------------|-------------------|
-| `fields`  | Campos que serán devueltos en el resultado.     | `all`             |
+| `fields`  | Campos que serán devueltos en el resultado.     | `ALL`             |
 | `limit`   | Cantidad de registros por página.               | `50`              |
-| `page`    | Número de página.                               | `0`               |
+| `page`    | Número de página.                               | `1`               |
 | `order`   | Ordena el resultado (`field`, `-field`)         | `<ninguno>`       |
 | `<field>` | Consulta simple (`field=valor`)                 | `<ninguno>`       |
 
-### Modo de uso del filtro `fields`
+## Filtro `fields`
 
 Todos los campos.
 - `/personas`
@@ -100,7 +108,9 @@ Incluyendo consultas. **[ required = false ]**
 - `/personas?fields=id,nombre=john`
 - `/personas?fields=id,usuario(roles(estado=ACTIVO))`
 
-### Modo de uso del filtro `<field>`
+Al incluir este tipo de filtros, si el objeto no cumple con la condición, el valor de este campo será `undefined`.
+
+## Filtro `<field>`
 
 Incluyendo consultas. **[ required = true ]**
 - `/personas?id=1`
@@ -109,18 +119,19 @@ Incluyendo consultas. **[ required = true ]**
 - `/personas?usuario.username=admin`
 - `/personas?usuario.roles.estado=ACTIVO`
 
-#### Nota.-
-Al incluir consultas sobre un objeto (`usuario(estado=ACTIVO)` o `usuario.estado=ACTIVO`), si el objeto no cumple con la condición, el valor de este campo será `undefined` y si la condición es requerida el registro al que pertenece el objeto no se incluirá en el resultado.
+Al incluir este tipo de filtros, si el objeto no cumple con la condición, el registro al que pertenece este campo no será incluido en el resultado.
 
-### Modo de uso de los filtros `limit` y `page`
+## Filtros `limit` y `page`
 
 Devuelve una cierta cantidad de registros, indicando el número de página.
 - `/personas?limit=50&page=1`
 
-### Modo de uso del filtro `order`
+## Filtro `order`
 
 Devuelve una lista ordenada de forma ascendente `field` o descendente `-field`.
 - `/personas?order=id`
 - `/personas?order=-ci`
 - `/personas?order=nombre,paterno,materno`
 - `/personas?order=-_fecha_creacion,-_fecha_modificacion`
+
+-------------------------------------------------------------------------------
