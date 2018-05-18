@@ -1,51 +1,49 @@
-# INSAC
-INSAC, es un framework diseñado para crear de servicios web desarrollado en Javascript utilizando arquitectura REST.
+![Kiku](assets/insac-logo-512.png)
 
-Esta diseñado para facilitar el trabajo al desarrollador backend, ofreciéndole una serie de herramientas que permiten desarrollar aplicaciones mas o menos complejas.
+Insac JS es un framework de creación de servicios web basado en lenguaje script que utiliza la arquitectura REST.
 
-# Caracteristicas (Alcances)
-- **Estructura sólida:** Ofrece una estructura de proyecto sólida, escalable y mantenible a largo plazo.
+## Filosofía
 
-- **Validador automático** Por defecto se validan los datos de entrada (que los tipos de datos sean los correctos) antes de realizar cualquier otra acción propia de la ruta.
+El framework está enfocado en la automatización de procesos, la reutilización de código e impulsa el trabajo colaborativo.
 
-- **Generador de funciones básicas** Dispone de herramientas que permiten generar las funciones básicas de un servicio web (obtener, listar, crear, actualizar y eliminar registros) a partir de los modelos, en el caso de las peticiones GET, devuelve la información no solo del recurso especificado también de todos aquellos recursos con los que este relacionado.
+## Tecnologías utilizadas
 
-- **Sistema de autenticación** Incorpora un sistema de autenticación mediante tokens.
+El framework ha sido implementado utilizando el lenguaje JavaScript bajo el estándar de programación ECMAScript 2017, esto por el potencial que alcanzó el lenguaje gracias a NodeJS, un entorno de ejecución para JavaScript construido con el motor de JavaScript V8 de Chrome.
 
-- **Herramienta para crear datos** Incluye una herramienta para generar datos por defecto de forma sencilla, en base a los modelos.
+NodeJS permite crear aplicaciones del lado del servidor, además de que es una excelente herramienta para crear servicios web gracias a su modelo de operaciones E/S sin bloqueo orientado a eventos, que lo hace liviano y eficiente.
 
-- **Documentación automática** Genera la documentación de la API de forma automática, para que el cliente pueda consumir el servicio sin problemas, teniendo la certeza de que ésta se encuentra completamente actualizada.
+A continuación de describen las diferentes tecnologías y herramientas con las que trabaja el framework:
 
-- **Filtrado de datos** La forma en la que se definen las rutas, permite generar consultas con múltiples opciones de filtrado, para que el cliente consuma solamente los datos que necesita.
+- **NodeJS v9.5:** Entorno de programación de JavaScript.
+- **Express v4.16:** Framework de NodeJS.
+- **Sequelize v4.32:** Framework ORM de NodeJS.
+- **Yarn:** Manejador de dependencias.
+- **PM2:** Gestor avanzado de procesos de producción para NodeJS.
+- **Git:** Sistema de control de versiones distribuido de código abierto.
+- **Eslint:** Herramienta de linting para JavaScript, un linter es un programa que se encarga de revisar el código escrito y es - capaz de señalar errores y posibles bugs.
 
-# Límites
-- **Bases de datos relacionales** Soporta bases de datos relacionales postgres y mysql.
+## Caracteristicas
 
-- **Sistemas centralizados** Se limita al desarrollo de la parte del backend en sistemas centralizados basados en la arquitectura cliente servidor.
+- **Estructura de proyecto:** El framework organiza el proyecto utilizando un sistema que permite identificar a los componentes de la aplicación y sus respectivas funciones a través del nombre y la extensión de los ficheros.
 
-- **Formato JSON** El formato de transferencia de datos por defecto es JSON.
+- **Documentación automática** El framework se encarga de crear el apidoc de manera automática cada vez que se ejecuta la aplicación, logrando de esta forma que siempre se encuentre actualizada.
 
-- **Relaciones 1:1 y 1:N** Las relaciones entre tablas soportadas son 1:1 y 1:N.
+- **Validador automático** El framework se encarga de validar los datos de entrada de forma automática, cuando los datos llegan al middleware o al controlador, éstos ya se encuentran validados y convertidos al tipo de dato esperado.
 
-- **Tipos de datos básicos** Los tipos de datos soportados son: INTEGER, STRING, BOOLEAN, FLOAT, DATE, TIME, DATETIME, ENUM.
+- **Filtrado de datos** - El framework proporciona herramientas para facilitar la creación de filtros. Por defecto todas las peticiones incluyen el filtro `fields` el cual indica que campos se requiere en la respuesta.
 
-# Aportes
-- Este framework permite construir aplicaciones de forma sencilla y organizada, acompañado de funciones y herramientas que simplifican enormemente el trabajo del desarrollador backend, logrando convertirse en una alternativa real a los actuales frameworks de desarrollo de APIs.
+- **Herramienta para crear datos** Incluye un nuevo mecanismo para inssertar registros en la base de datos cuando ésta se instale.
 
-# Tecnologías utilizadas
-- NodeJS v8.4.0: Entorno de programación de javascript
+- **Sistema de logs y control de errores** El framework incluye un sistema para monitorear todas las peticiones y capturar cualquier tipo de error no controlado, asegurando de esta forma el correcto funcionamiento del sistema en caso de producirse algún tipo de error, registrándolo a su vez en un archivo de logs.
 
-- Express v4.15.4: Framework de NodeJS
+## Ejemplo
 
-- Sequelize v4.7.5: Framework ORM de NodeJS
-
-# Ejemplo
-``` javascript
+``` js
 const { Insac } = require('insac')
 
-let app = new Insac()
+const app = new Insac()
 
-app.load()
+app.addModule('API')
 
-app.listen()
+app.init()
 ```
