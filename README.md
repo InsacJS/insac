@@ -1,4 +1,4 @@
-![Kiku](assets/insac-logo-512.png)
+![Kiku](assets/insac-logo-256.png)
 
 Insac JS es un framework de creación de servicios web basado en lenguaje script que utiliza la arquitectura REST.
 
