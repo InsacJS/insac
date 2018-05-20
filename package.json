@@ -34,6 +34,7 @@
   },
   "dependencies": {
     "@sendgrid/mail": "^6.2.1",
+    "apidoc": "^0.17.6",
     "apidoc-creator": "^1.1.0",
     "cors": "^2.8.4",
     "dotenv": "^5.0.1",
