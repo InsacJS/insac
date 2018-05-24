@@ -1,6 +1,6 @@
 ![Kiku](assets/insac-logo-256.png)
 
-Insac JS es un framework de creación de servicios web basado en lenguaje script que utiliza la arquitectura REST.
+Insac JS es un framework de creación de servicios web basado en lenguaje script que utiliza arquitectura REST.
 
 ## Filosofía
 
@@ -14,25 +14,27 @@ NodeJS permite crear aplicaciones del lado del servidor, además de que es una e
 
 A continuación de describen las diferentes tecnologías y herramientas con las que trabaja el framework:
 
-- **NodeJS v9.5:** Entorno de programación de JavaScript.
-- **Express v4.16:** Framework de NodeJS.
-- **Sequelize v4.32:** Framework ORM de NodeJS.
-- **Yarn:** Manejador de dependencias.
-- **PM2:** Gestor avanzado de procesos de producción para NodeJS.
-- **Git:** Sistema de control de versiones distribuido de código abierto.
-- **Eslint:** Herramienta de linting para JavaScript, un linter es un programa que se encarga de revisar el código escrito y es - capaz de señalar errores y posibles bugs.
+| Nombre      | Versión | Descripción                                                    |
+|-------------|---------|----------------------------------------------------------------|
+| `NodeJS`    | 9.5     | Entorno de programación de JavaScript.                         |
+| `Express`   | 4.16    | Framework de NodeJS.                                           |
+| `Sequelize` | 4.37    | Framework ORM de NodeJS.                                       |
+| `Yarn`      | 1.7     | Manejador de dependencias.                                     |
+| `PM2`       | 2.7     | Gestor avanzado de procesos de producción para NodeJS.         |
+| `Git`       | 2.7     | Sistema de control de versiones distribuido de código abierto. |
+| `Eslint`    | 4.19    | Herramienta de linting para JavaScript.                        |
 
 ## Caracteristicas
 
-- **Estructura de proyecto:** El framework organiza el proyecto utilizando un sistema que permite identificar a los componentes de la aplicación y sus respectivas funciones a través del nombre y la extensión de los ficheros.
+- **Estructura de proyecto:** Se organiza el proyecto utilizando un sistema que permite identificar a los componentes de la aplicación y sus respectivas funciones a través del nombre y la extensión de los ficheros.
 
-- **Documentación automática** El framework se encarga de crear el apidoc de manera automática cada vez que se ejecuta la aplicación, logrando de esta forma que siempre se encuentre actualizada.
+- **Documentación automática** Se encarga de crear el apidoc de manera automática cada vez que se ejecuta la aplicación, logrando de esta forma que siempre se encuentre actualizada.
 
-- **Validador automático** El framework se encarga de validar los datos de entrada de forma automática, cuando los datos llegan al middleware o al controlador, éstos ya se encuentran validados y convertidos al tipo de dato esperado.
+- **Validador automático** Se encarga de validar los datos de entrada de forma automática, cuando los datos llegan al middleware o al controlador, éstos ya se encuentran validados y convertidos al tipo de dato esperado.
 
-- **Filtrado de datos** - El framework proporciona herramientas para facilitar la creación de filtros. Por defecto todas las peticiones incluyen el filtro `fields` el cual indica que campos se requiere en la respuesta.
+- **Sistema de filtrado de datos** - Proporciona herramientas para facilitar la creación de filtros. Por defecto todas las peticiones incluyen el filtro `fields` el cual indica que campos se requiere en la respuesta.
 
-- **Herramienta para crear datos** Incluye un nuevo mecanismo para inssertar registros en la base de datos cuando ésta se instale.
+- **Sistema de instalación por módulos** Sobre una base de datos, se crea un esquema para cada módulo, de esta forma es posible tener dos tablas con el mismo nombre, pero en diferentes módulos.
 
 - **Sistema de logs y control de errores** El framework incluye un sistema para monitorear todas las peticiones y capturar cualquier tipo de error no controlado, asegurando de esta forma el correcto funcionamiento del sistema en caso de producirse algún tipo de error, registrándolo a su vez en un archivo de logs.
 
