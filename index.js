@@ -14,6 +14,5 @@ module.exports = {
   util               : require('./lib/tools/util'),
   auth               : require('./lib/tools/auth'),
   logger             : require('./lib/tools/logger'),
-  stdout             : require('./lib/tools/stdout'),
   errors             : require('./lib/tools/errors')
 }
