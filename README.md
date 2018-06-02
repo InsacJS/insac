@@ -1,4 +1,4 @@
-![Kiku](assets/insac-logo-256.png)
+![Logo Insac JS](assets/insac-logo-256.png)
 
 Insac JS es un framework de creación de servicios web basado en lenguaje script que utiliza arquitectura REST.
 
@@ -16,7 +16,7 @@ A continuación de describen las diferentes tecnologías y herramientas con las 
 
 | Nombre      | Versión | Descripción                                                    |
 |-------------|---------|----------------------------------------------------------------|
-| `NodeJS`    | 9.5     | Entorno de programación de JavaScript.                         |
+| `NodeJS`    | 8.0     | Entorno de programación de JavaScript.                         |
 | `Express`   | 4.16    | Framework de NodeJS.                                           |
 | `Sequelize` | 4.37    | Framework ORM de NodeJS.                                       |
 | `Yarn`      | 1.7     | Manejador de dependencias.                                     |
@@ -43,9 +43,9 @@ A continuación de describen las diferentes tecnologías y herramientas con las 
 ``` js
 const { Insac } = require('insac')
 
-const app = new Insac()
+const service = new Insac()
 
-app.addModule('API')
+service.addModule('API')
 
-app.init()
+service.init()
 ```
