@@ -10,7 +10,7 @@ module.exports = (app) => {
     async (req, res, next) => {
       try {
         const ID = req.params.id
-        if (!await app.API.dao.libro.findOne(null, { id: ID })) {
+        if (!await app.API.dao.autor.findOne(null, { id: ID })) {
           throw new NotFound('No se encuentra el registro solicitado.')
         }
         return next()
@@ -24,12 +24,12 @@ module.exports = (app) => {
     async (req, res, next) => {
       try {
         const ID = req.params.id
-        const FIELDS = ['titulo', 'nro_paginas', 'precio', 'resumen', 'fid_autor']
-        const LIBRO = util.obj(req.body, FIELDS)
-        if (!await app.API.dao.libro.findOne(null, { id: ID })) {
+        const FIELDS = ['nombre', 'direccion', 'telefono', 'tipo', 'activo']
+        const AUTOR = util.obj(req.body, FIELDS)
+        if (!await app.API.dao.autor.findOne(null, { id: ID })) {
           throw new NotFound('No se encuentra el registro que desea actualizar.')
         }
-        if (Object.keys(LIBRO).length === 0) {
+        if (Object.keys(AUTOR).length === 0) {
           throw new BadRequest('Debe enviar al menos un dato válido, para actualizar el registro.')
         }
         return next()
@@ -41,7 +41,7 @@ module.exports = (app) => {
     async (req, res, next) => {
       try {
         const ID = req.params.id
-        if (!await app.API.dao.libro.findOne(null, { id: ID })) {
+        if (!await app.API.dao.autor.findOne(null, { id: ID })) {
           throw new NotFound('No se encuentra el registro que desea eliminar.')
         }
         return next()
@@ -53,7 +53,7 @@ module.exports = (app) => {
     async (req, res, next) => {
       try {
         const ID = req.params.id
-        if (!await app.API.dao.libro.findOne(null, { id: ID }, null, null, false)) {
+        if (!await app.API.dao.autor.findOne(null, { id: ID }, null, null, false)) {
           throw new NotFound('No se encuentra el registro que desea restaurar.')
         }
         return next()

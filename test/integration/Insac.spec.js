@@ -9,23 +9,26 @@ describe('\n - Aplicación: Academico\n', () => {
   beforeEach(() => { clearCacheOfRequire() })
   describe(` Acción: crear servicio`, () => {
     it('Verificando la creación del servicio', async () => {
+      process.env.LOG   = 'true'
+      process.env.SETUP = 'true'
+      process.env.START = 'true'
       service = await getService()
       expect(service.app.loaded).to.equal(true)
       expect(true).to.equal(true)
+      await service.close()
+
+      process.env.SETUP = 'false'
+      await service.init()
+      await service.app.API.dao.libro.findOne(null, { id: 1 })
+      await service.close()
     })
     it('Verificando la existencia de los componentes', () => {
       expect(service.app).to.be.an('function')
-      expect(service.app).to.have.property('API').to.be.an('object')
-      expect(service.app).to.have.property('MODULES').to.be.an('array').to.have.lengthOf(1).to.include('API')
-      expect(service.app).to.have.property('DB').to.be.an('object')
-      expect(service.app).to.have.property('APIDOC').to.be.an('object')
       expect(service.app).to.have.property('config').to.be.an('object')
-    })
-    it('Verificando la configuración del servicio', () => {
-      expect(service.app).to.have.property('config')
-      expect(service.app.config).to.have.property('SERVER')
-      expect(service.app.config).to.have.property('DATABASE')
-      expect(service.app.config).to.have.property('API')
+      expect(service.app).to.have.property('MODULES').to.be.an('array').to.have.lengthOf(1).to.include('API')
+      expect(service.app).to.have.property('APIDOC').to.be.an('object')
+      expect(service.app).to.have.property('DB').to.be.an('object')
+      expect(service.app).to.have.property('API').to.be.an('object')
     })
   })
 })

@@ -1,7 +1,7 @@
 const { Dao } = require(global.INSAC)
 
 module.exports = (app) => {
-  const MODEL = app.API.models.libro
+  const MODEL = app.API.models.autor
   const DAO   = new Dao(MODEL)
 
   // DAO.findOne         = (t, where, not, include = [], paranoid = true) => {}   : Promise
