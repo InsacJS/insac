@@ -3,3 +3,5 @@
 /tmp
 /example/app/logs
 /example/app/public
+/test/integration/academico/logs
+/test/integration/academico/public

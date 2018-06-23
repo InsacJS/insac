@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "npm run test-unit && npm run test-integration",
-    "test-unit": "./node_modules/.bin/mocha --recursive test/unit",
-    "test-integration": "./node_modules/.bin/mocha --recursive test/integration",
+    "test-unit": "./node_modules/.bin/mocha --recursive \"./test/unit/{,/**/}*.spec.js\"",
+    "test-integration": "./node_modules/.bin/mocha --recursive \"./test/integration/{,/**/}*.spec.js\"",
     "doc": "./node_modules/.bin/esdoc",
     "lint": "./node_modules/.bin/eslint ./lib ./example/app/src ./test"
   },
