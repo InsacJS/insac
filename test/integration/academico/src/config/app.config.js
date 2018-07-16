@@ -22,7 +22,7 @@ exports.DATABASE = {
 }
 
 exports.SERVER = {
-  port : process.env.PORT     || 4000,
+  port : process.env.PORT     || 4004,
   env  : process.env.NODE_ENV || 'development',
   cors : {
     'origin'                       : '*',
