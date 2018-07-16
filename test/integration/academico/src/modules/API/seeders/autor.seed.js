@@ -26,9 +26,5 @@ module.exports = (app) => {
     }
   ]
 
-  DATA.forEach(data => {
-    data._usuario_creacion = 1
-  })
-
   return DATA
 }
