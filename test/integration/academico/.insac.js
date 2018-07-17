@@ -10,6 +10,8 @@ exports.PATH = {
   apidoc  : path.resolve(__dirname, './public/apidoc')
 }
 
+const PRODUCTION_ENABLED  = process.env.NODE_ENV === 'production'
+
 exports.RESPONSE = {
   successFormat: (result) => {
     const RESULT = {
