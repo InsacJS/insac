@@ -25,13 +25,13 @@ module.exports = (sequelize, Sequelize) => {
       comment : 'Indica si el autor se encuentra activo.',
       example : true
     }),
-    _estado               : Field.STATUS,
-    _usuario_creacion     : Field.CREATED_USER,
-    _usuario_modificacion : Field.UPDATED_USER,
-    _usuario_eliminacion  : Field.DELETED_USER,
-    _fecha_creacion       : Field.CREATED_AT,
-    _fecha_modificacion   : Field.UPDATED_AT,
-    _fecha_eliminacion    : Field.DELETED_AT
+    _estado               : Field._STATUS(),
+    _usuario_creacion     : Field._CREATED_USER(),
+    _usuario_modificacion : Field._UPDATED_USER(),
+    _usuario_eliminacion  : Field._DELETED_USER(),
+    _fecha_creacion       : Field._CREATED_AT(),
+    _fecha_modificacion   : Field._UPDATED_AT(),
+    _fecha_eliminacion    : Field._DELETED_AT()
   }, {
     schema: 'api'
   })

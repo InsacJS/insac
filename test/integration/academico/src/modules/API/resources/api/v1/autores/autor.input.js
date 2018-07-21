@@ -5,16 +5,16 @@ module.exports = (app) => {
 
   INPUT.get = {
     query: {
-      fields : Field.FIELDS,
-      order  : Field.ORDER,
-      limit  : Field.LIMIT,
-      page   : Field.PAGE
+      fields : Field.FIELDS(),
+      order  : Field.ORDER(),
+      limit  : Field.LIMIT(),
+      page   : Field.PAGE()
     }
   }
 
   INPUT.getId = {
     query: {
-      fields: Field.FIELDS
+      fields: Field.FIELDS()
     },
     params: Field.group(app.API.models.autor, {
       id: THIS({ allowNull: false })
