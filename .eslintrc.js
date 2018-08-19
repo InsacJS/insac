@@ -10,6 +10,10 @@ module.exports = {
   },
   "rules": {
     "no-multi-spaces": "off",
-    "key-spacing": ["error", { align: "value", align: "colon", align: { beforeColon: true, afterColon: true, on: "colon" } }]
+    "key-spacing": ["error", {
+      align: "value",
+      align: "colon",
+      align: { beforeColon: true, afterColon: true, on: "colon" }
+    }]
   }
 }

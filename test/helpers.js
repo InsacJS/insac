@@ -1,5 +1,5 @@
 const chai = require('chai')
 
-global.INSAC = `${__dirname}/../`
+global.INSAC = process.cwd()
 
 global.expect = chai.expect

@@ -1,2 +1,4 @@
 lib/apidoc/template
-test/integration/academico/public
+docs
+apidoc
+public

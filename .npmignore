@@ -1,7 +1,5 @@
-node_modules
-src
-test
-manual
-example
-docs
-npm-debug.log
+/node_modules
+/test
+/manual
+/example
+/docs

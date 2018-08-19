@@ -4,15 +4,15 @@
 * MIT License
 */
 module.exports = {
-  Insac              : require('./lib/Insac'),
-  Module             : require('./lib/core/Module'),
-  Dao                : require('./lib/core/Dao'),
-  Field              : require('./lib/core/Field'),
-  THIS               : require('./lib/core/Field').THIS,
-  ResourceModule     : require('./lib/modules/ResourceModule'),
-  SendGridMailModule : require('./lib/modules/SendGridMailModule'),
-  util               : require('./lib/tools/util'),
-  auth               : require('./lib/tools/auth'),
-  logger             : require('./lib/tools/logger'),
-  errors             : require('./lib/tools/errors')
+  Insac: require('./lib/Insac'),
+
+  Module : require('./lib/core/Module'),
+  Dao    : require('./lib/core/Dao'),
+
+  Field : require('./lib/libs/FieldCreator'),
+  THIS  : require('./lib/libs/FieldCreator').THIS,
+
+  errors : require('./lib/tools/errors'),
+  fake   : require('./lib/tools/fake'),
+  util   : require('./lib/tools/util')
 }

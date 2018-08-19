@@ -4,6 +4,7 @@
 ``` json
 {
  "status": "success",
+ "code": 200,
  "message": "La tarea ha sido completada exitosamente.",
  "metadata": {
    "count": 1000,
@@ -20,6 +21,7 @@
 |------------------|----------------------------------------------------------------------------------------------------|
 | `status`         | Siempre será `success`. Indica que la tarea se completó con éxito.                                 |
 | `message`        | Describe el resultado obtenido. **Puede mostrarse al cliente** como el título de una notificación. |
+| `code`           | Código del resultado.                                                                              |
 | `metadata`       | Metadatos adicionales. **[OPCIONAL]**                                                              |
 | `metadata.count` | Cantidad de registros existentes.                                                                  |
 | `metadata.limit` | Cantidad de archivos por página.                                                                   |
@@ -32,6 +34,7 @@
 ``` json
 {
  "status": "error",
+ "code": 400,
  "message": "Error de validación",
  "errors": [
    {
@@ -48,6 +51,7 @@
 |----------------|--------------------------------------------------------------------|
 | `status`       | Siempre será `error`. Indica que el proceso finalizó con un error. |
 | `message`      | Describe el tipo de error. **Puede mostrarse al cliente**          |
+| `code`         | Código del error.                                                  |
 | `errors`       | Lista de errores.                                                  |
 | `errors.path`  | Ruta del campo que produjo el error. **[OPCIONAL]**                |
 | `errors.value` | Valor del campo que produjo el error. **[OPCIONAL]**               |
@@ -74,6 +78,7 @@
 | `GET`    | Devuelve un registro o una lista de registros. |
 | `POST`   | Crea un registro.                              |
 | `PUT`    | Actualiza un registro.                         |
+| `PATCH`  | Actualiza parcialmente un registro.            |
 | `DELETE` | Elimina un registro.                           |
 
 ## Filtros de una consulta
@@ -92,7 +97,7 @@ Todos los campos.
 - `/personas`
 - `/personas?fields=all`
 
-Todos los campos. Incluyendo a los objetos.
+Todos los campos, incluyendo a los objetos.
 - `/personas?fields=ALL`
 
 Todos los campos, excluyendo algunos.
@@ -108,7 +113,7 @@ Incluyendo consultas. **[ required = false ]**
 - `/personas?fields=id,nombre=john`
 - `/personas?fields=id,usuario(roles(estado=ACTIVO))`
 
-Al incluir este tipo de filtros, si el objeto no cumple con la condición, el valor de este campo será `undefined`.
+Al incluir este tipo de filtros, si el objeto no cumple con la condición, el valor de este campo será `null`.
 
 ## Filtro `<field>`
 

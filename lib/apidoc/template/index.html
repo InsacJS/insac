@@ -17,7 +17,7 @@
 <nav id="scrollingNav">
   <div class="sidenav-search">
     <div class="pagina-inicio"><a href="./../../">Página de inicio</a></div>
-    <input class="form-control search" type="text" placeholder="{{__ "Filter..."}}">
+    <input class="form-control search" type="text" placeholder="{{__ "Buscar ..."}}">
     <span class="search-reset">x</span>
   </div>
   <ul class="sidenav nav nav-list list">
@@ -271,10 +271,12 @@
             <h4><div data-sample-request-param-group-id="sample-request-param-{{@index}}"  name="{{../id}}-sample-request-param" value="{{@index}}" class="sample-request-param sample-request-switch"></div>{{@key}}</h4>
             <div class="form-group {{../id}}-sample-request-param-fields">
               {{#each this}}
-                <label class="col-md-3 control-label">{{field}}</label>
-                <div class="input-group">
-                  <input id="sample-request-param-field-{{field}}" type="text" placeholder="{{field}}" class="form-control sample-request-param" data-sample-request-param-name="{{field}}" data-sample-request-param-group="sample-request-param-{{@../index}}" {{#if optional}}data-sample-request-param-optional="true"{{/if}}>
-                  <div class="input-group-addon">{{{type}}}</div>
+                <div id="custom-div-{{field}}">
+                  <label class="col-md-3 control-label">{{field}}</label>
+                  <div class="input-group">
+                    <input id="sample-request-param-field-{{field}}" type="text" placeholder="{{field}}" class="form-control sample-request-param" data-sample-request-param-name="{{field}}" data-sample-request-param-group="sample-request-param-{{@../index}}" {{#if optional}}data-sample-request-param-optional="true"{{/if}}>
+                    <div class="input-group-addon">{{{type}}}</div>
+                  </div>
                 </div>
               {{/each}}
             </div>
