@@ -28,10 +28,10 @@ A continuación de describen las diferentes tecnologías y herramientas mas impo
 
 | Nombre        | Versión  |
 |---------------|----------|
-| `PostgreSQL`  | ^9.4     |
-| `MySQL`       | ^5.7     |
-| `MSSQLSERVER` | ^2017    |
-| `SQLite`      | ^3.24    |
+| `PostgreSQL`  | 9.4      |
+| `MySQL`       | 5.7      |
+| `MSSQLSERVER` | 2017     |
+| `SQLite`      | 3.24     |
 
 ## Caracteristicas
 
@@ -235,8 +235,8 @@ $ node index.js
   EJECUTANDO APLICACIÓN
   =====================
 
-  [listen] Servicio: http://localhost:4000
-  [listen] APIDOC:   http://localhost:4000/apidoc/API
+  [SERVICIO] http://localhost:4000 ✓
+  [APIDOC]   http://localhost:4000/apidoc/API ✓
 ```
 
 ### `http://localhost:4000`
