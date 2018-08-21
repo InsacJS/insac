@@ -2,7 +2,7 @@
 const path      = require('path')
 const Sequelize = require('sequelize')
 const Field     = require('../../../lib/libs/FieldCreator')
-const DB_CONFIG = require('../../test_config').DATABASE.postgres
+const DB_CONFIG = require('../../test.config').DATABASE.postgres
 
 describe('\n - Clase: Field\n', () => {
   describe(` Método: STRING`, () => {

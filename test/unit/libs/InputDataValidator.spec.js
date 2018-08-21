@@ -6,7 +6,7 @@ const Sequelize          = require('sequelize')
 const express            = require('express')
 const request            = require('request')
 
-const config = require('../../test_config')
+const config = require('../../test.config')
 const PARAMS = config.DATABASE.postgres.params
 const PORT   = config.SERVER.port
 

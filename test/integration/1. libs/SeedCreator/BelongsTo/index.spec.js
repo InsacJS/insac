@@ -10,7 +10,7 @@ let AUTORES
 
 describe('\n - Función create con registros anidados [BelongsTo]', () => {
   before(() => {
-    config = _.cloneDeep(require('../../../../test_config'))
+    config = _.cloneDeep(require('../../../../test.config'))
     LIBROS  = require(path.resolve(__dirname, 'seeds/libro.seed.js'))()
     AUTORES = require(path.resolve(__dirname, 'seeds/autor.seed.js'))()
   })

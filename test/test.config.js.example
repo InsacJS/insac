@@ -10,7 +10,7 @@ exports.DATABASE = {
     params   : {
       dialect          : 'postgres',
       host             : '127.0.0.1',
-      port             : 54324,
+      port             : 5432,
       timezone         : '+00:00',
       lang             : 'es',
       logging          : false,
@@ -24,12 +24,12 @@ exports.DATABASE = {
   },
   mysql: {
     username : 'root',
-    password : '12345678',
+    password : 'root',
     database : 'insac_test',
     params   : {
       dialect          : 'mysql',
       host             : '127.0.0.1',
-      port             : 33067,
+      port             : 3306,
       timezone         : '+00:00',
       lang             : 'es',
       logging          : false,

@@ -8,6 +8,9 @@ tmp
 public
 docs
 
+# Archivos de configuración
+test/test.config.js
+
 # Archivos de base de datos de SQLite
 *.sqlite
 

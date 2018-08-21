@@ -9,7 +9,7 @@ let config
 
 describe('\n - Función create con registros anidados [HasOne, HasMany]', () => {
   before(() => {
-    config = _.cloneDeep(require('../../../../test_config'))
+    config = _.cloneDeep(require('../../../../test.config'))
   })
   it('Prueba con el dialecto postgres', async () => {
     await _test('postgres')

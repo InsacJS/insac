@@ -5,7 +5,7 @@ const request            = require('request')
 const Response           = require('../../../lib/libs/ResponseHandler')
 const PreconditionFailed = require('../../../lib/libs/errors/PreconditionFailedError')
 
-const config = require('../../test_config')
+const config = require('../../test.config')
 const PORT   = config.SERVER.port
 
 describe('\n - Clase: ResponseHandler\n', () => {

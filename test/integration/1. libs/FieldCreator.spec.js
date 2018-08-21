@@ -7,7 +7,7 @@ let DB_CONFIG
 
 describe('\n - Creación de campos con diferentes validadores\n', () => {
   before(() => {
-    config    = _.cloneDeep(require('../../test_config'))
+    config    = _.cloneDeep(require('../../test.config'))
     DB_CONFIG = config.DATABASE.postgres
   })
   describe(` Validadores por defecto`, () => {

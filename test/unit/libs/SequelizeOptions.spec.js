@@ -5,7 +5,7 @@ const Options   = require('../../../lib/libs/SequelizeOptions')
 const Field     = require('../../../lib/libs/FieldCreator')
 const THIS      = Field.THIS
 
-const config = require('../../test_config')
+const config = require('../../test.config')
 const PARAMS = config.DATABASE.postgres.params
 
 describe('\n - Clase: Options\n', () => {

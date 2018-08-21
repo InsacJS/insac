@@ -178,7 +178,7 @@ function getService () {
     process.env.LOGGER       = 'true'
     process.env.SETUP        = 'true'
     process.env.START        = 'true'
-    config   = _.cloneDeep(require('../../test_config'))
+    config   = _.cloneDeep(require('../../test.config'))
     const service = require(process.env.PROJECT_PATH)
     const retry = async (cnt) => {
       if (!service.app.loaded) {
