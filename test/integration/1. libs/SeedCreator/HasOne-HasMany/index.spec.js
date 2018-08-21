@@ -1,19 +1,14 @@
-/* global before describe it expect */
-let Sequelize
-let _
-let path
-let Seed
-let util
+const Sequelize = require('sequelize')
+const _         = require('lodash')
+const path      = require('path')
+
+const Seed = require('../../../../../lib/libs/SeedCreator')
+const util = require(`../../../../../lib/tools/util`)
 
 let config
 
 describe('\n - Función create con registros anidados [HasOne, HasMany]', () => {
   before(() => {
-    Sequelize = require('sequelize')
-    _         = require('lodash')
-    path      = require('path')
-    Seed      = require('../../../../../lib/libs/SeedCreator')
-    util      = require(`../../../../../lib/tools/util`)
     config = _.cloneDeep(require('../../../../test_config'))
   })
   it('Prueba con el dialecto postgres', async () => {

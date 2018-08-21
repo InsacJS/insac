@@ -1,8 +1,7 @@
-/* global before describe it expect */
-let Sequelize
-let _
-let path
-let Seed
+const Sequelize = require('sequelize')
+const _         = require('lodash')
+const path      = require('path')
+const Seed      = require('../../../../../lib/libs/SeedCreator')
 
 let config
 
@@ -11,10 +10,6 @@ let AUTORES
 
 describe('\n - Función create con registros anidados [BelongsTo]', () => {
   before(() => {
-    Sequelize = require('sequelize')
-    _         = require('lodash')
-    path      = require('path')
-    Seed      = require('../../../../../lib/libs/SeedCreator')
     config = _.cloneDeep(require('../../../../test_config'))
     LIBROS  = require(path.resolve(__dirname, 'seeds/libro.seed.js'))()
     AUTORES = require(path.resolve(__dirname, 'seeds/autor.seed.js'))()

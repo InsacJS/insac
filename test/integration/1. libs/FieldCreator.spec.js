@@ -1,15 +1,12 @@
-/* global before describe it expect */
-let Sequelize
-let Field
-let _
+const Sequelize = require('sequelize')
+const Field     = require('../../../lib/libs/FieldCreator')
+const _         = require('lodash')
+
 let config
 let DB_CONFIG
 
 describe('\n - Creación de campos con diferentes validadores\n', () => {
   before(() => {
-    Sequelize = require('sequelize')
-    Field     = require('../../../lib/libs/FieldCreator')
-    _         = require('lodash')
     config    = _.cloneDeep(require('../../test_config'))
     DB_CONFIG = config.DATABASE.postgres
   })
