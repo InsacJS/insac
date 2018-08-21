@@ -1,23 +1,14 @@
-const DB_USER     = process.env.DB_USER     = process.env.DB_USER     || 'postgres'
-const DB_PASS     = process.env.DB_PASS     = process.env.DB_PASS     || 'postgres'
-const DB_NAME     = process.env.DB_NAME     = process.env.DB_NAME     || 'insac_test'
-const DB_HOSTNAME = process.env.DB_HOSTNAME = process.env.DB_HOSTNAME || '127.0.0.1'
-const DB_PORT     = process.env.DB_PORT     = process.env.DB_PORT     || 54324
-
-const DIALECT     = process.env.DIALECT     = process.env.DIALECT     || 'postgres'
-
 const DATABASE = {
-  username : DB_USER,
-  password : DB_PASS,
-  database : DB_NAME,
+  username : process.env.DB_USER || 'postgres',
+  password : process.env.DB_PASS || 'postgres',
+  database : process.env.DB_NAME || 'insac_test',
 
   params: {
-    dialect          : DIALECT,
-    host             : DB_HOSTNAME,
-    port             : DB_PORT,
-    timezone         : '+00:00',
-    lang             : 'es',
-    operatorsAliases : false,
+    dialect  : process.env.DIALECT || 'postgres',
+    host     : process.env.DB_HOST || '127.0.0.1',
+    port     : process.env.DB_PORT || 54324,
+    timezone : process.env.DB_TZ   || '+00:00',
+    lang     : 'es',
 
     define: {
       underscored     : true,

@@ -161,8 +161,9 @@ function clearEnv () {
   delete process.env.DB_USER
   delete process.env.DB_PASS
   delete process.env.DB_NAME
-  delete process.env.DB_HOSTNAME
+  delete process.env.DB_HOST
   delete process.env.DB_PORT
+  delete process.env.DB_TZ
   delete process.env.DIALECT
   delete process.env.APIDOC
   delete process.env.LOGGER
@@ -174,10 +175,10 @@ function getService () {
   return new Promise((resolve, reject) => {
     clearCacheOfRequire()
     clearEnv()
+    process.env.PROJECT_PATH = path.resolve(__dirname, './academico')
     process.env.LOGGER       = 'true'
     process.env.SETUP        = 'true'
     process.env.START        = 'true'
-    process.env.PROJECT_PATH = path.resolve(__dirname, './academico')
     config   = _.cloneDeep(require('../../test_config'))
     const service = require(process.env.PROJECT_PATH)
     const retry = async (cnt) => {
