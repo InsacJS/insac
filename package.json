@@ -1,6 +1,6 @@
 {
   "name": "insac",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "description": "Framework de creación de servicios web basado en lenguaje script que utiliza arquitectura REST.",
   "main": "index.js",
   "scripts": {
