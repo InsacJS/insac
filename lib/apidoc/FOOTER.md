@@ -71,6 +71,14 @@
 | `INVALID_TOKEN` | 498 | Token inválido | El token es inválido | Ocurre generalmente cuando el token ha expirado. |
 | `INTERNAL_SERVER` | 500 | Error interno | Hubo un error inesperado, inténtelo mas tarde. | Este error nunca debería ocurrir, generalmente son errores desconocidos que no han sido controlados. |
 
+## Tipos de respuesta exitosa
+
+| Tipo | Código | Titulo | Mensaje | Causa |
+|------|--------|--------|---------|-------------|
+| `OK` | 200 | Éxito | La tarea ha sido completada exitosamente. | Ocurre cuando una petición finaliza correctamente. |
+| `CREATED` | 201 | Éxito al crear | El recurso ha sido creado de manera exitosa. | Ocurre cuando una tarea finaliza correctamente y como resultado se ha creado un nuevo recurso. |
+| `NO_CONTENT` | 204 | Éxito al procesar | La petición se ha completado con éxito pero su respuesta no tiene ningún contenido. | Ocurre cuando una petición finaliza correctamente pero no devuelve ningún resultado. |
+
 ## Métodos HTTP aceptados
 
 | Método   | Descripción                                    |

@@ -249,6 +249,4 @@ $ node index.js
 
 ![Captura 3](assets/captura03.png)
 
-Y los mensajes que se muestran en la terminal:
-
 ![Captura 4](assets/captura04.png)
