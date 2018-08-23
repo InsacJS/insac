@@ -184,59 +184,62 @@ Después, ejecuta la aplicación:
 ```bash
 $ node index.js
 
-   =====================================   
-     ---------------------------------     
-       I N S A C   F R A M E W O R K       
-     =================================     
-   -------------------------------------   
+=====================================   
+  ---------------------------------     
+    I N S A C   F R A M E W O R K       
+  =================================     
+-------------------------------------   
 
-               Versión 3.0.0               
-
-
-  Sistema : App
-  Versión : 1.0.0
-  Entorno : development
+            Versión 1.0.0               
 
 
-  [archivo] /src/modules/API/api.module.js ✓
+Sistema : App
+Versión : 1.0.0
+Entorno : development
 
 
-  CONFIGURACIÓN INICIAL
-  =====================
-
-  [archivo] app.before.hook.js (default) ✓
-
-  Módulo API ...
+[archivo] /src/modules/API/api.module.js ✓
 
 
-  CARGANDO APLICACIÓN
-  ===================
+CONFIGURACIÓN INICIAL
+=====================
+
+[archivo] app.before.hook.js (default) ✓
+
+Módulo API ...
 
 
-  Módulo API ...
-
-  [archivo] /src/modules/API/resources/welcome/welcome.route.js ✓
-  [archivo] /src/modules/API/resources/welcome/welcome.input.js ✓
-  [archivo] /src/modules/API/resources/welcome/welcome.output.js ✓
-  [archivo] /src/modules/API/resources/welcome/welcome.middleware.js ✓
-  [archivo] /src/modules/API/resources/welcome/welcome.controller.js ✓
-
-  [ruta] GET    /welcome/hello/:name ... hello ✓
+CARGANDO APLICACIÓN
+===================
 
 
-  CONFIGURACIÓN FINAL
-  ===================
+Módulo API ...
 
-  [archivo] app.after.hook.js (default) ✓
+[archivo] /src/modules/API/resources/welcome/welcome.route.js ✓
+[archivo] /src/modules/API/resources/welcome/welcome.input.js ✓
+[archivo] /src/modules/API/resources/welcome/welcome.output.js ✓
+[archivo] /src/modules/API/resources/welcome/welcome.middleware.js ✓
+[archivo] /src/modules/API/resources/welcome/welcome.controller.js ✓
 
-  [apidoc] Módulo API ... ✓
+[ruta] GET    /hello/:name ... hello ✓
 
 
-  EJECUTANDO APLICACIÓN
-  =====================
+CONFIGURACIÓN FINAL
+===================
 
-  [SERVICIO] http://localhost:4000 ✓
-  [APIDOC]   http://localhost:4000/apidoc/API ✓
+[archivo] app.after.hook.js (default) ✓
+
+[apidoc] Módulo API ... ✓
+
+
+La aplicación ha sido cargada con éxito.  
+
+
+EJECUTANDO APLICACIÓN
+=====================
+
+[SERVICIO] http://localhost:4000 ✓
+[APIDOC]   http://localhost:4000/apidoc/API ✓
 ```
 
 ### `http://localhost:4000`

@@ -141,6 +141,19 @@ describe('\n - Aplicación: Academico\n', () => {
         expect(body.datos.libros[i]).to.not.have.property('resumen')
       }
     })
+
+    it('Verificando el cargado de la aplicación con LISTEN = false.', async () => {
+      try { await service.close() } catch (e) {}
+      function loadEnv () {
+        process.env.PROJECT_PATH = path.resolve(__dirname, './academico')
+        process.env.LOGGER       = 'true'
+        process.env.SETUP        = 'true'
+        process.env.START        = 'true'
+        process.env.LISTEN       = 'false'
+      }
+      service = await getService(loadEnv)
+      expect(service.app.SERVER).to.be.a('undefined')
+    })
   })
 })
 
@@ -168,16 +181,21 @@ function clearEnv () {
   delete process.env.LOGGER
   delete process.env.SETUP
   delete process.env.START
+  delete process.env.LISTEN
 }
 
-function getService () {
+function getService (loadEnv) {
   return new Promise((resolve, reject) => {
     clearCacheOfRequire()
     clearEnv()
-    process.env.PROJECT_PATH = path.resolve(__dirname, './academico')
-    process.env.LOGGER       = 'true'
-    process.env.SETUP        = 'true'
-    process.env.START        = 'true'
+    if (loadEnv) { loadEnv() } else {
+      process.env.PROJECT_PATH = path.resolve(__dirname, './academico')
+      process.env.LOGGER       = 'true'
+      process.env.SETUP        = 'true'
+      process.env.START        = 'true'
+      process.env.LISTEN       = 'true'
+      process.env.SQL_LOG      = 'true'
+    }
     config   = _.cloneDeep(require('../../test.config'))
     const service = require(process.env.PROJECT_PATH)
     const retry = async (cnt) => {
