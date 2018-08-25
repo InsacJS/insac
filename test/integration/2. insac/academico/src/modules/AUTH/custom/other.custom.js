@@ -1,8 +1,8 @@
 module.exports = (app) => {
   const CUSTOM = {}
 
-  CUSTOM.startTask = () => {
-
+  CUSTOM.myFunction = () => {
+    return 'OK'
   }
 
   return CUSTOM

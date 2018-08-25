@@ -28,6 +28,7 @@ describe('\n - Aplicación: Academico\n', () => {
       expect(service.app).to.have.property('apidoc').to.be.an('object')
       expect(service.app).to.have.property('DB').to.be.an('object')
       expect(service.app).to.have.property('API').to.be.an('object')
+      expect(service.app).to.have.property('AUTH').to.be.an('object')
       expect(service.app).to.have.property('SERVER').to.be.an('object')
     })
     it('Verificando Servicios CRUD', async () => {
@@ -154,6 +155,34 @@ describe('\n - Aplicación: Academico\n', () => {
       }
       service = await getService(loadEnv)
       expect(service.app.SERVER).to.be.a('undefined')
+    })
+
+    it('Verificando el funcionamiento de los componentes del módulo API', async () => {
+      const app = await service.getApp()
+      expect(app).to.have.property('API')
+      expect(app.API).to.have.property('models')
+      expect(app.API).to.have.property('dao')
+      expect(app.API).to.have.property('services')
+      expect(await app.API.services.authServer.getToken()).to.equal('OK')
+    })
+
+    it('Verificando el funcionamiento de los componentes del módulo AUTH', async () => {
+      const app = await service.getApp()
+      expect(app).to.have.property('AUTH')
+      expect(app.AUTH).to.have.property('models')
+      expect(app.AUTH).to.have.property('dao')
+      expect(app.AUTH).to.have.property('custom')
+      expect(app.AUTH).to.have.property('mails')
+      expect(app.AUTH).to.have.property('models')
+      expect(app.AUTH).to.have.property('reports')
+      expect(app.AUTH).to.have.property('storage')
+      expect(app.AUTH).to.have.property('tools')
+
+      expect(await app.AUTH.custom.other.myFunction()).to.equal('OK')
+      expect(await app.AUTH.mails.send.recordarPassword()).to.equal('OK')
+      expect(await app.AUTH.reports.usuario.general()).to.equal('OK')
+      expect(await app.AUTH.storage.local.guardarArchivo()).to.equal('OK')
+      expect(await app.AUTH.tools.util.md5()).to.be.a('string')
     })
   })
 })

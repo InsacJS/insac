@@ -3,7 +3,7 @@ const _      = require('lodash')
 const { util } = require(global.INSAC)
 
 module.exports = (app) => {
-  const sgMail = { setApiKey: () => {}, send: () => {} }
+  const sgMail = { setApiKey: () => {}, send: () => { return 'OK' } }
   sgMail.setApiKey(app.config.AUTH.sendGridApiKey)
 
   const templates = {}
@@ -11,9 +11,9 @@ module.exports = (app) => {
     templates[fileName] = _.template(util.readFile(filePath))
   })
 
-  const MAIL = {}
+  const SEND = {}
 
-  MAIL.recordarPassword = async (urlReset, username, email, code) => {
+  SEND.recordarPassword = async (urlReset, username, email, code) => {
     const DATA = {
       url_reset : urlReset,
       username  : username,
@@ -30,5 +30,5 @@ module.exports = (app) => {
     return sgMail.send(MESSAGE)
   }
 
-  return MAIL
+  return SEND
 }

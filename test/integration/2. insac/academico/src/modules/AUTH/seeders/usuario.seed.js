@@ -1,10 +1,9 @@
-const path = require('path')
-const { util, fake } = require(global.INSAC)
+const { fake } = require(global.INSAC)
 
 module.exports = (app) => {
-  const nombres     = util.readFile(path.resolve(__dirname, 'dic/nombres.txt')).split('\n')
-  const apellidos   = util.readFile(path.resolve(__dirname, 'dic/apellidos.txt')).split('\n')
-  const direcciones = util.readFile(path.resolve(__dirname, 'dic/direcciones.txt')).split('\n')
+  const nombres     = ['john', 'alan', 'carlos', 'pedro', 'rosa']
+  const apellidos   = ['smith', 'doe', 'mendoza', 'flores']
+  const direcciones = ['Los valles, #23']
   const roles       = ['superadmin', 'admin', 'user']
 
   const DATA = []
@@ -12,7 +11,7 @@ module.exports = (app) => {
   for (let i = 1; i <= 1; i++) {
     DATA.push({
       id                  : i,
-      username            : `1000${i}`,
+      username            : 'john',
       password            : PASS,
       nombre              : nombres[fake.randomInt(0, nombres.length - 2)],
       primer_apellido     : apellidos[fake.randomInt(0, apellidos.length - 2)],
