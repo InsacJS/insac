@@ -190,7 +190,7 @@ $ node index.js
   =================================     
 -------------------------------------   
 
-            Versión 1.0.0               
+            Versión 3.0.0               
 
 
 Sistema : App
@@ -205,8 +205,6 @@ CONFIGURACIÓN INICIAL
 =====================
 
 [archivo] app.before.hook.js (default) ✓
-
-Módulo API ...
 
 
 CARGANDO APLICACIÓN
