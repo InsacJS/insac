@@ -17,12 +17,12 @@
   <body>
     <div class="container">
       <div class="logo"></div>
+      <p>Versión: <%= insacVersion %></p>
       <h1><strong><%= appName %></strong> v<%= appVersion %></h1>
       <p>Activo y funcionando correctamente</p>
       <% for (var i = 0; i < modules.length; i++) { %>
       <div class="button"><a href="./apidoc/<%= modules[i] %>"><%= modules[i] %></a></div>
       <% } %>
-      <p><strong>Insac JS: </strong> v<%= insacVersion %></p>
     </div>
   </body>
 </html>

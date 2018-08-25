@@ -3,7 +3,10 @@ const { Insac } = require(global.INSAC)
 const service = new Insac()
 
 service.addModule('API')
+service.addModule('AUTH')
 
-service.init()
+service.init().catch(e => {
+  console.log(e)
+})
 
 module.exports = service

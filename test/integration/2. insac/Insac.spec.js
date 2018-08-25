@@ -23,7 +23,8 @@ describe('\n - Aplicación: Academico\n', () => {
       expect(service.app).to.be.an('function')
       expect(service.app).to.have.property('config').to.be.an('object')
       expect(service.app).to.have.property('logger').to.be.an('object')
-      expect(service.app).to.have.property('modules').to.be.an('array').to.have.lengthOf(1).to.include('API')
+      expect(service.app).to.have.property('modules').to.be.an('array').to.have.lengthOf(2).to.include('API')
+      expect(service.app).to.have.property('modules').to.be.an('array').to.have.lengthOf(2).to.include('AUTH')
       expect(service.app).to.have.property('apidoc').to.be.an('object')
       expect(service.app).to.have.property('DB').to.be.an('object')
       expect(service.app).to.have.property('API').to.be.an('object')
@@ -194,7 +195,7 @@ function getService (loadEnv) {
       process.env.SETUP        = 'true'
       process.env.START        = 'true'
       process.env.LISTEN       = 'true'
-      process.env.SQL_LOG      = 'true'
+      process.env.SQL_LOG      = 'false'
     }
     config   = _.cloneDeep(require('../../test.config'))
     const service = require(process.env.PROJECT_PATH)
