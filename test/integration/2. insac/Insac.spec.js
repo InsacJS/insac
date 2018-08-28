@@ -195,6 +195,9 @@ function clearCacheOfRequire () {
 
 function clearEnv () {
   delete process.env.PROJECT_PATH
+  delete process.env.SOURCES_PATH
+  delete process.env.LOGS_PATH
+  delete process.env.PUBLIC_PATH
   delete process.env.PROTOCOL
   delete process.env.HOSTNAME
   delete process.env.PORT

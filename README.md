@@ -179,7 +179,7 @@ service.init().catch(e => {
 module.exports = service
 ```
 
-Después, ejecuta la aplicación:
+Después, ejecutar la aplicación:
 
 ```bash
 $ node index.js

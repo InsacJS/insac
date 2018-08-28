@@ -1,3 +1,5 @@
+const path = require('path')
+
 const LOGGER = {
   colors: true,
 
@@ -10,6 +12,7 @@ const LOGGER = {
   },
 
   file: {
+    logsPath  : path.resolve(__dirname, '../../custom-logs'),
     levels    : ['fatal', 'error', 'warn', 'notice', 'info', 'verbose'],
     transport : {
       maxsize  : 5242880,

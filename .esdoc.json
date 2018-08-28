@@ -17,14 +17,6 @@
           "description": "Framework de creación de servicios web.",
           "repository": "https://github.com/insacjs/insac",
           "site": "http://insacjs.com"
-        },
-        "manual": {
-          "index": "./manual/index.md",
-          "files": [
-            "./manual/overview.md",
-            "./manual/installation.md",
-            "./manual/tutorial.md"
-          ]
         }
       }
     }
