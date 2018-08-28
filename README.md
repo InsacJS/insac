@@ -65,23 +65,23 @@ $ npm init
 $ npm install --save insac
 ```
 
-Posteriormente, crea archivos con la siguiente estructura:
+Posteriormente, deberá crear algunos archivos con la siguiente estructura:
 
 ```txt
 app
-   ├─ src
-   │     └─ modules
-   │             └─ API
-   │                   ├─ resources
-   │                   │      └─ welcome
-   │                   │            ├─ welcome.controller.js
-   │                   │            ├─ welcome.input.js
-   │                   │            ├─ welcome.output.js
-   │                   │            └─ welcome.route.js
-   │                   └─ api.module.js
-   ├─ node_modules
-   ├─ index.js
-   └─ package.json
+  ├─ src
+  │     └─ modules
+  │           └─ API
+  │                 ├─ resources
+  │                 │     └─ welcome
+  │                 │           ├─ welcome.controller.js
+  │                 │           ├─ welcome.input.js
+  │                 │           ├─ welcome.output.js
+  │                 │           └─ welcome.route.js
+  │                 └─ api.module.js
+  ├─ node_modules
+  ├─ index.js
+  └─ package.json
 ```
 
 Y el siguiente contenido:
@@ -179,75 +179,24 @@ service.init().catch(e => {
 module.exports = service
 ```
 
-Después, ejecutar la aplicación:
+Después, ejecuta la aplicación:
 
 ```bash
 $ node index.js
-
-=====================================   
-  ---------------------------------     
-    I N S A C   F R A M E W O R K       
-  =================================     
--------------------------------------   
-
-            Versión 3.0.0               
-
-
-Sistema : App
-Versión : 1.0.0
-Entorno : development
-
-
-[archivo] /src/modules/API/api.module.js ✓
-
-
-CONFIGURACIÓN INICIAL
-=====================
-
-[archivo] app.before.hook.js (default) ✓
-
-
-CARGANDO APLICACIÓN
-===================
-
-
-Módulo API ...
-
-[archivo] /src/modules/API/resources/welcome/welcome.route.js ✓
-[archivo] /src/modules/API/resources/welcome/welcome.input.js ✓
-[archivo] /src/modules/API/resources/welcome/welcome.output.js ✓
-[archivo] /src/modules/API/resources/welcome/welcome.middleware.js ✓
-[archivo] /src/modules/API/resources/welcome/welcome.controller.js ✓
-
-[ruta] GET    /hello/:name ... hello ✓
-
-
-CONFIGURACIÓN FINAL
-===================
-
-[archivo] app.after.hook.js (default) ✓
-
-[apidoc] Módulo API ... ✓
-
-
-La aplicación ha sido cargada con éxito.  
-
-
-EJECUTANDO APLICACIÓN
-=====================
-
-[SERVICIO] http://localhost:4000 ✓
-[APIDOC]   http://localhost:4000/apidoc/API ✓
 ```
 
 ### `http://localhost:4000`
 
-![Captura 1](assets/captura01.png)
+![Captura 1](./assets/hola-mundo/app/captura01.jpg)
 
 ### `http://localhost:4000/apidoc/API`
 
-![Captura 2](assets/captura02.png)
+![Captura 2](./assets/hola-mundo/app/captura02.jpg)
 
-![Captura 3](assets/captura03.png)
+### Petición de ejemplo
 
-![Captura 4](assets/captura04.png)
+![Captura 3](./assets/hola-mundo/app/captura03.jpg)
+
+### Mensajes de logs
+
+![Captura 4](./assets/hola-mundo/app/captura04.jpg)

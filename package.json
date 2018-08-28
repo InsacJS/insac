@@ -7,7 +7,7 @@
     "test": "npm run test-unit && npm run test-integration",
     "test-unit": "./node_modules/.bin/mocha --recursive \"./test/unit/{,/**/}*.spec.js\"",
     "test-integration": "./node_modules/.bin/mocha --recursive \"./test/integration/{,/**/}*.spec.js\"",
-    "doc": "./node_modules/.bin/esdoc",
+    "doc": "./node_modules/.bin/esdoc && cp -r ./assets ./docs",
     "lint": "./node_modules/.bin/eslint ./lib ./test"
   },
   "repository": {
@@ -51,6 +51,7 @@
     "chai": "^4.1.2",
     "esdoc": "^1.1.0",
     "esdoc-standard-plugin": "^1.0.0",
+    "esdoc-publish-html-plugin": "^1.1.2",
     "eslint": "^5.4.0",
     "eslint-config-standard": "^11.0.0",
     "eslint-plugin-import": "^2.14.0",

@@ -5,6 +5,12 @@
   "excludes": ["apidoc/template"],
   "plugins": [
     {
+      "name": "esdoc-publish-html-plugin",
+      "option": {
+        "template": "esdoc/template"
+      }
+    },
+    {
       "name": "esdoc-standard-plugin",
       "option": {
         "undocumentIdentifier": { "enable": false },
@@ -13,6 +19,7 @@
         "coverage": { "enable": true },
         "typeInference": { "enable": true },
         "brand": {
+          "logo": "./assets/insac.png",
           "title": "Insac Framework",
           "description": "Framework de creación de servicios web.",
           "repository": "https://github.com/insacjs/insac",
