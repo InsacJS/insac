@@ -12,7 +12,12 @@ module.exports = {
   Field : require('./lib/libs/FieldCreator'),
   THIS  : require('./lib/libs/FieldCreator').THIS,
 
-  errors : require('./lib/tools/errors'),
-  fake   : require('./lib/tools/fake'),
-  util   : require('./lib/tools/util')
+  ResponseError   : require('./lib/libs/ResponseError'),
+  ResponseSuccess : require('./lib/libs/ResponseSuccess'),
+
+  errors    : require('./lib/tools/errors'),
+  successes : require('./lib/tools/successes'),
+
+  fake : require('./lib/tools/fake'),
+  util : require('./lib/tools/util')
 }

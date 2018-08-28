@@ -1,4 +1,4 @@
-global.INSAC = require('path').resolve(__dirname, '..')
+global.INSAC = require('path').resolve(__dirname, '../..')
 
 const { Insac } = require(global.INSAC)
 
