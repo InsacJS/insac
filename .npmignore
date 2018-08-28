@@ -5,3 +5,4 @@
 /docs
 /esdoc
 /assets
+*.sqlite
