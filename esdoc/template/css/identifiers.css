@@ -4,10 +4,10 @@
 }
 
 .identifier-dir-tree {
-  background: #fff;
+  background: rgb(246, 248, 250);
   border: solid 1px #ddd;
   border-radius: 0.25em;
-  top: 52px;
+  top: 80px;
   position: -webkit-sticky;
   position: sticky;
   max-height: calc(100vh - 155px);
@@ -18,7 +18,7 @@
 
 .identifier-dir-tree-header {
   padding: 0.5em;
-  background-color: #fafafa;
+  background-color: rgb(234, 237, 239);
   border-bottom: solid 1px #ddd;
 }
 
@@ -34,4 +34,3 @@
 .identifier-dir-tree-content a {
   color: inherit;
 }
-

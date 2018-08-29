@@ -5,7 +5,7 @@
   if (matched) return;
 
   function adjust() {
-    window.scrollBy(0, -55);
+    window.scrollBy(0, -65);
     var el = document.querySelector('.inner-link-active');
     if (el) el.classList.remove('inner-link-active');
 
