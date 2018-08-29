@@ -558,9 +558,11 @@ pre.raw-source-code > code {
   padding: 0;
   margin: 0;
   font-size: 12px;
-  background: #fff;
+  /* background: #fff; */
   border: solid 1px #ddd;
   line-height: 1.5;
+  overflow: auto;
+  width: fit-content;
 }
 
 pre.raw-source-code > code > ol {
@@ -568,7 +570,7 @@ pre.raw-source-code > code > ol {
   list-style:none;
   margin:0;
   padding:0;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 pre.raw-source-code > code > ol li:before {
