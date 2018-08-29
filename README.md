@@ -1,10 +1,32 @@
-![Logo Insac JS](assets/insac-logo-256.png)
+<h1 align="center">Framework de creación de servicios web</h1>
 
-Insac JS es un framework de creación de servicios web basado en lenguaje script que utiliza arquitectura REST.
+<p align="center">
+  <img src="https://github.com/insacjs/insac/raw/master/assets/insac-logo-256.png" alt="Logo Insac JS" />
+</p>
 
-## Filosofía
+<p align="center">
+  <a href="https://github.com/insacjs/insac/releases">
+      <img src="https://img.shields.io/github/release/insacjs/insac.svg" alt="Release" />
+  </a>
 
-El framework está enfocado en la organización, automatización y reutilización de código.
+  <a href="https://npmcharts.com/compare/insac">
+    <img src="https://img.shields.io/npm/dm/insac.svg" alt="Downloads">
+  </a>
+
+  <a href="https://www.npmjs.com/package/insac">
+    <img src="https://img.shields.io/npm/v/insac.svg" alt="Version">
+  </a>
+
+  <a href="https://opensource.org/licenses/MIT">
+      <img src="https://img.shields.io/github/license/insacjs/insac.svg" alt="License: MIT" />
+  </a>
+</p>
+
+Insac JS es un framework de creación de servicios web basado en lenguaje script que utiliza arquitectura REST. Está enfocado en la organización, automatización y reutilización de código.
+
+La documentación se encuentra disponible en la página [https://insacjs.com](https://insacjs.com).
+
+Para crear nuevos proyectos, utilice la [Interfaz de línea de comandos INSAC CLI](https://github.com/insacjs/insac-cli)
 
 ## Tecnologías utilizadas
 
@@ -14,26 +36,27 @@ NodeJS permite crear aplicaciones del lado del servidor, además de que es una e
 
 A continuación de describen las diferentes tecnologías y herramientas mas importantes con las que trabaja el framework:
 
-| Nombre      | Versión | Descripción                                                    |
-|-------------|---------|----------------------------------------------------------------|
-| `NodeJS`    | 8.0     | Entorno de programación de JavaScript.                         |
-| `Express`   | 4.16    | Framework de NodeJS.                                           |
-| `Sequelize` | 4.37    | Framework ORM de NodeJS.                                       |
-| `Yarn`      | 1.7     | Manejador de dependencias.                                     |
-| `PM2`       | 2.7     | Gestor avanzado de procesos de producción para NodeJS.         |
-| `Git`       | 2.7     | Sistema de control de versiones distribuido de código abierto. |
-| `Eslint`    | 4.19    | Herramienta de linting para JavaScript.                        |
+| Nombre      | Versión  | Descripción                                                    |
+| ----------- | -------- | -------------------------------------------------------------- |
+| `NodeJS`    | ^8.0     | Entorno de programación de JavaScript.                         |
+| `MPM`       | ^6.3     | Gestor de paquetes de NodeJS.                                  |
+| `Express`   | ^4.16    | Framework de NodeJS.                                           |
+| `Sequelize` | ^4.37    | Framework ORM de NodeJS.                                       |
+| `Yarn`      | ^1.7     | Manejador de dependencias.                                     |
+| `PM2`       | ^2.7     | Gestor avanzado de procesos de producción para NodeJS.         |
+| `Git`       | ^2.7     | Sistema de control de versiones distribuido de código abierto. |
+| `Eslint`    | ^4.19    | Herramienta de linting para JavaScript.                        |
 
-## Base de datos compatibles:
+## Soporta los siguientes gestores de base de datos:
 
 | Nombre        | Versión  |
-|---------------|----------|
+| ------------- | -------- |
 | `PostgreSQL`  | 9.4      |
 | `MySQL`       | 5.7      |
 | `MSSQLSERVER` | 2017     |
 | `SQLite`      | 3.24     |
 
-## Caracteristicas
+## Características
 
 Entre las características más importantes del framework se encuentran las siguientes:
 
@@ -48,6 +71,17 @@ Entre las características más importantes del framework se encuentran las sigu
 - **Esquemas de base de datos:** Sobre una base de datos, se crea un esquema para cada módulo, de esta forma es posible tener dos tablas o modelos con el mismo nombre, pero en diferentes módulos. Es posible relacionar modelos de diferentes módulos.
 
 - **Sistema de logs:** Por defecto, se muestran mensajes en la terminal para monitorear todas las peticiones y éstas se registran en ficheros de logs.
+
+## Referencias externas
+
+- [Node JS](https://nodejs.org/es/)
+- [NPM](https://www.npmjs.com/)
+- [Express](http://expressjs.com/es/)
+- [Sequelize](http://docs.sequelizejs.com/)
+- [Yarn](https://yarnpkg.com/es-ES/)
+- [PM2](http://pm2.keymetrics.io/)
+- [GIT](https://git-scm.com/)
+- [ESLint](https://eslint.org/)
 
 ## Ejemplo.-
 
