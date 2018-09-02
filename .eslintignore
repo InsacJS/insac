@@ -1,4 +1,2 @@
-lib/apidoc/template
-docs
-apidoc
-public
+/lib/apidoc/template
+/test/integration/2. insac/academico

@@ -6,3 +6,6 @@
 /esdoc
 /assets
 *.sqlite
+.esdoc.json
+.eslintignore
+.eslintrc.js

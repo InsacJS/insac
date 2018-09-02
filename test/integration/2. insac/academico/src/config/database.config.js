@@ -6,7 +6,7 @@ const DATABASE = {
   params: {
     dialect  : process.env.DIALECT || 'postgres',
     host     : process.env.DB_HOST || '127.0.0.1',
-    port     : process.env.DB_PORT || 54324,
+    port     : process.env.DB_PORT || 5432,
     timezone : process.env.DB_TZ   || '+00:00',
     lang     : 'es',
 
