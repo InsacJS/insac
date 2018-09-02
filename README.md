@@ -51,8 +51,8 @@ A continuación de describen las diferentes tecnologías y herramientas mas impo
 
 | Nombre        | Versión  |
 | ------------- | -------- |
-| `PostgreSQL`  | 9.4      |
-| `MySQL`       | 5.7      |
+| `PostgreSQL`  | ^9.4     |
+| `MySQL`       | ^5.7     |
 | `MSSQLSERVER` | 2017     |
 | `SQLite`      | 3.24     |
 
