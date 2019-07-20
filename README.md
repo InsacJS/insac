@@ -24,7 +24,7 @@
 
 Insac JS es un framework de creación de servicios web basado en lenguaje script que utiliza arquitectura REST. Está enfocado en la organización, automatización y reutilización de código.
 
-La documentación se encuentra disponible en la página [https://insacjs.com](https://insacjs.com).
+La documentación se encuentra disponible en la página [https://insacjs.github.io](https://insacjs.github.io).
 
 Para crear nuevos proyectos, utilice la [Interfaz de línea de comandos INSAC CLI](https://github.com/insacjs/insac-cli)
 
